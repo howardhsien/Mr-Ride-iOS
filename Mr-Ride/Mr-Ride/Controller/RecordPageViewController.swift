@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  RecordPageViewController.swift
 //  Mr-Ride
 //
 //  Created by howard hsien on 2016/5/25.
@@ -8,26 +8,18 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
-    let classDebugInfo = "[HomeViewController]"
-    
-    class func controller() ->HomeViewController{
-        return UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
-    }
+class RecordPageViewController: UIViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
 
         // Do any additional setup after loading the view.
     }
-    
-    @IBAction func startTrackingPageAction(sender: UIButton) {
-        let trackingPageNavController = storyboard?.instantiateViewControllerWithIdentifier("TrackingPageNavigationController")
-        self.presentViewController(trackingPageNavController!, animated: true, completion: nil)
-    }
-    
 
-    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
 
     /*

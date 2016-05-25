@@ -48,10 +48,19 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8cd-J2-tYv">
+                                <rect key="frame" x="277" y="457" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="startTrackingPageAction:" destination="Jna-v2-caY" eventType="touchUpInside" id="tRF-E5-gs2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="oF6-wF-OMe" firstAttribute="centerX" secondItem="5Ok-jf-9Iy" secondAttribute="centerX" id="29l-hI-SYq"/>
+                            <constraint firstItem="2ie-VM-1uf" firstAttribute="top" secondItem="8cd-J2-tYv" secondAttribute="bottom" constant="113" id="CzS-jV-pwW"/>
+                            <constraint firstItem="8cd-J2-tYv" firstAttribute="centerX" secondItem="5Ok-jf-9Iy" secondAttribute="centerX" id="Kkc-PX-3Oc"/>
                             <constraint firstItem="oF6-wF-OMe" firstAttribute="centerY" secondItem="5Ok-jf-9Iy" secondAttribute="centerY" id="Zvb-8C-foi"/>
                         </constraints>
                     </view>
@@ -71,12 +80,66 @@
                     <view key="view" contentMode="scaleToFill" id="p0k-Fm-Fph">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tracking Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7O-6l-uat">
+                                <rect key="frame" x="246" y="289" width="109" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="u7O-6l-uat" firstAttribute="centerY" secondItem="p0k-Fm-Fph" secondAttribute="centerY" id="3pe-CV-Ubw"/>
+                            <constraint firstItem="u7O-6l-uat" firstAttribute="centerX" secondItem="p0k-Fm-Fph" secondAttribute="centerX" id="bkX-Dd-eLD"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="3dw-XW-Hbw">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="YMR-1B-cMt">
+                            <connections>
+                                <action selector="cancelTrackingAction:" destination="7xf-lk-qYz" id="UUO-6m-oz3"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Finish" id="VS0-n5-Rw8">
+                            <connections>
+                                <action selector="finishTrackingAction:" destination="7xf-lk-qYz" id="yOq-6Q-Bj9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4iR-ow-mdK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1470" y="1327"/>
+            <point key="canvasLocation" x="2282" y="1327"/>
+        </scene>
+        <!--Record Page View Controller-->
+        <scene sceneID="Ki0-AM-9b2">
+            <objects>
+                <viewController storyboardIdentifier="RecordPageViewController" id="aUZ-3l-vYY" customClass="RecordPageViewController" customModule="Mr_Ride" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TKE-gg-5ZO"/>
+                        <viewControllerLayoutGuide type="bottom" id="Lhr-G8-qt9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="moI-Pm-aW1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Record Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1aJ-tb-2Bj">
+                                <rect key="frame" x="251" y="289" width="98" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1aJ-tb-2Bj" firstAttribute="centerX" secondItem="moI-Pm-aW1" secondAttribute="centerX" id="C9w-2X-f4j"/>
+                            <constraint firstItem="1aJ-tb-2Bj" firstAttribute="centerY" secondItem="moI-Pm-aW1" secondAttribute="centerY" id="edg-Lf-8WI"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vsy-cM-asb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2985" y="1327"/>
         </scene>
         <!--History View Controller-->
         <scene sceneID="g19-av-cme">
@@ -173,6 +236,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1nM-sx-Efl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="666" y="-148"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="xg3-l6-oxc">
+            <objects>
+                <navigationController storyboardIdentifier="TrackingPageNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="LPf-le-LLi" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hwp-i3-TWA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="7xf-lk-qYz" kind="relationship" relationship="rootViewController" id="3DT-mR-1pi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K3F-SW-nSl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1470" y="1327"/>
         </scene>
     </scenes>
     <resources>
