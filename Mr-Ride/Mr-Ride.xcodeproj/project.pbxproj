@@ -1,0 +1,429 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		640967811CF54EA100D630E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640967801CF54EA100D630E1 /* AppDelegate.swift */; };
+		640967831CF54EA100D630E1 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640967821CF54EA100D630E1 /* BaseViewController.swift */; };
+		640967861CF54EA100D630E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 640967841CF54EA100D630E1 /* Main.storyboard */; };
+		640967881CF54EA100D630E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 640967871CF54EA100D630E1 /* Assets.xcassets */; };
+		6409678B1CF54EA100D630E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 640967891CF54EA100D630E1 /* LaunchScreen.storyboard */; };
+		6409679B1CF570ED00D630E1 /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6409679A1CF570ED00D630E1 /* SideMenuTableViewController.swift */; };
+		6409679D1CF5759A00D630E1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6409679C1CF5759A00D630E1 /* HomeViewController.swift */; };
+		6409679F1CF575AF00D630E1 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6409679E1CF575AF00D630E1 /* HistoryViewController.swift */; };
+		640967A11CF575C100D630E1 /* TrackingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640967A01CF575C100D630E1 /* TrackingPageViewController.swift */; };
+		640967A41CF578FA00D630E1 /* SideMenuViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640967A21CF578FA00D630E1 /* SideMenuViewCell.swift */; };
+		640967A51CF578FA00D630E1 /* SideMenuViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 640967A31CF578FA00D630E1 /* SideMenuViewCell.xib */; };
+		B4486C04AB7D1BD24919AAB2 /* Pods_Mr_Ride.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022262F6A19867F44EC2B00A /* Pods_Mr_Ride.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		022262F6A19867F44EC2B00A /* Pods_Mr_Ride.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mr_Ride.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		626494F0A04D7D3344F1D4CD /* Pods-Mr-Ride.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mr-Ride.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mr-Ride/Pods-Mr-Ride.debug.xcconfig"; sourceTree = "<group>"; };
+		6409677D1CF54EA100D630E1 /* Mr-Ride.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mr-Ride.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		640967801CF54EA100D630E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		640967821CF54EA100D630E1 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = ../BaseViewController.swift; sourceTree = "<group>"; };
+		640967851CF54EA100D630E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		640967871CF54EA100D630E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6409678A1CF54EA100D630E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6409678C1CF54EA100D630E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6409679A1CF570ED00D630E1 /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
+		6409679C1CF5759A00D630E1 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		6409679E1CF575AF00D630E1 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		640967A01CF575C100D630E1 /* TrackingPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingPageViewController.swift; sourceTree = "<group>"; };
+		640967A21CF578FA00D630E1 /* SideMenuViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewCell.swift; sourceTree = "<group>"; };
+		640967A31CF578FA00D630E1 /* SideMenuViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideMenuViewCell.xib; sourceTree = "<group>"; };
+		A02CCFE3A255BB872FAE0374 /* Pods-Mr-Ride.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mr-Ride.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mr-Ride/Pods-Mr-Ride.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6409677A1CF54EA100D630E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4486C04AB7D1BD24919AAB2 /* Pods_Mr_Ride.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4B46E9C44209973949C19BBD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				626494F0A04D7D3344F1D4CD /* Pods-Mr-Ride.debug.xcconfig */,
+				A02CCFE3A255BB872FAE0374 /* Pods-Mr-Ride.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		640967741CF54EA100D630E1 = {
+			isa = PBXGroup;
+			children = (
+				6409677F1CF54EA100D630E1 /* Mr-Ride */,
+				6409677E1CF54EA100D630E1 /* Products */,
+				4B46E9C44209973949C19BBD /* Pods */,
+				91CCC477A9B09BE78274599B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		6409677E1CF54EA100D630E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6409677D1CF54EA100D630E1 /* Mr-Ride.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6409677F1CF54EA100D630E1 /* Mr-Ride */ = {
+			isa = PBXGroup;
+			children = (
+				640967981CF5708800D630E1 /* Resource */,
+				640967971CF5707C00D630E1 /* Model */,
+				640967991CF5709E00D630E1 /* View */,
+				640967941CF56F3B00D630E1 /* Controller */,
+				640967801CF54EA100D630E1 /* AppDelegate.swift */,
+				640967841CF54EA100D630E1 /* Main.storyboard */,
+				640967871CF54EA100D630E1 /* Assets.xcassets */,
+				640967891CF54EA100D630E1 /* LaunchScreen.storyboard */,
+				6409678C1CF54EA100D630E1 /* Info.plist */,
+			);
+			path = "Mr-Ride";
+			sourceTree = "<group>";
+		};
+		640967941CF56F3B00D630E1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6409679A1CF570ED00D630E1 /* SideMenuTableViewController.swift */,
+				640967821CF54EA100D630E1 /* BaseViewController.swift */,
+				6409679C1CF5759A00D630E1 /* HomeViewController.swift */,
+				6409679E1CF575AF00D630E1 /* HistoryViewController.swift */,
+				640967A01CF575C100D630E1 /* TrackingPageViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		640967971CF5707C00D630E1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		640967981CF5708800D630E1 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		640967991CF5709E00D630E1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				640967A21CF578FA00D630E1 /* SideMenuViewCell.swift */,
+				640967A31CF578FA00D630E1 /* SideMenuViewCell.xib */,
+			);
+			name = View;
+			path = Model/View;
+			sourceTree = "<group>";
+		};
+		91CCC477A9B09BE78274599B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				022262F6A19867F44EC2B00A /* Pods_Mr_Ride.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6409677C1CF54EA100D630E1 /* Mr-Ride */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6409678F1CF54EA100D630E1 /* Build configuration list for PBXNativeTarget "Mr-Ride" */;
+			buildPhases = (
+				FA218774EFC1B2FABB49C8F9 /* Check Pods Manifest.lock */,
+				640967791CF54EA100D630E1 /* Sources */,
+				6409677A1CF54EA100D630E1 /* Frameworks */,
+				6409677B1CF54EA100D630E1 /* Resources */,
+				44A5564E9064436CCF9BBEBA /* Embed Pods Frameworks */,
+				955597057A6C66597270CFEC /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Mr-Ride";
+			productName = "Mr-Ride";
+			productReference = 6409677D1CF54EA100D630E1 /* Mr-Ride.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		640967751CF54EA100D630E1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "AppWorks School Hsien";
+				TargetAttributes = {
+					6409677C1CF54EA100D630E1 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = NNV239MSYK;
+					};
+				};
+			};
+			buildConfigurationList = 640967781CF54EA100D630E1 /* Build configuration list for PBXProject "Mr-Ride" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 640967741CF54EA100D630E1;
+			productRefGroup = 6409677E1CF54EA100D630E1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6409677C1CF54EA100D630E1 /* Mr-Ride */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6409677B1CF54EA100D630E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6409678B1CF54EA100D630E1 /* LaunchScreen.storyboard in Resources */,
+				640967881CF54EA100D630E1 /* Assets.xcassets in Resources */,
+				640967A51CF578FA00D630E1 /* SideMenuViewCell.xib in Resources */,
+				640967861CF54EA100D630E1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		44A5564E9064436CCF9BBEBA /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Mr-Ride/Pods-Mr-Ride-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		955597057A6C66597270CFEC /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Mr-Ride/Pods-Mr-Ride-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FA218774EFC1B2FABB49C8F9 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		640967791CF54EA100D630E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				640967831CF54EA100D630E1 /* BaseViewController.swift in Sources */,
+				6409679B1CF570ED00D630E1 /* SideMenuTableViewController.swift in Sources */,
+				640967A11CF575C100D630E1 /* TrackingPageViewController.swift in Sources */,
+				640967811CF54EA100D630E1 /* AppDelegate.swift in Sources */,
+				640967A41CF578FA00D630E1 /* SideMenuViewCell.swift in Sources */,
+				6409679F1CF575AF00D630E1 /* HistoryViewController.swift in Sources */,
+				6409679D1CF5759A00D630E1 /* HomeViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		640967841CF54EA100D630E1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				640967851CF54EA100D630E1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		640967891CF54EA100D630E1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6409678A1CF54EA100D630E1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6409678D1CF54EA100D630E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6409678E1CF54EA100D630E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		640967901CF54EA100D630E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 626494F0A04D7D3344F1D4CD /* Pods-Mr-Ride.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Mr-Ride/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.appworks-school-hsien.Mr-Ride";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		640967911CF54EA100D630E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A02CCFE3A255BB872FAE0374 /* Pods-Mr-Ride.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Mr-Ride/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.appworks-school-hsien.Mr-Ride";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		640967781CF54EA100D630E1 /* Build configuration list for PBXProject "Mr-Ride" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6409678D1CF54EA100D630E1 /* Debug */,
+				6409678E1CF54EA100D630E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6409678F1CF54EA100D630E1 /* Build configuration list for PBXNativeTarget "Mr-Ride" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				640967901CF54EA100D630E1 /* Debug */,
+				640967911CF54EA100D630E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 640967751CF54EA100D630E1 /* Project object */;
+}

@@ -1,0 +1,13 @@
+PODS:
+  - PureLayout (3.0.1)
+  - SideMenu (1.1.7)
+
+DEPENDENCIES:
+  - PureLayout
+  - SideMenu
+
+SPEC CHECKSUMS:
+  PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
+  SideMenu: 7b420772e1aa7a2b3a0b0e191566e7e8e0868f53
+
+COCOAPODS: 0.39.0

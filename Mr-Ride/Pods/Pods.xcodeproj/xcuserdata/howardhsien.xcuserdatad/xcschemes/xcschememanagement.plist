@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Pods-Mr-Ride.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>PureLayout.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SideMenu-SideMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SideMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>4232FA6BB69F8F1B68DEB4FD822B0743</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>577C8FBE1AF14860D98E86B9679896E0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6FC68338C0FB61365619B54E8AB89B94</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AF2B0C8D9A83C91257DA603107E265A6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

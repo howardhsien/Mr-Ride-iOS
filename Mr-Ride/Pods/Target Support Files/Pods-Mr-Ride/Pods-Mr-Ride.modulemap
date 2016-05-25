@@ -1,0 +1,6 @@
+framework module Pods_Mr_Ride {
+  umbrella header "Pods-Mr-Ride-umbrella.h"
+
+  export *
+  module * { export * }
+}
