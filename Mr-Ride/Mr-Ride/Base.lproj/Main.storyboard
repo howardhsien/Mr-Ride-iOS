@@ -21,7 +21,7 @@
                     <navigationItem key="navigationItem" id="Bar-BK-FGP">
                         <barButtonItem key="leftBarButtonItem" image="icon-menu" id="K5m-y0-J1Z">
                             <connections>
-                                <segue destination="tVg-JE-Rva" kind="presentation" id="DfE-Gf-XuZ"/>
+                                <action selector="openSideMenu:" destination="BYZ-38-t0r" id="CDM-Rq-c6d"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -49,7 +49,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="oF6-wF-OMe" firstAttribute="centerX" secondItem="5Ok-jf-9Iy" secondAttribute="centerX" id="29l-hI-SYq"/>
                             <constraint firstItem="oF6-wF-OMe" firstAttribute="centerY" secondItem="5Ok-jf-9Iy" secondAttribute="centerY" id="Zvb-8C-foi"/>
