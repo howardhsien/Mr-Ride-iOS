@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SideMenu
 
 protocol SideMenuDelegate :class{
     func switchPages(page:Page)
@@ -14,6 +15,7 @@ protocol SideMenuDelegate :class{
 
 class SideMenuTableViewController: UITableViewController {
     let classDebugInfo = "[SideMenuTableViewController]"
+    var selectedPage:NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
     
     // MARK: properties
     let pages: [Page:String] = [
@@ -26,18 +28,34 @@ class SideMenuTableViewController: UITableViewController {
         super.viewDidLoad()
         let nib = UINib(nibName: "SideMenuViewCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: sideMenuCellIdentifier)
+        setupSideBarStyle()
 
     }
-
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.selectRowAtIndexPath(selectedPage, animated: false,scrollPosition: .None)
+    }
+    
+    func setupSideBarStyle(){
+        self.view.backgroundColor = UIColor.mrDarkSlateBlueColor()
+        self.navigationController?.navigationBarHidden = true
+        SideMenuManager.menuFadeStatusBar = false
+        SideMenuManager.menuShadowColor = UIColor.clearColor()
+        SideMenuManager.menuWidth = 260
+    }
+    
+    
     // MARK: - Table view data source
-
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return pages.count
     }
 
@@ -49,24 +67,32 @@ class SideMenuTableViewController: UITableViewController {
         case .Home: cell.setPageLabelText(pages[.Home]!)
         case .History: cell.setPageLabelText(pages[.History]!)
         }
-
+        
+        cell.backgroundColor = UIColor.clearColor()
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        //update the selected page
+        selectedPage = NSIndexPath(forRow: indexPath.row , inSection: indexPath.section)
         switch Page(rawValue: indexPath.row)! {
         case .Home:
             delegate?.switchPages(.Home)
         case .History:
             delegate?.switchPages(.History)
-
         }
     }
     
-//    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 300
-//    }
-// 
+    //MARK: - header of tableView
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 100
+    }
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let dummyHeaderView = UIView(frame: CGRectMake(0, 0, view.frame.width, 100))
+        dummyHeaderView.backgroundColor = UIColor.clearColor()
+        return dummyHeaderView
+    }
+ 
 
 
 

@@ -47,7 +47,6 @@ class BaseViewController: UIViewController,SideMenuDelegate {
         super.viewDidLoad()
         switchPages(.Home)
         setupSideMenuController()
-        setupSideMenuAttritibute()
     }
     
     //MARK: setup SideMenu
@@ -60,9 +59,6 @@ class BaseViewController: UIViewController,SideMenuDelegate {
         
     }
     
-    private func setupSideMenuAttritibute(){
-        SideMenuManager.menuFadeStatusBar = false
-    }
     
     @IBAction func openSideMenu(sender: UIBarButtonItem) {
         presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion:nil)
@@ -84,11 +80,7 @@ class BaseViewController: UIViewController,SideMenuDelegate {
             historyViewController.view.autoPinEdgesToSuperviewEdges()
  
         }
-       
-        
     }
-
-
 
 }
 
