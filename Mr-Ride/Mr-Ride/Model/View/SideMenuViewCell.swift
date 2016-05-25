@@ -24,6 +24,7 @@ class SideMenuViewCell: UITableViewCell {
         pageLabel.textColor = UIColor.mrWhite50Color()
         prefixView.backgroundColor = UIColor.clearColor()
         roundView.layer.cornerRadius = roundView.frame.width/2
+        roundView.hidden = true
     }
     
     func setPageLabelText(labelName: String){
@@ -32,9 +33,13 @@ class SideMenuViewCell: UITableViewCell {
     }
     
     override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        if selected{
+            pageLabel.textColor = UIColor.whiteColor()
+            roundView.hidden = false
+        }
+        else{
+            pageLabel.textColor = UIColor.mrWhite50Color()
+            roundView.hidden = true
+        }
     }
-    
 }

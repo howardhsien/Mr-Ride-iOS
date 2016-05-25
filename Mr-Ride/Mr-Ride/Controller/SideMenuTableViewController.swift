@@ -15,6 +15,7 @@ protocol SideMenuDelegate :class{
 
 class SideMenuTableViewController: UITableViewController {
     let classDebugInfo = "[SideMenuTableViewController]"
+    var selectedPage:NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
     
     // MARK: properties
     let pages: [Page:String] = [
@@ -28,6 +29,16 @@ class SideMenuTableViewController: UITableViewController {
         let nib = UINib(nibName: "SideMenuViewCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: sideMenuCellIdentifier)
         setupSideBarStyle()
+
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.selectRowAtIndexPath(selectedPage, animated: false,scrollPosition: .None)
     }
     
     func setupSideBarStyle(){
@@ -41,12 +52,10 @@ class SideMenuTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return pages.count
     }
 
@@ -64,12 +73,13 @@ class SideMenuTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        //update the selected page
+        selectedPage = NSIndexPath(forRow: indexPath.row , inSection: indexPath.section)
         switch Page(rawValue: indexPath.row)! {
         case .Home:
             delegate?.switchPages(.Home)
         case .History:
             delegate?.switchPages(.History)
-
         }
     }
     
