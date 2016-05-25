@@ -17,20 +17,54 @@ enum Page: Int {
 class BaseViewController: UIViewController,SideMenuDelegate {
     let classDebugInfo = "[BaseViewController]"
     
-    class func controller() ->BaseViewController{
-        return UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("BaseViewController") as! BaseViewController
-    }
+    //MARK: controllers which embedded in the baseViewController
+    private var sideMenuNavigationController: UISideMenuNavigationController?
+    private lazy var homeViewController: HomeViewController = { [unowned self] in
+        
+        let controller = HomeViewController.controller()
+        //delegate not needed yet
+        //when I need the delegate, implement the protocol and uncomment the following line
+        //        controller.delegate = self
+        self.addChildViewController(controller)
+        self.didMoveToParentViewController(controller)
+        return controller
+        }()
+    
+    private lazy var historyViewController: HistoryViewController = { [unowned self] in
+        
+        let controller = HistoryViewController.controller()
+        //delegate not needed yet
+        //when I need the delegate, implement the protocol and uncomment the following line
+        //        controller.delegate = self
+        self.addChildViewController(controller)
+        self.didMoveToParentViewController(controller)
+        return controller
+        }()
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setSideMenuAttritibute()
-        // Do any additional setup after loading the view, typically from a nib.
+        setupSideMenuController()
+        setupSideMenuAttritibute()
     }
     
-    private func setSideMenuAttritibute(){
+    //MARK: setup SideMenu
+    private func setupSideMenuController(){
+        sideMenuNavigationController = storyboard?.instantiateViewControllerWithIdentifier("UISideMenuNavigationController") as? UISideMenuNavigationController
+        sideMenuNavigationController?.leftSide = true
+        SideMenuManager.menuLeftNavigationController = sideMenuNavigationController
+        
+    }
+    
+    private func setupSideMenuAttritibute(){
         SideMenuManager.menuFadeStatusBar = false
     }
     
-    func switchPages() {
+    @IBAction func openSideMenu(sender: UIBarButtonItem) {
+        presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion:nil)
+    }
+    
+    func switchPages(page: Page) {
         
     }
 

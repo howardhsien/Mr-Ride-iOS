@@ -9,30 +9,24 @@
 import UIKit
 
 protocol SideMenuDelegate :class{
-    func switchPages()
+    func switchPages(page:Page)
 }
 class SideMenuTableViewController: UITableViewController {
+    
     let classDebugInfo = "[SideMenuTableViewController]"
-    let pages:[Page:String] = [
-        .Home:"Home",
+    
+    // MARK: properties
+    let pages: [Page:String] = [
+        .Home: "Home",
         .History: "History"]
     let sideMenuCellIdentifier = "SideMenuCell"
+    var delegate: SideMenuDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let nib = UINib(nibName: "SideMenuViewCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: sideMenuCellIdentifier)
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source

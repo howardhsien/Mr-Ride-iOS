@@ -10,6 +10,10 @@ import UIKit
 
 class HistoryViewController: UIViewController {
     let classDebugInfo = "HistoryViewController"
+   
+    class func controller() ->HistoryViewController{
+        return UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("HistoryViewController") as! HistoryViewController
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

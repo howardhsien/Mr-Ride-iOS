@@ -21,7 +21,7 @@
                     <navigationItem key="navigationItem" id="Bar-BK-FGP">
                         <barButtonItem key="leftBarButtonItem" image="icon-menu" id="K5m-y0-J1Z">
                             <connections>
-                                <segue destination="tVg-JE-Rva" kind="presentation" id="DfE-Gf-XuZ"/>
+                                <action selector="openSideMenu:" destination="BYZ-38-t0r" id="CDM-Rq-c6d"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
