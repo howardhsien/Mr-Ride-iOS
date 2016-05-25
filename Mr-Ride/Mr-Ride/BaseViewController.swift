@@ -7,18 +7,33 @@
 //
 
 import UIKit
+import SideMenu
 
-class BaseViewController: UIViewController {
+enum Page: Int {
+    case Home
+    case History
+}
 
+class BaseViewController: UIViewController,SideMenuDelegate {
+    let classDebugInfo = "[BaseViewController]"
+    
+    class func controller() ->BaseViewController{
+        return UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("BaseViewController") as! BaseViewController
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        setSideMenuAttritibute()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    private func setSideMenuAttritibute(){
+        SideMenuManager.menuFadeStatusBar = false
     }
+    
+    func switchPages() {
+        
+    }
+
 
 
 }

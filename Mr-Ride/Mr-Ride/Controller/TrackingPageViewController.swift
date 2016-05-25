@@ -9,7 +9,8 @@
 import UIKit
 
 class TrackingPageViewController: UIViewController {
-
+    let classDebugInfo = "TrackingPageViewController"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

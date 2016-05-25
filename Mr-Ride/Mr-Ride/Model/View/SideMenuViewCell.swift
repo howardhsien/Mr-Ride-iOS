@@ -9,7 +9,8 @@
 import UIKit
 
 class SideMenuViewCell: UITableViewCell {
-
+    let classDebugInfo = "[SideMenuViewCell]"
+    
     @IBOutlet weak var pageLabel: UILabel!
     
     override func awakeFromNib() {

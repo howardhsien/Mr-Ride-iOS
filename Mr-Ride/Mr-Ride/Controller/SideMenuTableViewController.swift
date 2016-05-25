@@ -8,9 +8,14 @@
 
 import UIKit
 
+protocol SideMenuDelegate :class{
+    func switchPages()
+}
 class SideMenuTableViewController: UITableViewController {
-    
-    let pages = ["Home", "History"]
+    let classDebugInfo = "[SideMenuTableViewController]"
+    let pages:[Page:String] = [
+        .Home:"Home",
+        .History: "History"]
     let sideMenuCellIdentifier = "SideMenuCell"
     
     override func viewDidLoad() {
@@ -45,7 +50,11 @@ class SideMenuTableViewController: UITableViewController {
   
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(sideMenuCellIdentifier, forIndexPath: indexPath) as! SideMenuViewCell
-        cell.setPageLabelText(pages[indexPath.row])
+        
+        switch Page(rawValue:indexPath.row)!{
+        case .Home: cell.setPageLabelText(pages[.Home]!)
+        case .History: cell.setPageLabelText(pages[.History]!)
+        }
 
         return cell
     }

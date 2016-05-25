@@ -9,7 +9,8 @@
 import UIKit
 
 class HistoryViewController: UIViewController {
-
+    let classDebugInfo = "HistoryViewController"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
