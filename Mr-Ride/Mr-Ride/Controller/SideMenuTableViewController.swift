@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SideMenu
 
 protocol SideMenuDelegate :class{
     func switchPages(page:Page)
@@ -26,11 +27,19 @@ class SideMenuTableViewController: UITableViewController {
         super.viewDidLoad()
         let nib = UINib(nibName: "SideMenuViewCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: sideMenuCellIdentifier)
-
+        setupSideBarStyle()
     }
-
+    
+    func setupSideBarStyle(){
+        self.view.backgroundColor = UIColor.mrDarkSlateBlueColor()
+        self.navigationController?.navigationBarHidden = true
+        SideMenuManager.menuFadeStatusBar = false
+        SideMenuManager.menuShadowColor = UIColor.clearColor()
+        SideMenuManager.menuWidth = 260
+    }
+    
+    
     // MARK: - Table view data source
-
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -49,7 +58,8 @@ class SideMenuTableViewController: UITableViewController {
         case .Home: cell.setPageLabelText(pages[.Home]!)
         case .History: cell.setPageLabelText(pages[.History]!)
         }
-
+        
+        cell.backgroundColor = UIColor.clearColor()
         return cell
     }
     
@@ -63,10 +73,16 @@ class SideMenuTableViewController: UITableViewController {
         }
     }
     
-//    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 300
-//    }
-// 
+    //MARK: - header of tableView
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 100
+    }
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let dummyHeaderView = UIView(frame: CGRectMake(0, 0, view.frame.width, 100))
+        dummyHeaderView.backgroundColor = UIColor.clearColor()
+        return dummyHeaderView
+    }
+ 
 
 
 

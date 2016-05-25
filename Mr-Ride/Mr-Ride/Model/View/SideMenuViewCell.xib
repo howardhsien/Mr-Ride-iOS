@@ -11,24 +11,50 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="crC-Mu-y8g">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="crC-Mu-y8g">
                         <rect key="frame" x="139" y="11" width="42" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DK7-AD-eJw">
+                        <rect key="frame" x="0.0" y="0.0" width="48" height="44"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fs6-PE-Ign">
+                                <rect key="frame" x="20" y="18" width="9" height="8"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="8" id="180-LS-iKg"/>
+                                    <constraint firstAttribute="width" constant="8" id="AsJ-EV-hX7"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="48" id="5sX-sr-D2h"/>
+                            <constraint firstItem="Fs6-PE-Ign" firstAttribute="centerX" secondItem="DK7-AD-eJw" secondAttribute="centerX" id="WwS-Ir-Ftd"/>
+                            <constraint firstItem="Fs6-PE-Ign" firstAttribute="centerY" secondItem="DK7-AD-eJw" secondAttribute="centerY" id="YPC-bh-FEg"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="crC-Mu-y8g" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="fPs-Sl-0bC"/>
-                    <constraint firstItem="crC-Mu-y8g" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="zG4-zN-5Vg"/>
+                    <constraint firstItem="crC-Mu-y8g" firstAttribute="leading" secondItem="DK7-AD-eJw" secondAttribute="trailing" id="3jm-K1-xC4"/>
+                    <constraint firstAttribute="bottom" secondItem="DK7-AD-eJw" secondAttribute="bottom" id="7Db-lw-bmV"/>
+                    <constraint firstItem="DK7-AD-eJw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="L00-yi-4iq"/>
+                    <constraint firstItem="crC-Mu-y8g" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="OGl-e8-ta1"/>
+                    <constraint firstItem="DK7-AD-eJw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ZNV-qa-eoU"/>
+                    <constraint firstAttribute="bottom" secondItem="crC-Mu-y8g" secondAttribute="bottom" id="wbg-4Q-qv8"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="pageLabel" destination="crC-Mu-y8g" id="Gif-vH-K6g"/>
+                <outlet property="prefixView" destination="DK7-AD-eJw" id="W8X-uT-SdW"/>
+                <outlet property="roundView" destination="Fs6-PE-Ign" id="FYV-99-m33"/>
             </connections>
+            <point key="canvasLocation" x="393" y="266"/>
         </tableViewCell>
     </objects>
 </document>
