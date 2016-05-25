@@ -129,11 +129,20 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wFY-nW-j9O">
+                                <rect key="frame" x="282" y="408" width="37" height="30"/>
+                                <state key="normal" title="close"/>
+                                <connections>
+                                    <action selector="closeAction:" destination="aUZ-3l-vYY" eventType="touchUpInside" id="1gx-MG-dhi"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="1aJ-tb-2Bj" firstAttribute="centerX" secondItem="moI-Pm-aW1" secondAttribute="centerX" id="C9w-2X-f4j"/>
+                            <constraint firstItem="wFY-nW-j9O" firstAttribute="centerX" secondItem="moI-Pm-aW1" secondAttribute="centerX" id="cQE-UH-rWe"/>
                             <constraint firstItem="1aJ-tb-2Bj" firstAttribute="centerY" secondItem="moI-Pm-aW1" secondAttribute="centerY" id="edg-Lf-8WI"/>
+                            <constraint firstItem="Lhr-G8-qt9" firstAttribute="top" secondItem="wFY-nW-j9O" secondAttribute="bottom" constant="162" id="nwQ-Ih-9aJ"/>
                         </constraints>
                     </view>
                 </viewController>

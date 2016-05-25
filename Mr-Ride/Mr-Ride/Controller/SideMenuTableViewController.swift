@@ -11,8 +11,8 @@ import UIKit
 protocol SideMenuDelegate :class{
     func switchPages(page:Page)
 }
+
 class SideMenuTableViewController: UITableViewController {
-    
     let classDebugInfo = "[SideMenuTableViewController]"
     
     // MARK: properties

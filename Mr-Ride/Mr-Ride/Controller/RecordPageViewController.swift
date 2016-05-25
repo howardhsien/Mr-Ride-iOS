@@ -9,6 +9,7 @@
 import UIKit
 
 class RecordPageViewController: UIViewController {
+    let classDebugInfo = "RecordPageViewController"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +22,9 @@ class RecordPageViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func closeAction(sender: UIButton) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation
