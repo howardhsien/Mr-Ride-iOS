@@ -8,6 +8,7 @@
 
 import UIKit
 import SideMenu
+import PureLayout
 
 enum Page: Int {
     case Home
@@ -44,6 +45,7 @@ class BaseViewController: UIViewController,SideMenuDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        switchPages(.Home)
         setupSideMenuController()
         setupSideMenuAttritibute()
     }
@@ -53,6 +55,8 @@ class BaseViewController: UIViewController,SideMenuDelegate {
         sideMenuNavigationController = storyboard?.instantiateViewControllerWithIdentifier("UISideMenuNavigationController") as? UISideMenuNavigationController
         sideMenuNavigationController?.leftSide = true
         SideMenuManager.menuLeftNavigationController = sideMenuNavigationController
+        //make the delegate from SideMenuTableViewController point to self
+        (sideMenuNavigationController?.viewControllers[0] as? SideMenuTableViewController)?.delegate = self
         
     }
     
@@ -64,7 +68,23 @@ class BaseViewController: UIViewController,SideMenuDelegate {
         presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion:nil)
     }
     
+    //MARK: switchPages
     func switchPages(page: Page) {
+        
+        homeViewController.view.removeFromSuperview()
+        historyViewController.view.removeFromSuperview()
+        sideMenuNavigationController?.dismissViewControllerAnimated(true, completion: nil)
+        switch page {
+        case .Home:
+            view.addSubview(homeViewController.view)
+            homeViewController.view.autoPinEdgesToSuperviewEdges()
+        
+        case .History:
+            view.addSubview(historyViewController.view)
+            historyViewController.view.autoPinEdgesToSuperviewEdges()
+ 
+        }
+       
         
     }
 
