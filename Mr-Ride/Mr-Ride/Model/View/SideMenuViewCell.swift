@@ -29,7 +29,6 @@ class SideMenuViewCell: UITableViewCell {
     
     func setPageLabelText(labelName: String){
         pageLabel.text = labelName
-    
     }
     
     override func setSelected(selected: Bool, animated: Bool) {
