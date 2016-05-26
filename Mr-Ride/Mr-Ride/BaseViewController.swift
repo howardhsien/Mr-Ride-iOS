@@ -47,6 +47,11 @@ class BaseViewController: UIViewController,SideMenuDelegate {
         super.viewDidLoad()
         switchPages(.Home)
         setupSideMenuController()
+        
+        //navigationBorderHidden
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+
     }
     
     //MARK: setup SideMenu
@@ -58,7 +63,6 @@ class BaseViewController: UIViewController,SideMenuDelegate {
         (sideMenuNavigationController?.viewControllers[0] as? SideMenuTableViewController)?.delegate = self
         
     }
-    
     
     @IBAction func openSideMenu(sender: UIBarButtonItem) {
         presentViewController(SideMenuManager.menuLeftNavigationController!, animated: true, completion:nil)

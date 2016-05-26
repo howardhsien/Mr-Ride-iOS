@@ -29,6 +29,7 @@ class SideMenuTableViewController: UITableViewController {
         let nib = UINib(nibName: "SideMenuViewCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: sideMenuCellIdentifier)
         setupSideBarStyle()
+        
 
     }
     

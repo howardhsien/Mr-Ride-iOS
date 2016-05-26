@@ -21,6 +21,7 @@ class SideMenuViewCell: UITableViewCell {
     }
     
     func setupCellStyle(){
+        self.selectionStyle = .None
         pageLabel.textColor = UIColor.mrWhite50Color()
         prefixView.backgroundColor = UIColor.clearColor()
         roundView.layer.cornerRadius = roundView.frame.width/2
