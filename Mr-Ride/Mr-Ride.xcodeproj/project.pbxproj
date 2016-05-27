@@ -31,6 +31,7 @@
 		640967BF1CF5E5FE00D630E1 /* RobotoMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 640967B41CF5E5FE00D630E1 /* RobotoMono-Regular.ttf */; };
 		640967C01CF5E5FE00D630E1 /* RobotoMono-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 640967B51CF5E5FE00D630E1 /* RobotoMono-Thin.ttf */; };
 		640967C11CF5E5FE00D630E1 /* RobotoMono-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 640967B61CF5E5FE00D630E1 /* RobotoMono-ThinItalic.ttf */; };
+		640968051CF836BC00D630E1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640968041CF836BC00D630E1 /* MapKit.framework */; };
 		B4486C04AB7D1BD24919AAB2 /* Pods_Mr_Ride.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022262F6A19867F44EC2B00A /* Pods_Mr_Ride.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		640967B41CF5E5FE00D630E1 /* RobotoMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-Regular.ttf"; sourceTree = "<group>"; };
 		640967B51CF5E5FE00D630E1 /* RobotoMono-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-Thin.ttf"; sourceTree = "<group>"; };
 		640967B61CF5E5FE00D630E1 /* RobotoMono-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-ThinItalic.ttf"; sourceTree = "<group>"; };
+		640968041CF836BC00D630E1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A02CCFE3A255BB872FAE0374 /* Pods-Mr-Ride.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mr-Ride.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mr-Ride/Pods-Mr-Ride.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				640968051CF836BC00D630E1 /* MapKit.framework in Frameworks */,
 				B4486C04AB7D1BD24919AAB2 /* Pods_Mr_Ride.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -189,6 +192,7 @@
 		91CCC477A9B09BE78274599B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				640968041CF836BC00D630E1 /* MapKit.framework */,
 				022262F6A19867F44EC2B00A /* Pods_Mr_Ride.framework */,
 			);
 			name = Frameworks;
