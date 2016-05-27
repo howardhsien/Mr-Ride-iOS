@@ -22,7 +22,7 @@ class SideMenuTableViewController: UITableViewController {
         .Home: "Home",
         .History: "History"]
     let sideMenuCellIdentifier = "SideMenuCell"
-    var delegate: SideMenuDelegate?
+    weak var delegate: SideMenuDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
