@@ -232,7 +232,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="distanceLabel" destination="hQd-qB-MUp" id="PTJ-IP-P4n"/>
                         <outlet property="mapView" destination="4SN-GS-CzC" id="Bzy-Af-uBs"/>
+                        <outlet property="timeSpentLabel" destination="u7O-6l-uat" id="SRc-4b-eAR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4iR-ow-mdK" userLabel="First Responder" sceneMemberID="firstResponder"/>
