@@ -33,12 +33,22 @@ class TrackingPageViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var timeSpentLabel: UILabel!
+    @IBOutlet weak var speedLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         setupMapViewStyle()
         setupNavigationBar()
+        setupBackground()
 
     }
+    
+    func setupBackground(){
+        let backgroundLayer = CALayer()
+        backgroundLayer.backgroundColor = UIColor.mrBlack60Color().CGColor
+        backgroundLayer.frame = view.frame
+        self.view.layer.insertSublayer(backgroundLayer, atIndex: 0 )
+    }
+    
     func setupNavigationBar(){
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateStyle = .ShortStyle
