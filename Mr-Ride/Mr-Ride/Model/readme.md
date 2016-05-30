@@ -12,14 +12,14 @@ The unit of the function is:
 
 Example of calling this function:
 
-```
+```swift
 //.Bike is of enum Exercise
 //speed's unit: km/hr
 //timeSpent's unit: s
 //weight unit: kg
 //kCalBurned's unit: kcal
 //kcalBurnedLabel is the UIkit to display
-        let calorieCalculator = CalorieCalculator()
-        let kCalBurned = calorieCalculator.kiloCalorieBurned(.Bike, speed: speed, weight: 70.0, time: spentTime/3600)
-        kcalBurnedLabel.text = String(format:"%.2f kcal",kCalBurned)
+let calorieCalculator = CalorieCalculator()
+let kCalBurned = calorieCalculator.kiloCalorieBurned(.Bike, speed: speed, weight: 70.0, time: spentTime/3600)
+kcalBurnedLabel.text = String(format:"%.2f kcal",kCalBurned)
 ```
