@@ -23,3 +23,7 @@ let calorieCalculator = CalorieCalculator()
 let kCalBurned = calorieCalculator.kiloCalorieBurned(.Bike, speed: speed, weight: 70.0, time: spentTime/3600)
 kcalBurnedLabel.text = String(format:"%.2f kcal",kCalBurned)
 ```
+
+
+reference :
+<http://www.hpa.gov.tw/BHPNet/Web/HealthTopic/TopicArticle.aspx?No=201409250001&parentid=201405260002>
