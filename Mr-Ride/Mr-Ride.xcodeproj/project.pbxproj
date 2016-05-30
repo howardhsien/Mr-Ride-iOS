@@ -50,8 +50,8 @@
 		6409679C1CF5759A00D630E1 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		6409679E1CF575AF00D630E1 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		640967A01CF575C100D630E1 /* TrackingPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingPageViewController.swift; sourceTree = "<group>"; };
-		640967A21CF578FA00D630E1 /* SideMenuViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewCell.swift; sourceTree = "<group>"; };
-		640967A31CF578FA00D630E1 /* SideMenuViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideMenuViewCell.xib; sourceTree = "<group>"; };
+		640967A21CF578FA00D630E1 /* SideMenuViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SideMenuViewCell.swift; path = ../../View/SideMenuViewCell.swift; sourceTree = "<group>"; };
+		640967A31CF578FA00D630E1 /* SideMenuViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SideMenuViewCell.xib; path = ../../View/SideMenuViewCell.xib; sourceTree = "<group>"; };
 		640967A61CF59B5400D630E1 /* RecordPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordPageViewController.swift; sourceTree = "<group>"; };
 		640967A81CF5AF1D00D630E1 /* UIColor+MRAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+MRAdditions.swift"; sourceTree = "<group>"; };
 		640967AC1CF5E5FE00D630E1 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
