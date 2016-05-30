@@ -32,6 +32,7 @@
 		640967C01CF5E5FE00D630E1 /* RobotoMono-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 640967B51CF5E5FE00D630E1 /* RobotoMono-Thin.ttf */; };
 		640967C11CF5E5FE00D630E1 /* RobotoMono-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 640967B61CF5E5FE00D630E1 /* RobotoMono-ThinItalic.ttf */; };
 		640968051CF836BC00D630E1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640968041CF836BC00D630E1 /* MapKit.framework */; };
+		640968071CFC879700D630E1 /* CalorieCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640968061CFC879700D630E1 /* CalorieCalculator.swift */; };
 		B4486C04AB7D1BD24919AAB2 /* Pods_Mr_Ride.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022262F6A19867F44EC2B00A /* Pods_Mr_Ride.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,7 @@
 		640967B51CF5E5FE00D630E1 /* RobotoMono-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-Thin.ttf"; sourceTree = "<group>"; };
 		640967B61CF5E5FE00D630E1 /* RobotoMono-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-ThinItalic.ttf"; sourceTree = "<group>"; };
 		640968041CF836BC00D630E1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		640968061CFC879700D630E1 /* CalorieCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalorieCalculator.swift; sourceTree = "<group>"; };
 		A02CCFE3A255BB872FAE0374 /* Pods-Mr-Ride.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mr-Ride.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mr-Ride/Pods-Mr-Ride.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,6 +142,7 @@
 		640967971CF5707C00D630E1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				640968061CFC879700D630E1 /* CalorieCalculator.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				640967A71CF59B5400D630E1 /* RecordPageViewController.swift in Sources */,
 				640967A41CF578FA00D630E1 /* SideMenuViewCell.swift in Sources */,
 				6409679F1CF575AF00D630E1 /* HistoryViewController.swift in Sources */,
+				640968071CFC879700D630E1 /* CalorieCalculator.swift in Sources */,
 				640967A91CF5AF1D00D630E1 /* UIColor+MRAdditions.swift in Sources */,
 				6409679D1CF5759A00D630E1 /* HomeViewController.swift in Sources */,
 			);

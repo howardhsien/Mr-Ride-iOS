@@ -26,20 +26,89 @@ class TrackingPageViewController: UIViewController {
     }()
     lazy var locations = [CLLocation]()
     lazy var timer = NSTimer()
-    var seconds = 0.0
+    var currentLocation : CLLocation?
+    var spentTime = 0.0
+    var startTime = 0.0
     var distance = 0.0
+    let timeInterval = 1.0
 
     //MARK: UI properties
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var timeSpentLabel: UILabel!
     @IBOutlet weak var speedLabel: UILabel!
+    @IBOutlet weak var trackControlButton: UIButton!
+    @IBOutlet weak var kcalBurnedLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupMapViewStyle()
         setupNavigationBar()
         setupBackground()
+        startLocationUpdates()
+        // map testing (map logic needs to be moved to a mapviewcontroller)
+        mapTest()
+       
+        //
 
+        trackControlButton.addTarget(self, action: #selector(trackControlButtonPressed(_:)), forControlEvents: .TouchUpInside)
+    }
+    
+
+    
+    func trackControlButtonPressed(sender: UIButton){
+//        print(classDebugInfo+"sender:"+String(sender.description))
+        if !timer.valid{
+            startTime = NSDate.timeIntervalSinceReferenceDate() - spentTime
+            timer = NSTimer.scheduledTimerWithTimeInterval(
+                timeInterval,
+                target: self,
+                selector: #selector(TrackingPageViewController.timerEachCount),
+                userInfo: nil,
+                repeats: true)
+            
+            //distance part
+            currentLocation = locationManager.location
+        }
+        else{
+            timer.invalidate()
+        }
+    }
+    
+    func timerEachCount(){
+        //distance passed
+        // location.timestamp can help not get the wrong location (last location)
+        if let location = currentLocation{
+            let distance = locationManager.location?.distanceFromLocation(location)
+            self.distance += distance!
+            distanceLabel.text = String(format:"%0.2f m",self.distance)
+            locations.append(location)
+            
+            var coords = [CLLocationCoordinate2D]()
+            coords.append(location.coordinate)
+            coords.append(locationManager.location!.coordinate)
+            let polyline = MKPolyline(coordinates: &coords, count: 2)
+            mapView.addOverlay(polyline)
+            
+            currentLocation = locationManager.location
+
+        }
+        //time passed
+        spentTime = NSDate.timeIntervalSinceReferenceDate() - startTime
+        let spentTimeSec = Int(spentTime % 60)
+        let spentTimeMin = Int(spentTime / 60)
+        let spentTimeHour = Int(spentTimeMin/60)
+        timeSpentLabel.text = String(format: "%02d:%02d:%02d", spentTimeHour % 60,spentTimeMin % 60,spentTimeSec)
+        
+        //current speed
+        let speed = self.distance/spentTime
+        speedLabel.text = String(format: "%.2f km / h", speed*3.6)
+        
+        //calorie burned
+        let calorieCalculator = CalorieCalculator()
+        let kCalBurned = calorieCalculator.kiloCalorieBurned(.Bike, speed: speed, weight: 70.0, time: spentTime/3600)
+        kcalBurnedLabel.text = String(format:"%.2f kcal",kCalBurned)
+        
     }
     
     func setupBackground(){
@@ -64,11 +133,15 @@ class TrackingPageViewController: UIViewController {
 
     @IBAction func cancelTrackingAction(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
+        timer.invalidate()
+
     }
     
     @IBAction func finishTrackingAction(sender: UIBarButtonItem) {
         let recordPageViewController = storyboard?.instantiateViewControllerWithIdentifier("RecordPageViewController") as! RecordPageViewController
         navigationController?.pushViewController(recordPageViewController, animated: true)
+        timer.invalidate()
+
     }
 }
 
@@ -77,24 +150,37 @@ extension TrackingPageViewController: CLLocationManagerDelegate {
     func startLocationUpdates() {
         // Here, the location manager will be lazily instantiated
         locationManager.startUpdatingLocation()
+        locationManager.requestAlwaysAuthorization()
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("didupdate locations")
-        for location in locations {
-            if location.horizontalAccuracy < 20 {
-                //update distance
-                if self.locations.count > 0 {
-                    distance += location.distanceFromLocation(self.locations.last!)
-                }
-                
-                //save location
-                self.locations.append(location)
-            }
-        }
+//        print("didupdate locations")
+        mapView.showAnnotations(mapView.annotations, animated: false)
+
         
     }
+}
+
+//MARK: MapViewDelegate
+extension TrackingPageViewController : MKMapViewDelegate{
+    func mapTest(){
+        mapView.delegate = self
+        mapView.showsUserLocation = true
+    }
     
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+        
+        let polylineRenderer = MKPolylineRenderer(overlay: overlay)
+        
+        if overlay is MKPolyline {
+            
+            polylineRenderer.strokeColor = UIColor.blueColor()
+            polylineRenderer.lineWidth = 5
+            return polylineRenderer
+        }
+        return polylineRenderer
+        
+    }
     
 }
 
