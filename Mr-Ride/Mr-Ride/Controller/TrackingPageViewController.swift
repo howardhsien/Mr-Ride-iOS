@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MapKit
 import CoreLocation
 
 class TrackingPageViewController: UIViewController {
@@ -24,6 +23,8 @@ class TrackingPageViewController: UIViewController {
         _locationManager.distanceFilter = 10.0
         return _locationManager
     }()
+    
+    var mapViewController: MapViewController?
     lazy var locations = [CLLocation]()
     lazy var timer = NSTimer()
     var rideModel = RideModel()
@@ -34,7 +35,7 @@ class TrackingPageViewController: UIViewController {
     let timeInterval = 1.0
     
     //MARK: UI properties
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var mapContainerView: UIView!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var timeSpentLabel: UILabel!
     @IBOutlet weak var speedLabel: UILabel!
@@ -43,14 +44,9 @@ class TrackingPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupMapViewStyle()
         setupNavigationBar()
         setupBackground()
         startLocationUpdates()
-        // map testing (map logic needs to be moved to a mapviewcontroller)
-        mapTest()
-       
-        //
 
         trackControlButton.addTarget(self, action: #selector(trackControlButtonPressed(_:)), forControlEvents: .TouchUpInside)
     }
@@ -89,8 +85,8 @@ class TrackingPageViewController: UIViewController {
             var coords = [CLLocationCoordinate2D]()
             coords.append(location.coordinate)
             coords.append(locationManager.location!.coordinate)
-            let polyline = MKPolyline(coordinates: &coords, count: 2)
-            mapView.addOverlay(polyline)
+
+            mapViewController?.addMapPolyline(coordinates: &coords,count:2)
             
             currentLocation = locationManager.location
         }
@@ -123,8 +119,10 @@ class TrackingPageViewController: UIViewController {
         
     }
     
-    func setupMapViewStyle() {
-        mapView.layer.cornerRadius = 10
+    
+    //MARK: segue
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        mapViewController = segue.destinationViewController as? MapViewController
     }
 
     //MARK: button action to switch between views
@@ -138,7 +136,6 @@ class TrackingPageViewController: UIViewController {
         let recordPageViewController = storyboard?.instantiateViewControllerWithIdentifier("RecordPageViewController") as! RecordPageViewController
         navigationController?.pushViewController(recordPageViewController, animated: true)
         timer.invalidate()
-
     }
 }
 
@@ -152,32 +149,9 @@ extension TrackingPageViewController: CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 //        print("didupdate locations")
-        mapView.showAnnotations(mapView.annotations, animated: false)
-
-        
+        mapViewController?.showMapAnnotations()
+      
     }
 }
 
-//MARK: MapViewDelegate
-extension TrackingPageViewController : MKMapViewDelegate{
-    func mapTest(){
-        mapView.delegate = self
-        mapView.showsUserLocation = true
-    }
-    
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-        
-        let polylineRenderer = MKPolylineRenderer(overlay: overlay)
-        
-        if overlay is MKPolyline {
-            
-            polylineRenderer.strokeColor = UIColor.blueColor()
-            polylineRenderer.lineWidth = 5
-            return polylineRenderer
-        }
-        return polylineRenderer
-        
-    }
-    
-}
 
