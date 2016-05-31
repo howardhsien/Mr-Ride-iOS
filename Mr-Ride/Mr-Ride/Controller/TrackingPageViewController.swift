@@ -26,14 +26,13 @@ class TrackingPageViewController: UIViewController {
     }()
     lazy var locations = [CLLocation]()
     lazy var timer = NSTimer()
+    var rideModel = RideModel()
     var currentLocation : CLLocation?
-    var spentTime_s = 0.0
-    var startTime = 0.0
-    var distance_m = 0.0
-    var speed_km_per_hr = 0.0
-    let timeInterval = 1.0
-    let weight = 70.0
 
+    var startTime = 0.0
+
+    let timeInterval = 1.0
+    
     //MARK: UI properties
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var distanceLabel: UILabel!
@@ -61,11 +60,11 @@ class TrackingPageViewController: UIViewController {
     func trackControlButtonPressed(sender: UIButton){
 //        print(classDebugInfo+"sender:"+String(sender.description))
         if !timer.valid{
-            startTime = NSDate.timeIntervalSinceReferenceDate() - spentTime_s
+            startTime = NSDate.timeIntervalSinceReferenceDate() - rideModel.spentTime
             timer = NSTimer.scheduledTimerWithTimeInterval(
                 timeInterval,
                 target: self,
-                selector: #selector(TrackingPageViewController.timerEachCount),
+                selector: #selector(timerEachCount),
                 userInfo: nil,
                 repeats: true)
             
@@ -82,10 +81,10 @@ class TrackingPageViewController: UIViewController {
         // location.timestamp can help not get the wrong location (last location)
         if let location = currentLocation{
             if let distance = locationManager.location?.distanceFromLocation(location){
-                self.distance_m += distance
+                rideModel.addDistance(distance)
             }
-            distanceLabel.text = String(format:"%0.2f m",self.distance_m)
-            locations.append(location)
+            distanceLabel.text = String(format:"%0.2f m",rideModel.distance)
+            rideModel.addLocation(location)
             
             var coords = [CLLocationCoordinate2D]()
             coords.append(location.coordinate)
@@ -94,27 +93,21 @@ class TrackingPageViewController: UIViewController {
             mapView.addOverlay(polyline)
             
             currentLocation = locationManager.location
-
         }
+        
         //time passed
-        spentTime_s = NSDate.timeIntervalSinceReferenceDate() - startTime
-        let spentTimeSec = Int(spentTime_s % 60)
-        let spentTimeMin = Int(spentTime_s / 60)
-        let spentTimeHour = Int(spentTimeMin/60)
-        timeSpentLabel.text = String(format: "%02d:%02d:%02d", spentTimeHour % 60,spentTimeMin % 60,spentTimeSec)
+        rideModel.setSpentTime(NSDate.timeIntervalSinceReferenceDate() - startTime)
+
+        timeSpentLabel.text = String(format: "%02d:%02d:%02d", rideModel.spentTimeHourDisplay, rideModel.spentTimeMinDisplay, rideModel.spentTimeSecDisplay)
         
         //current speed
-        let speed_m_per_s = self.distance_m/spentTime_s
-        speed_km_per_hr = speed_m_per_s * 3.6
-        speedLabel.text = String(format: "%.2f km / h", speed_km_per_hr)
+        speedLabel.text = String(format: "%.2f km / h", rideModel.speed)
         
         //calorie burned
-        let calorieCalculator = CalorieCalculator()
-        let kCalBurned = calorieCalculator.kiloCalorieBurned(.Bike, speed: speed_km_per_hr, weight: weight, time: spentTime_s/3600)
-        kcalBurnedLabel.text = String(format:"%.2f kcal",kCalBurned)
+        kcalBurnedLabel.text = String(format:"%.2f kcal",rideModel.kCalBurned)
         
     }
-    
+    //MARK: UI Setting
     func setupBackground(){
         let backgroundLayer = CALayer()
         backgroundLayer.backgroundColor = UIColor.mrBlack60Color().CGColor
@@ -134,7 +127,7 @@ class TrackingPageViewController: UIViewController {
         mapView.layer.cornerRadius = 10
     }
 
-
+    //MARK: button action to switch between views
     @IBAction func cancelTrackingAction(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
         timer.invalidate()
