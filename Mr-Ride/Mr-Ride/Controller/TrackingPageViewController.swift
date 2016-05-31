@@ -27,10 +27,12 @@ class TrackingPageViewController: UIViewController {
     lazy var locations = [CLLocation]()
     lazy var timer = NSTimer()
     var currentLocation : CLLocation?
-    var spentTime = 0.0
+    var spentTime_s = 0.0
     var startTime = 0.0
-    var distance = 0.0
+    var distance_m = 0.0
+    var speed_km_per_hr = 0.0
     let timeInterval = 1.0
+    let weight = 70.0
 
     //MARK: UI properties
     @IBOutlet weak var mapView: MKMapView!
@@ -59,7 +61,7 @@ class TrackingPageViewController: UIViewController {
     func trackControlButtonPressed(sender: UIButton){
 //        print(classDebugInfo+"sender:"+String(sender.description))
         if !timer.valid{
-            startTime = NSDate.timeIntervalSinceReferenceDate() - spentTime
+            startTime = NSDate.timeIntervalSinceReferenceDate() - spentTime_s
             timer = NSTimer.scheduledTimerWithTimeInterval(
                 timeInterval,
                 target: self,
@@ -79,9 +81,10 @@ class TrackingPageViewController: UIViewController {
         //distance passed
         // location.timestamp can help not get the wrong location (last location)
         if let location = currentLocation{
-            let distance = locationManager.location?.distanceFromLocation(location)
-            self.distance += distance!
-            distanceLabel.text = String(format:"%0.2f m",self.distance)
+            if let distance = locationManager.location?.distanceFromLocation(location){
+                self.distance_m += distance
+            }
+            distanceLabel.text = String(format:"%0.2f m",self.distance_m)
             locations.append(location)
             
             var coords = [CLLocationCoordinate2D]()
@@ -94,19 +97,20 @@ class TrackingPageViewController: UIViewController {
 
         }
         //time passed
-        spentTime = NSDate.timeIntervalSinceReferenceDate() - startTime
-        let spentTimeSec = Int(spentTime % 60)
-        let spentTimeMin = Int(spentTime / 60)
+        spentTime_s = NSDate.timeIntervalSinceReferenceDate() - startTime
+        let spentTimeSec = Int(spentTime_s % 60)
+        let spentTimeMin = Int(spentTime_s / 60)
         let spentTimeHour = Int(spentTimeMin/60)
         timeSpentLabel.text = String(format: "%02d:%02d:%02d", spentTimeHour % 60,spentTimeMin % 60,spentTimeSec)
         
         //current speed
-        let speed = self.distance/spentTime
-        speedLabel.text = String(format: "%.2f km / h", speed*3.6)
+        let speed_m_per_s = self.distance_m/spentTime_s
+        speed_km_per_hr = speed_m_per_s * 3.6
+        speedLabel.text = String(format: "%.2f km / h", speed_km_per_hr)
         
         //calorie burned
         let calorieCalculator = CalorieCalculator()
-        let kCalBurned = calorieCalculator.kiloCalorieBurned(.Bike, speed: speed, weight: 70.0, time: spentTime/3600)
+        let kCalBurned = calorieCalculator.kiloCalorieBurned(.Bike, speed: speed_km_per_hr, weight: weight, time: spentTime_s/3600)
         kcalBurnedLabel.text = String(format:"%.2f kcal",kCalBurned)
         
     }
