@@ -23,7 +23,6 @@ class TrackingPageViewController: UIViewController {
         _locationManager.distanceFilter = 10.0
         return _locationManager
     }()
-    
     var mapViewController: MapViewController?
     lazy var locations = [CLLocation]()
     lazy var timer = NSTimer()
@@ -39,7 +38,7 @@ class TrackingPageViewController: UIViewController {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var timeSpentLabel: UILabel!
     @IBOutlet weak var speedLabel: UILabel!
-    @IBOutlet weak var trackControlButton: UIButton!
+    @IBOutlet weak var trackControlButton: TrackingControlButton!
     @IBOutlet weak var kcalBurnedLabel: UILabel!
     
     override func viewDidLoad() {
@@ -66,9 +65,12 @@ class TrackingPageViewController: UIViewController {
             
             //distance part
             currentLocation = locationManager.location
+            self.trackControlButton.makeMiddleIconSquare()
+            
         }
         else{
             timer.invalidate()
+            self.trackControlButton.makeMiddleIconRound()
         }
     }
     

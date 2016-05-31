@@ -140,11 +140,11 @@
                         <viewControllerLayoutGuide type="bottom" id="0ax-pw-GTM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Rvs-0Q-Fgg">
-                        <rect key="frame" x="0.0" y="0.0" width="568" height="160"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="172"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kB6-VB-Hja">
-                                <rect key="frame" x="0.0" y="0.0" width="568" height="160"/>
+                                <rect key="frame" x="0.0" y="0.0" width="568" height="172"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -175,26 +175,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7O-6l-uat">
-                                <rect key="frame" x="228" y="278" width="144" height="40"/>
-                                <fontDescription key="fontDescription" name="RobotoMono-Regular" family="Roboto Mono" pointSize="30"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wtp-9b-Cmk">
-                                <rect key="frame" x="40" y="86" width="50" height="15"/>
+                                <rect key="frame" x="40" y="84" width="50" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pJz-17-HkU">
-                                <rect key="frame" x="40" y="149" width="37" height="15"/>
+                                <rect key="frame" x="40" y="147" width="37" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="z7c-K3-3sc">
-                                <rect key="frame" x="40" y="165" width="110" height="35"/>
+                                <rect key="frame" x="40" y="163" width="110" height="35"/>
                                 <attributedString key="attributedText">
                                     <fragment content="0 km / h">
                                         <attributes>
@@ -207,13 +201,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calorie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1xw-Wn-7Ir">
-                                <rect key="frame" x="40" y="212" width="40" height="15"/>
+                                <rect key="frame" x="40" y="210" width="40" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVs-nd-cBJ">
-                                <rect key="frame" x="40" y="228" width="88" height="35"/>
+                                <rect key="frame" x="40" y="226" width="88" height="35"/>
                                 <attributedString key="attributedText">
                                     <fragment content="0  kcal">
                                         <attributes>
@@ -225,14 +219,29 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wN4-CM-9hq">
-                                <rect key="frame" x="284" y="328" width="32" height="30"/>
-                                <state key="normal" title="start">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wN4-CM-9hq" customClass="TrackingControlButton" customModule="Mr_Ride" customModuleProvider="target">
+                                <rect key="frame" x="270" y="326" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="E6z-bP-bGF"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="Wdj-5m-M7S"/>
+                                </constraints>
+                                <state key="normal">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="30"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQd-qB-MUp">
-                                <rect key="frame" x="40" y="102" width="51" height="35"/>
+                                <rect key="frame" x="40" y="100" width="51" height="35"/>
                                 <attributedString key="attributedText">
                                     <fragment content="0 m">
                                         <attributes>
@@ -244,8 +253,8 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xtc-uq-exB">
-                                <rect key="frame" x="16" y="393" width="568" height="195"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xtc-uq-exB">
+                                <rect key="frame" x="16" y="416" width="568" height="172"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="160" id="IDI-bL-raH"/>
                                 </constraints>
@@ -253,6 +262,12 @@
                                     <segue destination="TOC-IR-KyZ" kind="embed" id="dc1-bf-Lvo"/>
                                 </connections>
                             </containerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="00:00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7O-6l-uat">
+                                <rect key="frame" x="228" y="276" width="144" height="40"/>
+                                <fontDescription key="fontDescription" name="RobotoMono-Regular" family="Roboto Mono" pointSize="30"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.38823530080000002" green="0.84313726430000002" blue="0.96470588450000005" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
@@ -272,10 +287,10 @@
                             <constraint firstItem="wN4-CM-9hq" firstAttribute="top" secondItem="u7O-6l-uat" secondAttribute="bottom" constant="10" id="eKY-J5-n32"/>
                             <constraint firstItem="wN4-CM-9hq" firstAttribute="centerX" secondItem="p0k-Fm-Fph" secondAttribute="centerX" id="i80-Z4-T3f"/>
                             <constraint firstItem="gVs-nd-cBJ" firstAttribute="leading" secondItem="1xw-Wn-7Ir" secondAttribute="leading" id="lRp-qj-T3I"/>
-                            <constraint firstItem="Wtp-9b-Cmk" firstAttribute="top" secondItem="vYJ-mG-3SS" secondAttribute="bottom" constant="22" id="lqk-Ov-aiy"/>
+                            <constraint firstItem="Wtp-9b-Cmk" firstAttribute="top" secondItem="vYJ-mG-3SS" secondAttribute="bottom" constant="20" id="lqk-Ov-aiy"/>
                             <constraint firstItem="Wtp-9b-Cmk" firstAttribute="leading" secondItem="p0k-Fm-Fph" secondAttribute="leadingMargin" constant="20" id="pKe-42-ZaK"/>
                             <constraint firstItem="z7c-K3-3sc" firstAttribute="top" secondItem="pJz-17-HkU" secondAttribute="bottom" constant="1" id="tx8-Kj-Ow0"/>
-                            <constraint firstItem="xtc-uq-exB" firstAttribute="top" secondItem="wN4-CM-9hq" secondAttribute="bottom" constant="35" id="wOc-Mn-e2X"/>
+                            <constraint firstItem="xtc-uq-exB" firstAttribute="top" secondItem="wN4-CM-9hq" secondAttribute="bottom" constant="30" id="wOc-Mn-e2X"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3dw-XW-Hbw">
@@ -477,6 +492,6 @@
         <image name="icon-menu" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cNg-DN-FFE"/>
+        <segue reference="dc1-bf-Lvo"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -35,6 +35,7 @@
 		640968071CFC879700D630E1 /* CalorieCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640968061CFC879700D630E1 /* CalorieCalculator.swift */; };
 		640968091CFD3D8600D630E1 /* RideModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640968081CFD3D8600D630E1 /* RideModel.swift */; };
 		6409680B1CFD607700D630E1 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6409680A1CFD607700D630E1 /* MapViewController.swift */; };
+		6409680D1CFD7C4500D630E1 /* TrackingControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6409680C1CFD7C4500D630E1 /* TrackingControlButton.swift */; };
 		B4486C04AB7D1BD24919AAB2 /* Pods_Mr_Ride.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022262F6A19867F44EC2B00A /* Pods_Mr_Ride.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,7 @@
 		640968061CFC879700D630E1 /* CalorieCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalorieCalculator.swift; sourceTree = "<group>"; };
 		640968081CFD3D8600D630E1 /* RideModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideModel.swift; sourceTree = "<group>"; };
 		6409680A1CFD607700D630E1 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		6409680C1CFD7C4500D630E1 /* TrackingControlButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingControlButton.swift; sourceTree = "<group>"; };
 		A02CCFE3A255BB872FAE0374 /* Pods-Mr-Ride.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mr-Ride.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mr-Ride/Pods-Mr-Ride.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -167,6 +169,7 @@
 			children = (
 				640967A21CF578FA00D630E1 /* SideMenuViewCell.swift */,
 				640967A31CF578FA00D630E1 /* SideMenuViewCell.xib */,
+				6409680C1CFD7C4500D630E1 /* TrackingControlButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				640967831CF54EA100D630E1 /* BaseViewController.swift in Sources */,
 				6409679B1CF570ED00D630E1 /* SideMenuTableViewController.swift in Sources */,
 				640967A11CF575C100D630E1 /* TrackingPageViewController.swift in Sources */,
+				6409680D1CFD7C4500D630E1 /* TrackingControlButton.swift in Sources */,
 				640967811CF54EA100D630E1 /* AppDelegate.swift in Sources */,
 				640967A71CF59B5400D630E1 /* RecordPageViewController.swift in Sources */,
 				640967A41CF578FA00D630E1 /* SideMenuViewCell.swift in Sources */,
