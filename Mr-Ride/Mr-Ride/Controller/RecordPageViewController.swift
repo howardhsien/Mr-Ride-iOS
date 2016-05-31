@@ -14,6 +14,7 @@ class RecordPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBackground()
+        setupNavigationBar()
         // Do any additional setup after loading the view.
     }
     
@@ -24,6 +25,12 @@ class RecordPageViewController: UIViewController {
         gradientLayer.frame = view.frame
         self.view.layer.insertSublayer(gradientLayer, atIndex: 0 )
     }
+    
+    func setupNavigationBar() {
+        let closeButton = UIBarButtonItem(title: "Close", style: .Plain, target: self, action: #selector(closeAction(_:)))
+        closeButton.tintColor = UIColor.whiteColor()
+        self.navigationItem.leftBarButtonItem = closeButton
+    }
 
 
     override func didReceiveMemoryWarning() {
@@ -31,7 +38,7 @@ class RecordPageViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func closeAction(sender: UIButton) {
+    func closeAction(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 

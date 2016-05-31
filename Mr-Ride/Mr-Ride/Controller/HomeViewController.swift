@@ -17,11 +17,20 @@ class HomeViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+    //    setupBackground()
         setupButtonStyle()
         setupNavigationStyle()
         // Do any additional setup after loading the view.
     }
     
+    //TODO: the gradient layer needs to be modified
+    func setupBackground(){
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [ UIColor.mrLightblueColor(),UIColor.mrWaterBlueColor().CGColor, UIColor.mrRobinsEggBlue0Color().CGColor,UIColor.mrLightblueColor()]
+        gradientLayer.locations = [0.35, 0.5, 1]
+        gradientLayer.frame = view.frame
+        self.view.layer.insertSublayer(gradientLayer, atIndex: 0 )
+    }
     
     
     @IBAction func startTrackingPageAction(sender: UIButton) {
