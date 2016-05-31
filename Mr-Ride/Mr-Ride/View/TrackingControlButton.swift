@@ -25,22 +25,25 @@ class TrackingControlButton: UIButton {
     func setupMiddleIcon() {
         middleIcon.userInteractionEnabled = false
         middleIcon.backgroundColor = UIColor.redColor()
+        
+        self.addSubview(middleIcon)
+        middleIcon.frame = self.bounds
         makeMiddleIconRound()
     }
     
     func makeMiddleIconSquare(){
-        middleIcon.removeFromSuperview()
-        self.addSubview(middleIcon)
-        middleIcon.layer.cornerRadius = 5
-        middleIcon.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: insetValue,left: insetValue,bottom: insetValue,right: insetValue))
-
+        UIView.animateWithDuration(0.6,delay: 0.0,options: .TransitionFlipFromLeft, animations:{
+            self.middleIcon.transform = CGAffineTransformMakeScale(0.4, 0.4)
+            },completion: { (true)in
+                self.addIconCornerRadiusAnimation((self.frame.width)/2, to: 10, duration: 0.3)
+        })
     }
     
     func makeMiddleIconRound(){
-        middleIcon.removeFromSuperview()
-        self.addSubview(middleIcon)
-        middleIcon.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: insetValueRound,left: insetValueRound,bottom: insetValueRound,right: insetValueRound))
-        middleIcon.layer.cornerRadius = (self.frame.width-2*insetValueRound)/2
+        UIView.animateWithDuration(0.6){
+            self.middleIcon.transform = CGAffineTransformMakeScale(0.75 , 0.75)
+            self.middleIcon.layer.cornerRadius = (self.frame.width)/2
+        }
     }
 
     var cornerRadius: CGFloat = 0.0 {
@@ -62,4 +65,15 @@ class TrackingControlButton: UIButton {
         }
     }
 
+    func addIconCornerRadiusAnimation(from: CGFloat, to: CGFloat, duration: CFTimeInterval)
+    {
+        let animation = CABasicAnimation(keyPath:"cornerRadius")
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        animation.fromValue = from
+        animation.toValue = to
+        animation.duration = duration
+        self.middleIcon.layer.addAnimation(animation, forKey: "cornerRadius")
+        self.middleIcon.layer.cornerRadius = to
+    }
+    
 }

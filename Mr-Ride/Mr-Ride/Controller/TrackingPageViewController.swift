@@ -12,6 +12,11 @@ import CoreLocation
 class TrackingPageViewController: UIViewController {
     let classDebugInfo = "TrackingPageViewController"
 
+    var rideModel = RideModel()
+    //MARK: controller
+    var mapViewController: MapViewController?
+    
+    
     //MARK: Location and route properties
     lazy var locationManager: CLLocationManager = {
         var _locationManager = CLLocationManager()
@@ -23,14 +28,12 @@ class TrackingPageViewController: UIViewController {
         _locationManager.distanceFilter = 10.0
         return _locationManager
     }()
-    var mapViewController: MapViewController?
     lazy var locations = [CLLocation]()
-    lazy var timer = NSTimer()
-    var rideModel = RideModel()
     var currentLocation : CLLocation?
 
+    //MARK: Timer properties
+    lazy var timer = NSTimer()
     var startTime = 0.0
-
     let timeInterval = 1.0
     
     //MARK: UI properties
@@ -38,8 +41,8 @@ class TrackingPageViewController: UIViewController {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var timeSpentLabel: UILabel!
     @IBOutlet weak var speedLabel: UILabel!
-    @IBOutlet weak var trackControlButton: TrackingControlButton!
     @IBOutlet weak var kcalBurnedLabel: UILabel!
+    @IBOutlet weak var trackControlButton: TrackingControlButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,8 +52,6 @@ class TrackingPageViewController: UIViewController {
 
         trackControlButton.addTarget(self, action: #selector(trackControlButtonPressed(_:)), forControlEvents: .TouchUpInside)
     }
-    
-
     
     func trackControlButtonPressed(sender: UIButton){
 //        print(classDebugInfo+"sender:"+String(sender.description))
@@ -63,7 +64,6 @@ class TrackingPageViewController: UIViewController {
                 userInfo: nil,
                 repeats: true)
             
-            //distance part
             currentLocation = locationManager.location
             self.trackControlButton.makeMiddleIconSquare()
             
@@ -76,7 +76,7 @@ class TrackingPageViewController: UIViewController {
     
     func timerEachCount(){
         //distance passed
-        // location.timestamp can help not get the wrong location (last location)
+        //location.timestamp can help not get the wrong location (last location)
         if let location = currentLocation{
             if let distance = locationManager.location?.distanceFromLocation(location){
                 rideModel.addDistance(distance)
@@ -89,13 +89,11 @@ class TrackingPageViewController: UIViewController {
             coords.append(locationManager.location!.coordinate)
 
             mapViewController?.addMapPolyline(coordinates: &coords,count:2)
-            
             currentLocation = locationManager.location
         }
         
         //time passed
         rideModel.setSpentTime(NSDate.timeIntervalSinceReferenceDate() - startTime)
-
         timeSpentLabel.text = String(format: "%02d:%02d:%02d", rideModel.spentTimeHourDisplay, rideModel.spentTimeMinDisplay, rideModel.spentTimeSecDisplay)
         
         //current speed
@@ -107,10 +105,11 @@ class TrackingPageViewController: UIViewController {
     }
     //MARK: UI Setting
     func setupBackground(){
-        let backgroundLayer = CALayer()
-        backgroundLayer.backgroundColor = UIColor.mrBlack60Color().CGColor
-        backgroundLayer.frame = view.frame
-        self.view.layer.insertSublayer(backgroundLayer, atIndex: 0 )
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor.mrBlack60Color().CGColor, UIColor.mrBlack40Color().CGColor]
+        gradientLayer.locations = [0.2, 0.6]
+        gradientLayer.frame = view.frame
+        self.view.layer.insertSublayer(gradientLayer, atIndex: 0 )
     }
     
     func setupNavigationBar(){
@@ -118,9 +117,7 @@ class TrackingPageViewController: UIViewController {
         dateFormatter.dateStyle = .ShortStyle
         self.navigationItem.title = dateFormatter.stringFromDate(NSDate())
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
-        
     }
-    
     
     //MARK: segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -131,7 +128,6 @@ class TrackingPageViewController: UIViewController {
     @IBAction func cancelTrackingAction(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
         timer.invalidate()
-
     }
     
     @IBAction func finishTrackingAction(sender: UIBarButtonItem) {
