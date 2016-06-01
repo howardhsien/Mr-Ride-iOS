@@ -36,6 +36,12 @@
 		640968091CFD3D8600D630E1 /* RideModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640968081CFD3D8600D630E1 /* RideModel.swift */; };
 		6409680B1CFD607700D630E1 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6409680A1CFD607700D630E1 /* MapViewController.swift */; };
 		6409680D1CFD7C4500D630E1 /* TrackingControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6409680C1CFD7C4500D630E1 /* TrackingControlButton.swift */; };
+		6484210D1CFE7130002F993F /* rideData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6484210B1CFE7130002F993F /* rideData.xcdatamodeld */; };
+		6484210F1CFE774A002F993F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6484210E1CFE774A002F993F /* CoreData.framework */; };
+		6484213D1CFE7DF9002F993F /* RouteEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648421391CFE7DF8002F993F /* RouteEntity+CoreDataProperties.swift */; };
+		6484213E1CFE7DF9002F993F /* RouteEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484213A1CFE7DF9002F993F /* RouteEntity.swift */; };
+		6484213F1CFE7DF9002F993F /* RideEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484213B1CFE7DF9002F993F /* RideEntity+CoreDataProperties.swift */; };
+		648421401CFE7DF9002F993F /* RideEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484213C1CFE7DF9002F993F /* RideEntity.swift */; };
 		B4486C04AB7D1BD24919AAB2 /* Pods_Mr_Ride.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022262F6A19867F44EC2B00A /* Pods_Mr_Ride.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +79,12 @@
 		640968081CFD3D8600D630E1 /* RideModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideModel.swift; sourceTree = "<group>"; };
 		6409680A1CFD607700D630E1 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		6409680C1CFD7C4500D630E1 /* TrackingControlButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingControlButton.swift; sourceTree = "<group>"; };
+		6484210C1CFE7130002F993F /* rideData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = rideData.xcdatamodel; sourceTree = "<group>"; };
+		6484210E1CFE774A002F993F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		648421391CFE7DF8002F993F /* RouteEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RouteEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		6484213A1CFE7DF9002F993F /* RouteEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteEntity.swift; sourceTree = "<group>"; };
+		6484213B1CFE7DF9002F993F /* RideEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RideEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		6484213C1CFE7DF9002F993F /* RideEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideEntity.swift; sourceTree = "<group>"; };
 		A02CCFE3A255BB872FAE0374 /* Pods-Mr-Ride.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mr-Ride.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mr-Ride/Pods-Mr-Ride.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6484210F1CFE774A002F993F /* CoreData.framework in Frameworks */,
 				640968051CF836BC00D630E1 /* MapKit.framework in Frameworks */,
 				B4486C04AB7D1BD24919AAB2 /* Pods_Mr_Ride.framework in Frameworks */,
 			);
@@ -149,8 +162,13 @@
 		640967971CF5707C00D630E1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				648421391CFE7DF8002F993F /* RouteEntity+CoreDataProperties.swift */,
+				6484213A1CFE7DF9002F993F /* RouteEntity.swift */,
+				6484213B1CFE7DF9002F993F /* RideEntity+CoreDataProperties.swift */,
+				6484213C1CFE7DF9002F993F /* RideEntity.swift */,
 				640968061CFC879700D630E1 /* CalorieCalculator.swift */,
 				640968081CFD3D8600D630E1 /* RideModel.swift */,
+				6484210B1CFE7130002F993F /* rideData.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -203,6 +221,7 @@
 		91CCC477A9B09BE78274599B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6484210E1CFE774A002F993F /* CoreData.framework */,
 				640968041CF836BC00D630E1 /* MapKit.framework */,
 				022262F6A19867F44EC2B00A /* Pods_Mr_Ride.framework */,
 			);
@@ -347,16 +366,21 @@
 				640967831CF54EA100D630E1 /* BaseViewController.swift in Sources */,
 				6409679B1CF570ED00D630E1 /* SideMenuTableViewController.swift in Sources */,
 				640967A11CF575C100D630E1 /* TrackingPageViewController.swift in Sources */,
+				6484213F1CFE7DF9002F993F /* RideEntity+CoreDataProperties.swift in Sources */,
 				6409680D1CFD7C4500D630E1 /* TrackingControlButton.swift in Sources */,
+				6484213D1CFE7DF9002F993F /* RouteEntity+CoreDataProperties.swift in Sources */,
 				640967811CF54EA100D630E1 /* AppDelegate.swift in Sources */,
 				640967A71CF59B5400D630E1 /* RecordPageViewController.swift in Sources */,
 				640967A41CF578FA00D630E1 /* SideMenuViewCell.swift in Sources */,
+				6484213E1CFE7DF9002F993F /* RouteEntity.swift in Sources */,
 				6409679F1CF575AF00D630E1 /* HistoryViewController.swift in Sources */,
 				6409680B1CFD607700D630E1 /* MapViewController.swift in Sources */,
+				648421401CFE7DF9002F993F /* RideEntity.swift in Sources */,
 				640968071CFC879700D630E1 /* CalorieCalculator.swift in Sources */,
 				640968091CFD3D8600D630E1 /* RideModel.swift in Sources */,
 				640967A91CF5AF1D00D630E1 /* UIColor+MRAdditions.swift in Sources */,
 				6409679D1CF5759A00D630E1 /* HomeViewController.swift in Sources */,
+				6484210D1CFE7130002F993F /* rideData.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,6 +535,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6484210B1CFE7130002F993F /* rideData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6484210C1CFE7130002F993F /* rideData.xcdatamodel */,
+			);
+			currentVersion = 6484210C1CFE7130002F993F /* rideData.xcdatamodel */;
+			path = rideData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 640967751CF54EA100D630E1 /* Project object */;
 }

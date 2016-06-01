@@ -75,7 +75,7 @@ class SideMenuTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //update the selected page
-        selectedPage = NSIndexPath(forRow: indexPath.row , inSection: indexPath.section)
+        selectedPage = indexPath
         switch Page(rawValue: indexPath.row)! {
         case .Home:
             delegate?.switchPages(.Home)
