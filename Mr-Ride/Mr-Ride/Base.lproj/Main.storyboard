@@ -140,11 +140,11 @@
                         <viewControllerLayoutGuide type="bottom" id="0ax-pw-GTM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Rvs-0Q-Fgg">
-                        <rect key="frame" x="0.0" y="0.0" width="568" height="200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="172"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kB6-VB-Hja">
-                                <rect key="frame" x="0.0" y="0.0" width="568" height="200"/>
+                                <rect key="frame" x="0.0" y="0.0" width="568" height="172"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -207,9 +207,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVs-nd-cBJ">
-                                <rect key="frame" x="40" y="226" width="88" height="35"/>
+                                <rect key="frame" x="40" y="226" width="80" height="35"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="0  kcal">
+                                    <fragment content="0 kcal">
                                         <attributes>
                                             <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <font key="NSFont" size="30" name="HelveticaNeue"/>
@@ -364,9 +364,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="clu-BL-dxz">
-                                <rect key="frame" x="37" y="174" width="88" height="35"/>
+                                <rect key="frame" x="37" y="174" width="80" height="35"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="0  kcal">
+                                    <fragment content="0 kcal">
                                         <attributes>
                                             <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <font key="NSFont" size="30" name="HelveticaNeue"/>
@@ -458,6 +458,12 @@
                             <constraint firstItem="S46-5M-86m" firstAttribute="top" secondItem="GMk-Tw-rMv" secondAttribute="bottom" constant="1" id="w8c-NH-GU0"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="calorieLabel" destination="clu-BL-dxz" id="5Lb-dX-LTo"/>
+                        <outlet property="distancLabel" destination="S46-5M-86m" id="ert-vc-Gtc"/>
+                        <outlet property="speedLabel" destination="W6M-CZ-Pga" id="MwB-iC-nb9"/>
+                        <outlet property="totalTimeLabel" destination="Ixz-sm-cyn" id="Dj8-cE-2Gj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vsy-cM-asb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -497,7 +503,7 @@
         <scene sceneID="v5b-Bs-1ND">
             <objects>
                 <tableViewController storyboardIdentifier="SideMenuTableViewController" id="DiJ-zo-yee" userLabel="Side Menu Table View Controller" customClass="SideMenuTableViewController" customModule="Mr_Ride" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VfW-zy-img">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VfW-zy-img">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -506,7 +512,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="D5G-43-tRE" id="MlE-8z-hzg">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -585,6 +591,6 @@
         <image name="image-medal" width="55" height="85"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cNg-DN-FFE"/>
+        <segue reference="dc1-bf-Lvo"/>
     </inferredMetricsTieBreakers>
 </document>

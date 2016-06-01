@@ -14,10 +14,13 @@ struct Ride {
     var distance_m:Double = 0.0
     var weight:Double = 70.0
     var routes:[CLLocation] = []
+    var date:NSDate = NSDate()
 }
 
 
 class RideModel {
+    let classDebugInfo = "[RideModel]"
+    
     let calorieCalculator = CalorieCalculator()
     private var _ride = Ride()
     var ride :Ride {
@@ -37,9 +40,20 @@ class RideModel {
     var distance: Double{
         return _ride.distance_m
     }
+    // unit: kg
+    var weight: Double{
+        return _ride.weight
+    }
     // unit: kcal
     var kCalBurned: Double{
         return calorieCalculator.kiloCalorieBurned(.Bike, speed: speed, weight: _ride.weight, time: spentTime/3600)
+    }
+    
+    var date : NSDate{
+        return _ride.date
+    }
+    var locations : [CLLocation]{
+        return _ride.routes
     }
     
     // time to display on timer
@@ -50,13 +64,21 @@ class RideModel {
 
     
     func addLocation(location:CLLocation){
-        if location != _ride.routes.last{
+        if (location.coordinate.latitude != _ride.routes.last?.coordinate.latitude && location.coordinate.longitude != _ride.routes.last?.coordinate.longitude){
             _ride.routes.append(location)
         }
     }
     
     func setSpentTime(time : Double) {
         _ride.spentTime = time
+    }
+    
+    func setDistance(distance : Double) {
+        _ride.distance_m = distance
+    }
+    
+    func setRoutes(routes : [CLLocation]) {
+        _ride.routes = routes
     }
     
     func addDistance(distance : Double) {

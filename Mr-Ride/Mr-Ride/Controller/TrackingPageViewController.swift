@@ -8,13 +8,17 @@
 
 import UIKit
 import CoreLocation
+import CoreData
 
 class TrackingPageViewController: UIViewController {
     let classDebugInfo = "TrackingPageViewController"
 
     var rideModel = RideModel()
-    //MARK: controller
+    //MARK: Controller
     var mapViewController: MapViewController?
+    
+    //MARK: ManagedObjectContext
+    let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext
     
     
     //MARK: Location and route properties
@@ -28,7 +32,7 @@ class TrackingPageViewController: UIViewController {
         _locationManager.distanceFilter = 10.0
         return _locationManager
     }()
-    lazy var locations = [CLLocation]()
+  //  lazy var locations = [CLLocation]()
     var currentLocation : CLLocation?
 
     //MARK: Timer properties
@@ -52,9 +56,26 @@ class TrackingPageViewController: UIViewController {
 
         trackControlButton.addTarget(self, action: #selector(trackControlButtonPressed(_:)), forControlEvents: .TouchUpInside)
     }
+    //MARK: UI Setting
+    func setupBackground(){
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor.mrBlack60Color().CGColor, UIColor.mrBlack40Color().CGColor]
+        gradientLayer.locations = [0.2, 0.6]
+        gradientLayer.frame = view.frame
+        self.view.layer.insertSublayer(gradientLayer, atIndex: 0 )
+    }
+    
+    func setupNavigationBar(){
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = .MediumStyle
+        dateFormatter.locale = NSLocale(localeIdentifier: "ja_JP")
+        self.navigationItem.title = dateFormatter.stringFromDate(NSDate())
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+    }
     
     func trackControlButtonPressed(sender: UIButton){
 //        print(classDebugInfo+"sender:"+String(sender.description))
+        //activate the timer
         if !timer.valid{
             startTime = NSDate.timeIntervalSinceReferenceDate() - rideModel.spentTime
             timer = NSTimer.scheduledTimerWithTimeInterval(
@@ -73,7 +94,7 @@ class TrackingPageViewController: UIViewController {
             self.trackControlButton.makeMiddleIconRound()
         }
     }
-    
+    //MARK: Timer logic
     func timerEachCount(){
         //distance passed
         //location.timestamp can help not get the wrong location (last location)
@@ -81,7 +102,7 @@ class TrackingPageViewController: UIViewController {
             if let distance = locationManager.location?.distanceFromLocation(location){
                 rideModel.addDistance(distance)
             }
-            distanceLabel.text = String(format:"%0.2f m",rideModel.distance)
+            distanceLabel.text = String(format:"%0.0f m",rideModel.distance)
             rideModel.addLocation(location)
             
             var coords = [CLLocationCoordinate2D]()
@@ -103,39 +124,56 @@ class TrackingPageViewController: UIViewController {
         kcalBurnedLabel.text = String(format:"%.2f kcal",rideModel.kCalBurned)
         
     }
-    //MARK: UI Setting
-    func setupBackground(){
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [UIColor.mrBlack60Color().CGColor, UIColor.mrBlack40Color().CGColor]
-        gradientLayer.locations = [0.2, 0.6]
-        gradientLayer.frame = view.frame
-        self.view.layer.insertSublayer(gradientLayer, atIndex: 0 )
+    //MARK: CoreData Logic
+    func saveInCoreData(){
+        let savedRide = NSEntityDescription.insertNewObjectForEntityForName("RideEntity",inManagedObjectContext: managedObjectContext!) as! RideEntity
+        savedRide.distance = rideModel.distance
+        savedRide.spentTime = rideModel.spentTime
+        savedRide.weight = rideModel.weight
+        savedRide.date = NSDate()
+        
+        var savedRoutes = [RouteEntity]()
+        for location in rideModel.locations{
+            let savedRoute = NSEntityDescription.insertNewObjectForEntityForName("RouteEntity", inManagedObjectContext: managedObjectContext!) as! RouteEntity
+            savedRoute.timeStamp = location.timestamp
+            savedRoute.latitude = location.coordinate.latitude
+            savedRoute.longitude = location.coordinate.longitude
+            savedRoutes.append(savedRoute)
+        }
+        savedRide.routes = NSOrderedSet(array: savedRoutes)
+        
+        do{
+            try managedObjectContext!.save()
+        }
+        catch{
+            print(classDebugInfo+"Could not save the ride")
+        }
+        
     }
+
     
-    func setupNavigationBar(){
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .ShortStyle
-        self.navigationItem.title = dateFormatter.stringFromDate(NSDate())
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
-    }
-    
-    //MARK: segue
+    //MARK: Segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         mapViewController = segue.destinationViewController as? MapViewController
     }
 
-    //MARK: button action to switch between views
+    //MARK: Button action (switch between views)
     @IBAction func cancelTrackingAction(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
         timer.invalidate()
     }
     
     @IBAction func finishTrackingAction(sender: UIBarButtonItem) {
+        
         let recordPageViewController = storyboard?.instantiateViewControllerWithIdentifier("RecordPageViewController") as! RecordPageViewController
         navigationController?.pushViewController(recordPageViewController, animated: true)
         timer.invalidate()
+        saveInCoreData()
+        
     }
 }
+
+
 
 // MARK: - CLLocationManagerDelegate
 extension TrackingPageViewController: CLLocationManagerDelegate {
