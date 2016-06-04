@@ -15,13 +15,19 @@ class HomeViewController: UIViewController {
     class func controller() ->HomeViewController{
         return UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
     }
+    
+    //MARK: View
     override func viewDidLoad() {
         super.viewDidLoad()
     //    setupBackground()
         setupButtonStyle()
-        setupNavigationStyle()
-        // Do any additional setup after loading the view.
     }
+    // change navigation properties between switches
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        setupNavigationStyle()
+    }
+
     
     //TODO: the gradient layer needs to be modified
     func setupBackground(){

@@ -104,7 +104,7 @@ class TrackingPageViewController: UIViewController {
             }
             distanceLabel.text = String(format:"%0.0f m",rideModel.distance)
             rideModel.addLocation(location)
-            
+            //add polyline
             var coords = [CLLocationCoordinate2D]()
             coords.append(location.coordinate)
             coords.append(locationManager.location!.coordinate)
@@ -130,7 +130,21 @@ class TrackingPageViewController: UIViewController {
         savedRide.distance = rideModel.distance
         savedRide.spentTime = rideModel.spentTime
         savedRide.weight = rideModel.weight
-        savedRide.date = NSDate()
+        
+        
+        
+        var dateString = "2016-07-15" // change to your date format
+        
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        savedRide.date = dateFormatter.dateFromString(dateString)
+        
+        
+        
+        
+        print(savedRide.date)
+//        savedRide.date = NSDate()
         
         var savedRoutes = [RouteEntity]()
         for location in rideModel.locations{

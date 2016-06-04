@@ -8,6 +8,10 @@
 import UIKit
 
 extension UIColor {
+    class func mrPineGreen50() -> UIColor {
+        return UIColor(red: 4 / 255 , green: 20 / 255, blue: 25 / 255 , alpha: 0.5)
+    }
+    
 	class func mrSandBrownColor() -> UIColor {
 		return UIColor(red: 211.0 / 255.0, green: 150.0 / 255.0, blue: 104.0 / 255.0, alpha: 1.0)
 	}

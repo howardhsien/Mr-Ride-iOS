@@ -11,7 +11,7 @@ import CoreData
 import CoreLocation
 
 class RecordPageViewController: UIViewController {
-    let classDebugInfo = "RecordPageViewController"
+    let classDebugInfo = "[RecordPageViewController]"
 
     let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext
     let rideModel = RideModel()
@@ -69,6 +69,8 @@ class RecordPageViewController: UIViewController {
         {
             coords.append(location.coordinate)
         }
+        
+   //     mapViewController?.regionBoundingRect = mapViewController?.overlayBoundingMapRect(coords: coords)
         mapViewController?.addMapPolyline(coordinates: &coords,count:coords.count)
         mapViewController?.showMapPolyline()
     }
@@ -126,7 +128,7 @@ extension RecordPageViewController :  NSFetchedResultsControllerDelegate{
                         
                         rideModel.addLocation(CLLocation(latitude: latitude , longitude: longitude))
                     }
-                }
+                  }
             }
             catch{
                 print(error)

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="RobotoMono-Light.ttf">
+            <string>RobotoMono-Light</string>
+            <string>RobotoMono-Light</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HistoryCell" rowHeight="147" id="eOc-ie-Biz" customClass="HistoryViewCell" customModule="Mr_Ride" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="640" height="147"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eOc-ie-Biz" id="8Ov-OK-WtY">
+                <rect key="frame" x="0.0" y="0.0" width="640" height="146.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mwh-md-zwJ" userLabel="Cell Container View">
+                        <rect key="frame" x="0.0" y="0.0" width="640" height="146"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" misplaced="YES" text="15th" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LC7-Ms-FmL">
+                                <rect key="frame" x="20" y="60" width="49" height="27"/>
+                                <fontDescription key="fontDescription" name="RobotoMono-Light" family="Roboto Mono" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZNL-TG-t7C">
+                                <rect key="frame" x="89" y="53" width="1" height="39"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="1" id="d3q-5m-vku"/>
+                                    <constraint firstAttribute="height" constant="39" id="nXZ-gH-0yy"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1.22 km 01:39:24" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="taq-uV-RPP">
+                                <rect key="frame" x="110" y="60" width="510" height="27"/>
+                                <fontDescription key="fontDescription" name="RobotoMono-Light" family="Roboto Mono" pointSize="24"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.054901961239999998" green="0.20784313979999999" blue="0.25098040700000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="taq-uV-RPP" firstAttribute="leading" secondItem="ZNL-TG-t7C" secondAttribute="trailing" constant="20" id="55J-L3-dcN"/>
+                            <constraint firstItem="taq-uV-RPP" firstAttribute="centerY" secondItem="mwh-md-zwJ" secondAttribute="centerY" id="76j-Te-im5"/>
+                            <constraint firstItem="ZNL-TG-t7C" firstAttribute="centerY" secondItem="mwh-md-zwJ" secondAttribute="centerY" id="KdW-iv-CKl"/>
+                            <constraint firstItem="LC7-Ms-FmL" firstAttribute="centerY" secondItem="mwh-md-zwJ" secondAttribute="centerY" id="XvF-ya-VWV"/>
+                            <constraint firstItem="LC7-Ms-FmL" firstAttribute="leading" secondItem="mwh-md-zwJ" secondAttribute="leading" constant="20" id="r23-MX-Sc4"/>
+                            <constraint firstItem="ZNL-TG-t7C" firstAttribute="leading" secondItem="mwh-md-zwJ" secondAttribute="leading" constant="89" id="uwX-8p-NZB"/>
+                            <constraint firstAttribute="trailing" secondItem="taq-uV-RPP" secondAttribute="trailing" constant="20" id="vub-UR-qK1"/>
+                        </constraints>
+                    </view>
+                    <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kus-vB-ryW" userLabel="Separator Line">
+                        <rect key="frame" x="0.0" y="146" width="640" height="1"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="qwW-ZE-B4n"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="Kus-vB-ryW" firstAttribute="top" secondItem="mwh-md-zwJ" secondAttribute="bottom" id="1nu-M6-xZE"/>
+                    <constraint firstItem="mwh-md-zwJ" firstAttribute="top" secondItem="8Ov-OK-WtY" secondAttribute="topMargin" constant="-8" id="2KH-JI-htQ"/>
+                    <constraint firstAttribute="trailing" secondItem="Kus-vB-ryW" secondAttribute="trailing" id="P7P-LP-GwU"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="mwh-md-zwJ" secondAttribute="trailing" constant="-8" id="SLM-S9-Oa8"/>
+                    <constraint firstAttribute="bottom" secondItem="Kus-vB-ryW" secondAttribute="bottom" id="Zfy-kr-2g3"/>
+                    <constraint firstItem="Kus-vB-ryW" firstAttribute="leading" secondItem="8Ov-OK-WtY" secondAttribute="leading" id="dDu-bh-fFH"/>
+                    <constraint firstItem="mwh-md-zwJ" firstAttribute="leading" secondItem="8Ov-OK-WtY" secondAttribute="leadingMargin" constant="-8" id="oDK-K4-IAx"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="dateLabel" destination="LC7-Ms-FmL" id="IjF-EN-RO7"/>
+                <outlet property="infoLabel" destination="taq-uV-RPP" id="yM8-aX-y0D"/>
+            </connections>
+            <point key="canvasLocation" x="539" y="583.5"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -39,17 +39,22 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func showMapAnnotations(){
         mapView.showAnnotations(mapView.annotations, animated: false)
     }
-    
+    //TODO: show map poly line sometimes not correct
     func addMapPolyline(coordinates coords: UnsafeMutablePointer<CLLocationCoordinate2D>, count: Int){
         let polyline = MKPolyline(coordinates: coords, count: count)
+   //     regionBoundingRect = overlayBoundingMapRect(coords: coords)
         regionBoundingRect = polyline.boundingMapRect
+        
+
         mapView.addOverlay(polyline)
     }
     
     func showMapPolyline() {
         print(classDebugInfo+"showMapPolyline start")
         if regionBoundingRect != nil{
-            mapView.setVisibleMapRect(regionBoundingRect!, animated: true)
+            let edgeInset = UIEdgeInsetsMake(200 , 200, 200, 200)
+            //TODO: TRY REGION?
+            mapView.setVisibleMapRect(regionBoundingRect!,edgePadding: edgeInset ,animated: true)
         }
         else{
             print(classDebugInfo+"showMapPolyline failed")
@@ -67,6 +72,39 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             return polylineRenderer
         }
         return polylineRenderer
+
         
     }
+    
+    func overlayBoundingMapRect(coords coords: [CLLocationCoordinate2D])-> MKMapRect {
+        
+        var leftMostLongitude:CLLocationDegrees = 180
+        var rightMostLongitude:CLLocationDegrees = -180
+        var topMostLatitude:CLLocationDegrees = -90
+        var bottomMostLatitude:CLLocationDegrees = 90
+
+        for coord in coords{
+            if coord.longitude < leftMostLongitude{ leftMostLongitude = coord.longitude}
+            if coord.longitude > rightMostLongitude{ rightMostLongitude = coord.longitude}
+            if coord.latitude > topMostLatitude { topMostLatitude = coord.latitude }
+            if coord.latitude < bottomMostLatitude { bottomMostLatitude = coord.latitude}
+            
+        }
+        
+        let overlayTopLeftCoordinate = CLLocationCoordinate2D(latitude: topMostLatitude, longitude: leftMostLongitude)
+        let overlayTopRightCoordinate = CLLocationCoordinate2D(latitude: topMostLatitude, longitude: rightMostLongitude)
+        let overlayBottomLeftCoordinate = CLLocationCoordinate2D(latitude: bottomMostLatitude, longitude: leftMostLongitude)
+
+        
+        let topLeft = MKMapPointForCoordinate(overlayTopLeftCoordinate)
+        let topRight = MKMapPointForCoordinate(overlayTopRightCoordinate)
+        let bottomLeft = MKMapPointForCoordinate(overlayBottomLeftCoordinate)
+        print(classDebugInfo+" topleft:\(topLeft) topRight:\(topRight) bottomLeft:\(bottomLeft)"    )
+        return MKMapRectMake(topLeft.x,
+                             topLeft.y,
+                             fabs(topLeft.x-topRight.x),
+                             fabs(topLeft.y - bottomLeft.y))
+    }
+    
+    
 }

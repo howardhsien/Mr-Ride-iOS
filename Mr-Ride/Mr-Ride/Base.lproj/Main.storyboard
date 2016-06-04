@@ -481,19 +481,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="History" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJp-pH-Im6">
-                                <rect key="frame" x="273" y="289" width="55" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image-history-background" translatesAutoresizingMaskIntoConstraints="NO" id="bt9-7f-e4w">
+                                <rect key="frame" x="0.0" y="257" width="600" height="343"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ibK-uk-dGt">
+                                <rect key="frame" x="22" y="40" width="556" height="130"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="q7e-WR-yb1"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="e96-rd-Ej4">
+                                <rect key="frame" x="22" y="190" width="556" height="390"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.38823530080000002" green="0.84313726430000002" blue="0.96470588450000005" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="kJp-pH-Im6" firstAttribute="centerY" secondItem="Iok-78-eIk" secondAttribute="centerY" id="8nf-iH-gCr"/>
-                            <constraint firstItem="kJp-pH-Im6" firstAttribute="centerX" secondItem="Iok-78-eIk" secondAttribute="centerX" id="RGr-ql-24G"/>
+                            <constraint firstAttribute="trailing" secondItem="ibK-uk-dGt" secondAttribute="trailing" constant="22" id="1Wv-kd-nFx"/>
+                            <constraint firstItem="noT-WG-KmI" firstAttribute="top" secondItem="e96-rd-Ej4" secondAttribute="bottom" constant="20" id="2pI-8f-NYA"/>
+                            <constraint firstItem="ibK-uk-dGt" firstAttribute="leading" secondItem="Iok-78-eIk" secondAttribute="leading" constant="22" id="3Zf-1h-gow"/>
+                            <constraint firstItem="e96-rd-Ej4" firstAttribute="top" secondItem="ibK-uk-dGt" secondAttribute="bottom" constant="20" id="4Un-PU-430"/>
+                            <constraint firstItem="ibK-uk-dGt" firstAttribute="top" secondItem="aj7-kn-01H" secondAttribute="bottom" constant="20" id="5T2-p3-ZB8"/>
+                            <constraint firstItem="bt9-7f-e4w" firstAttribute="top" secondItem="ibK-uk-dGt" secondAttribute="bottom" constant="87" id="Llu-5m-9YN"/>
+                            <constraint firstItem="e96-rd-Ej4" firstAttribute="leading" secondItem="ibK-uk-dGt" secondAttribute="leading" id="YO0-dl-ebu"/>
+                            <constraint firstItem="bt9-7f-e4w" firstAttribute="centerX" secondItem="e96-rd-Ej4" secondAttribute="centerX" id="ege-2P-TTu"/>
+                            <constraint firstItem="bt9-7f-e4w" firstAttribute="leading" secondItem="Iok-78-eIk" secondAttribute="leading" id="sX9-qa-F57"/>
+                            <constraint firstItem="e96-rd-Ej4" firstAttribute="trailing" secondItem="ibK-uk-dGt" secondAttribute="trailing" id="teh-8X-D2c"/>
+                            <constraint firstItem="bt9-7f-e4w" firstAttribute="bottom" secondItem="noT-WG-KmI" secondAttribute="top" id="tjl-s6-kdK"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="e96-rd-Ej4" id="3F7-eD-PYU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bVs-8z-RvH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -588,6 +608,7 @@
     </scenes>
     <resources>
         <image name="icon-menu" width="30" height="30"/>
+        <image name="image-history-background" width="1536" height="1021"/>
         <image name="image-medal" width="55" height="85"/>
     </resources>
     <inferredMetricsTieBreakers>

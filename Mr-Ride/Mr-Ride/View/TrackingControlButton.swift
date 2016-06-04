@@ -34,7 +34,7 @@ class TrackingControlButton: UIButton {
     func makeMiddleIconSquare(){
         UIView.animateWithDuration(0.6,delay: 0.0,options: .TransitionFlipFromLeft, animations:{
             self.middleIcon.transform = CGAffineTransformMakeScale(0.4, 0.4)
-            },completion: { (true)in
+            },completion: { (isFinished)in
                 self.addIconCornerRadiusAnimation((self.frame.width)/2, to: 10, duration: 0.3)
         })
     }

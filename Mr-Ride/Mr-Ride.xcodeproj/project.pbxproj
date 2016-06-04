@@ -42,6 +42,10 @@
 		6484213E1CFE7DF9002F993F /* RouteEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484213A1CFE7DF9002F993F /* RouteEntity.swift */; };
 		6484213F1CFE7DF9002F993F /* RideEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484213B1CFE7DF9002F993F /* RideEntity+CoreDataProperties.swift */; };
 		648421401CFE7DF9002F993F /* RideEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484213C1CFE7DF9002F993F /* RideEntity.swift */; };
+		648421421CFED2CD002F993F /* HistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 648421411CFED2CD002F993F /* HistoryCell.xib */; };
+		648421441D002985002F993F /* HistoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648421431D002985002F993F /* HistoryViewCell.swift */; };
+		648421461D012FBE002F993F /* HistoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648421451D012FBE002F993F /* HistoryHeaderView.swift */; };
+		648421481D013341002F993F /* HistoryHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 648421471D013341002F993F /* HistoryHeaderView.xib */; };
 		B4486C04AB7D1BD24919AAB2 /* Pods_Mr_Ride.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 022262F6A19867F44EC2B00A /* Pods_Mr_Ride.framework */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +89,10 @@
 		6484213A1CFE7DF9002F993F /* RouteEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteEntity.swift; sourceTree = "<group>"; };
 		6484213B1CFE7DF9002F993F /* RideEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RideEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6484213C1CFE7DF9002F993F /* RideEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideEntity.swift; sourceTree = "<group>"; };
+		648421411CFED2CD002F993F /* HistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryCell.xib; sourceTree = "<group>"; };
+		648421431D002985002F993F /* HistoryViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewCell.swift; sourceTree = "<group>"; };
+		648421451D012FBE002F993F /* HistoryHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryHeaderView.swift; sourceTree = "<group>"; };
+		648421471D013341002F993F /* HistoryHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryHeaderView.xib; sourceTree = "<group>"; };
 		A02CCFE3A255BB872FAE0374 /* Pods-Mr-Ride.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mr-Ride.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mr-Ride/Pods-Mr-Ride.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -187,6 +195,10 @@
 			children = (
 				640967A21CF578FA00D630E1 /* SideMenuViewCell.swift */,
 				640967A31CF578FA00D630E1 /* SideMenuViewCell.xib */,
+				648421431D002985002F993F /* HistoryViewCell.swift */,
+				648421411CFED2CD002F993F /* HistoryCell.xib */,
+				648421451D012FBE002F993F /* HistoryHeaderView.swift */,
+				648421471D013341002F993F /* HistoryHeaderView.xib */,
 				6409680C1CFD7C4500D630E1 /* TrackingControlButton.swift */,
 			);
 			path = View;
@@ -290,8 +302,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				648421481D013341002F993F /* HistoryHeaderView.xib in Resources */,
 				640967C11CF5E5FE00D630E1 /* RobotoMono-ThinItalic.ttf in Resources */,
 				6409678B1CF54EA100D630E1 /* LaunchScreen.storyboard in Resources */,
+				648421421CFED2CD002F993F /* HistoryCell.xib in Resources */,
 				640967BE1CF5E5FE00D630E1 /* RobotoMono-MediumItalic.ttf in Resources */,
 				640967881CF54EA100D630E1 /* Assets.xcassets in Resources */,
 				640967BA1CF5E5FE00D630E1 /* RobotoMono-Italic.ttf in Resources */,
@@ -368,12 +382,14 @@
 				640967A11CF575C100D630E1 /* TrackingPageViewController.swift in Sources */,
 				6484213F1CFE7DF9002F993F /* RideEntity+CoreDataProperties.swift in Sources */,
 				6409680D1CFD7C4500D630E1 /* TrackingControlButton.swift in Sources */,
+				648421441D002985002F993F /* HistoryViewCell.swift in Sources */,
 				6484213D1CFE7DF9002F993F /* RouteEntity+CoreDataProperties.swift in Sources */,
 				640967811CF54EA100D630E1 /* AppDelegate.swift in Sources */,
 				640967A71CF59B5400D630E1 /* RecordPageViewController.swift in Sources */,
 				640967A41CF578FA00D630E1 /* SideMenuViewCell.swift in Sources */,
 				6484213E1CFE7DF9002F993F /* RouteEntity.swift in Sources */,
 				6409679F1CF575AF00D630E1 /* HistoryViewController.swift in Sources */,
+				648421461D012FBE002F993F /* HistoryHeaderView.swift in Sources */,
 				6409680B1CFD607700D630E1 /* MapViewController.swift in Sources */,
 				648421401CFE7DF9002F993F /* RideEntity.swift in Sources */,
 				640968071CFC879700D630E1 /* CalorieCalculator.swift in Sources */,
