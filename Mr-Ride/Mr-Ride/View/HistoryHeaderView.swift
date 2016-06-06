@@ -13,8 +13,7 @@ class HistoryHeaderView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCornerRadius(3)
-        
-        print("HistoryHeaderView awake")
+
     }
     
     

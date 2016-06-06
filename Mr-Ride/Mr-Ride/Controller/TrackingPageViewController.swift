@@ -133,16 +133,12 @@ class TrackingPageViewController: UIViewController {
         
         
 //MARK: testing different date
-        var dateString = "2016-08-01" // change to your date format
+        let dateString = "2016-08-01" // change to your date format
         
-        var dateFormatter = NSDateFormatter()
+        let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
         savedRide.date = dateFormatter.dateFromString(dateString)
-        
-        
-        
-        
         print(savedRide.date)
 //        savedRide.date = NSDate()
         

@@ -10,11 +10,7 @@ import UIKit
 import CoreData
 
 
-enum Month : Int{
-    case Janunary
-    case February
-    
-}
+
 class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let classDebugInfo = "[HistoryViewController]"
     
@@ -47,10 +43,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         12: "Dec"
     ]
     
-    
-    
  
-    
     
     //MARK: UI Setting
     override func viewDidLoad() {
@@ -60,15 +53,6 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         
     }
-
-    
-    func setupTableView(){
-        tableView.delegate = self
-        tableView.dataSource = self
-        let nib = UINib(nibName: "HistoryCell", bundle: nil)
-        tableView.registerNib(nib, forCellReuseIdentifier: histroyCellIdentifier)
-    }
-    
     // change navigation properties between switches
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -77,6 +61,14 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.tableDictionary = self.categorizeByMonth(self.rideEntities)
             self.tableView.reloadData()})
     }
+
+    func setupTableView(){
+        tableView.delegate = self
+        tableView.dataSource = self
+        let nib = UINib(nibName: "HistoryCell", bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: histroyCellIdentifier)
+    }
+    
     
     func setupNavigationBar(){
         self.parentViewController?.navigationItem.titleView = nil
@@ -109,8 +101,6 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
         return myDictionary
-        
-        
     }
     
     
@@ -182,14 +172,11 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     
-    
-
 
 }
 
 //MARK: FetchedResultsControllerDelegate
 extension HistoryViewController :  NSFetchedResultsControllerDelegate{
-    
     
     func fetchFromCoreDate(completion:()->()){
         let fetchRequest = NSFetchRequest(entityName: "RideEntity")

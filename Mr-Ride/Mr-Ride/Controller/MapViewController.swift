@@ -49,12 +49,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func showMapPolyline() {
-        print(classDebugInfo+"showMapPolyline start")
         if regionBoundingRect != nil{
             let edgeInset = UIEdgeInsetsMake(150, 150, 150, 150)
-            //TODO: TRY REGION?
             mapView.setVisibleMapRect(regionBoundingRect!,edgePadding: edgeInset ,animated: true)
-            
         }
         else{
             print(classDebugInfo+"showMapPolyline failed")
