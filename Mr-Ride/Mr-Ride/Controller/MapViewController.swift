@@ -42,19 +42,19 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     //TODO: show map poly line sometimes not correct
     func addMapPolyline(coordinates coords: UnsafeMutablePointer<CLLocationCoordinate2D>, count: Int){
         let polyline = MKPolyline(coordinates: coords, count: count)
-   //     regionBoundingRect = overlayBoundingMapRect(coords: coords)
         regionBoundingRect = polyline.boundingMapRect
-        
-
         mapView.addOverlay(polyline)
+
+        
     }
     
     func showMapPolyline() {
         print(classDebugInfo+"showMapPolyline start")
         if regionBoundingRect != nil{
-            let edgeInset = UIEdgeInsetsMake(200 , 200, 200, 200)
+            let edgeInset = UIEdgeInsetsMake(150, 150, 150, 150)
             //TODO: TRY REGION?
             mapView.setVisibleMapRect(regionBoundingRect!,edgePadding: edgeInset ,animated: true)
+            
         }
         else{
             print(classDebugInfo+"showMapPolyline failed")

@@ -12,7 +12,8 @@ import CoreLocation
 
 class RecordPageViewController: UIViewController {
     let classDebugInfo = "[RecordPageViewController]"
-
+  
+    var objectID :NSManagedObjectID?
     let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext
     let rideModel = RideModel()
     var mapViewController :MapViewController?
@@ -26,10 +27,22 @@ class RecordPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBackground()
-        setupNavigationBar()
-        fetchFromCoreDate()
+//        setupNavigationBar()
+        if let id = objectID{
+            fetchFromCoreDate(id)
+        }
     }
     
+    
+    //MARK: customize from different pages
+    func setFromTrackingPage(){
+        setupNavigationBar()
+    }
+    
+    func setFromHistoryPage(){
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+    }
+
     //MARK: UI setup
     func setupNavigationBar() {
         let closeButton = UIBarButtonItem(title: "Close", style: .Plain, target: self, action: #selector(closeAction(_:)))
@@ -90,8 +103,10 @@ class RecordPageViewController: UIViewController {
 //MARK: FetchedResultsControllerDelegate
 extension RecordPageViewController :  NSFetchedResultsControllerDelegate{
   
-    
-    func fetchFromCoreDate(){
+    func setRecordObjectID(objectID: NSManagedObjectID){
+        self.objectID = objectID
+    }
+    func fetchFromCoreDate(objectID: NSManagedObjectID){
         let fetchRequest = NSFetchRequest(entityName: "RideEntity")
         let sortDesriptor = NSSortDescriptor(key: "date", ascending: true)
         fetchRequest.sortDescriptors = [sortDesriptor]
@@ -104,10 +119,12 @@ extension RecordPageViewController :  NSFetchedResultsControllerDelegate{
                 try fetchResultController.performFetch()
                 if let rideEntities = fetchResultController.fetchedObjects as? [RideEntity]
                 {
-                    guard let rideEntity = rideEntities.last else{
-                        print(classDebugInfo+"rideEntity can't be initialized")
+                    guard let index = rideEntities.indexOf({$0.objectID == objectID})else{
+                        print(classDebugInfo+"(fetchFromCoreDate) can't find objectID to set index")
                         return
                     }
+                    let rideEntity = rideEntities[index]
+
                     guard let spentTime = rideEntity.spentTime as? Double else{
                         print(classDebugInfo+"rideEntity spentTime can't be cast to double")
                         return
@@ -116,19 +133,26 @@ extension RecordPageViewController :  NSFetchedResultsControllerDelegate{
                         print(classDebugInfo+"rideEntity distance can't be cast to double")
                         return
                     }
+                    guard let date = rideEntity.date else{
+                        print(classDebugInfo+"getting rideEntity date has some problem")
+                        return
+                    }
                     guard let routeEntities = rideEntity.routes?.array as? [RouteEntity] else{
                         print(classDebugInfo+"rideEntity routes can't be cast to [RouteEntity]")
                         return
                     }
                     rideModel.setSpentTime(spentTime)
                     rideModel.setDistance(distance)
+                    rideModel.setDate(date)
                     for routeEntity in routeEntities{
                         guard let latitude = routeEntity.latitude as? Double else{ return }
                         guard let longitude = routeEntity.longitude as? Double else{ return }
                         
                         rideModel.addLocation(CLLocation(latitude: latitude , longitude: longitude))
+                        
                     }
-                  }
+               
+                }
             }
             catch{
                 print(error)

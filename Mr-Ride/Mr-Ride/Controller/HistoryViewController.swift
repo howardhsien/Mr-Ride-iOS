@@ -9,21 +9,47 @@
 import UIKit
 import CoreData
 
+
+enum Month : Int{
+    case Janunary
+    case February
+    
+}
 class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let classDebugInfo = "[HistoryViewController]"
     
     class func controller() ->HistoryViewController{
         return UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("HistoryViewController") as! HistoryViewController
     }
-    
-    let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext
-    var rideEntities : [RideEntity] = []
-    var tableDictionary : [NSDateComponents: [RideEntity]] = [:]
-    
-    var sortedKeys : [NSDateComponents]{  return Array(tableDictionary.keys).sort{$0.month > $1.month} ?? [] }
-    
     @IBOutlet weak var tableView: UITableView!
     let histroyCellIdentifier = "HistoryCell"
+    
+    
+    //MARK: coreData properties
+    let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext
+    var rideEntities : [RideEntity] = []
+    var sortedKeys : [NSDateComponents]{  return Array(tableDictionary.keys).sort{$0.month > $1.month} ?? [] }
+    var tableDictionary : [NSDateComponents: [RideEntity]] = [:]
+    
+    //MARK: month chart
+    let monthDictionary = [
+        1 : "Jan",
+        2 : "Feb",
+        3 : "Mar",
+        4 : "Apr",
+        5 : "May",
+        6 : "Jun",
+        7 : "Jul",
+        8 : "Aug",
+        9 : "Sep",
+        10: "Oct",
+        11: "Nov",
+        12: "Dec"
+    ]
+    
+    
+    
+ 
     
     
     //MARK: UI Setting
@@ -48,7 +74,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewWillAppear(animated)
         setupNavigationBar()
         fetchFromCoreDate({
-            self.tableDictionary = self.categorizeByFunc(self.rideEntities)
+            self.tableDictionary = self.categorizeByMonth(self.rideEntities)
             self.tableView.reloadData()})
     }
     
@@ -64,8 +90,9 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         gradientLayer.frame = view.frame
         self.view.layer.insertSublayer(gradientLayer, atIndex: 1 )
     }
+    
     //MARK: Catergorize by month
-    func categorizeByFunc(rideEntities: [RideEntity]) ->[NSDateComponents: [RideEntity]] {
+    func categorizeByMonth(rideEntities: [RideEntity]) ->[NSDateComponents: [RideEntity]] {
         let calendar = NSCalendar.currentCalendar()
         
         var myDictionary = [NSDateComponents: [RideEntity]]()
@@ -79,7 +106,6 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
                 else{
                     myDictionary[components] = [rideEntity]
                 }
-    
             }
         }
         return myDictionary
@@ -132,17 +158,31 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         return 60
     }
     
+    func  tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        guard let entities = tableDictionary[sortedKeys[indexPath.section]] else{
+            print(classDebugInfo+"didSelectRowAtIndexPath has problem about entities")
+            return
+        }
+        let entity = entities[indexPath.row]
+        let recordPageViewController = storyboard?.instantiateViewControllerWithIdentifier("RecordPageViewController") as! RecordPageViewController
+        navigationController?.pushViewController(recordPageViewController, animated: true)
+        recordPageViewController.setRecordObjectID(entity.objectID)
+        recordPageViewController.setFromHistoryPage()
+    }
+    
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let historyHeaderView = HistoryHeaderView.loadFromNibNamed("HistoryHeaderView",bundle: nil)
-
-        historyHeaderView?.setMonth("\(sortedKeys[section].month),\(sortedKeys[section].year)")
+        guard let month = monthDictionary[sortedKeys[section].month] else{ return nil}
+        historyHeaderView?.setMonth("\(month), \(sortedKeys[section].year)")
         return historyHeaderView
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 45
     }
-
+    
+    
+    
 
 
 }
@@ -174,5 +214,6 @@ extension HistoryViewController :  NSFetchedResultsControllerDelegate{
 
         }
     }
-    
 }
+
+

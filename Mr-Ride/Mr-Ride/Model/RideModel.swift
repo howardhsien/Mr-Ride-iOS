@@ -84,6 +84,10 @@ class RideModel {
     func addDistance(distance : Double) {
         _ride.distance_m += distance
     }
+    
+    func setDate(date : NSDate){
+        _ride.date = date
+    }
 
 
 }

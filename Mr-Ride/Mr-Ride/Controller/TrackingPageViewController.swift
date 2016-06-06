@@ -125,15 +125,15 @@ class TrackingPageViewController: UIViewController {
         
     }
     //MARK: CoreData Logic
-    func saveInCoreData(){
+    func saveInCoreData() -> NSManagedObjectID{
         let savedRide = NSEntityDescription.insertNewObjectForEntityForName("RideEntity",inManagedObjectContext: managedObjectContext!) as! RideEntity
         savedRide.distance = rideModel.distance
         savedRide.spentTime = rideModel.spentTime
         savedRide.weight = rideModel.weight
         
         
-        
-        var dateString = "2016-07-15" // change to your date format
+//MARK: testing different date
+        var dateString = "2016-08-01" // change to your date format
         
         var dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -162,6 +162,7 @@ class TrackingPageViewController: UIViewController {
         catch{
             print(classDebugInfo+"Could not save the ride")
         }
+        return savedRide.objectID
         
     }
 
@@ -182,7 +183,9 @@ class TrackingPageViewController: UIViewController {
         let recordPageViewController = storyboard?.instantiateViewControllerWithIdentifier("RecordPageViewController") as! RecordPageViewController
         navigationController?.pushViewController(recordPageViewController, animated: true)
         timer.invalidate()
-        saveInCoreData()
+        recordPageViewController.setRecordObjectID(saveInCoreData())
+        recordPageViewController.setFromTrackingPage()
+        
         
     }
 }

@@ -24,8 +24,11 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mwh-md-zwJ" userLabel="Cell Container View">
                         <rect key="frame" x="0.0" y="0.0" width="640" height="146"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" misplaced="YES" text="15th" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LC7-Ms-FmL">
-                                <rect key="frame" x="20" y="60" width="49" height="27"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="15th" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LC7-Ms-FmL">
+                                <rect key="frame" x="0.0" y="57" width="85" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="85" id="x1h-UQ-zQc"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="RobotoMono-Light" family="Roboto Mono" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -51,7 +54,7 @@
                             <constraint firstItem="taq-uV-RPP" firstAttribute="centerY" secondItem="mwh-md-zwJ" secondAttribute="centerY" id="76j-Te-im5"/>
                             <constraint firstItem="ZNL-TG-t7C" firstAttribute="centerY" secondItem="mwh-md-zwJ" secondAttribute="centerY" id="KdW-iv-CKl"/>
                             <constraint firstItem="LC7-Ms-FmL" firstAttribute="centerY" secondItem="mwh-md-zwJ" secondAttribute="centerY" id="XvF-ya-VWV"/>
-                            <constraint firstItem="LC7-Ms-FmL" firstAttribute="leading" secondItem="mwh-md-zwJ" secondAttribute="leading" constant="20" id="r23-MX-Sc4"/>
+                            <constraint firstItem="LC7-Ms-FmL" firstAttribute="leading" secondItem="mwh-md-zwJ" secondAttribute="leading" id="r23-MX-Sc4"/>
                             <constraint firstItem="ZNL-TG-t7C" firstAttribute="leading" secondItem="mwh-md-zwJ" secondAttribute="leading" constant="89" id="uwX-8p-NZB"/>
                             <constraint firstAttribute="trailing" secondItem="taq-uV-RPP" secondAttribute="trailing" constant="20" id="vub-UR-qK1"/>
                         </constraints>
@@ -80,7 +83,7 @@
                 <outlet property="dateLabel" destination="LC7-Ms-FmL" id="IjF-EN-RO7"/>
                 <outlet property="infoLabel" destination="taq-uV-RPP" id="yM8-aX-y0D"/>
             </connections>
-            <point key="canvasLocation" x="539" y="583.5"/>
+            <point key="canvasLocation" x="354" y="383.5"/>
         </tableViewCell>
     </objects>
 </document>
