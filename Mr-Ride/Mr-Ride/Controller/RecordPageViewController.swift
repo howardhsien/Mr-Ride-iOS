@@ -14,9 +14,10 @@ class RecordPageViewController: UIViewController {
     let classDebugInfo = "[RecordPageViewController]"
   
     var objectID :NSManagedObjectID?
-    let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext
     let rideModel = RideModel()
     var mapViewController :MapViewController?
+    var dataManager = DataManager.instance()
+    var rideEntities :[RideEntity] { return dataManager.rideEntities }
     
     //MARK: UI properties
     @IBOutlet weak var distancLabel: UILabel!
@@ -27,9 +28,13 @@ class RecordPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBackground()
-//        setupNavigationBar()
-        if let id = objectID{
-            fetchFromCoreDate(id)
+        if objectID != nil {
+            dataManager.fetchFromCoreData(){
+                [unowned self] in
+                self.prepareForData()
+                self.setupUIDisplay()
+                self.setupMap()
+            }
         }
     }
     
@@ -37,6 +42,10 @@ class RecordPageViewController: UIViewController {
     //MARK: customize from different pages
     func setFromTrackingPage(){
         setupNavigationBar()
+    }
+    // called from tracking page
+    func setRecordObjectID(objectID: NSManagedObjectID){
+        self.objectID = objectID
     }
     
     func setFromHistoryPage(){
@@ -69,6 +78,41 @@ class RecordPageViewController: UIViewController {
         calorieLabel.text = String(format:"%.2f kcal",rideModel.kCalBurned)
     }
     
+    private func prepareForData(){
+        //get all the data needed to be display
+        guard let index = rideEntities.indexOf({$0.objectID == objectID})else{
+            print(classDebugInfo+"(fetchFromCoreDate) can't find objectID to set index")
+            return
+        }
+        let rideEntity = rideEntities[index]
+        
+        guard let spentTime = rideEntity.spentTime as? Double else{
+            print(classDebugInfo+"rideEntity spentTime can't be cast to double")
+            return
+        }
+        guard let distance = rideEntity.distance as? Double else{
+            print(classDebugInfo+"rideEntity distance can't be cast to double")
+            return
+        }
+        guard let date = rideEntity.date else{
+            print(classDebugInfo+"getting rideEntity date has some problem")
+            return
+        }
+        guard let routeEntities = rideEntity.routes?.array as? [RouteEntity] else{
+            print(classDebugInfo+"rideEntity routes can't be cast to [RouteEntity]")
+            return
+        }
+        rideModel.setSpentTime(spentTime)
+        rideModel.setDistance(distance)
+        rideModel.setDate(date)
+        for routeEntity in routeEntities{
+            guard let latitude = routeEntity.latitude as? Double else{ return }
+            guard let longitude = routeEntity.longitude as? Double else{ return }
+            
+            rideModel.addLocation(CLLocation(latitude: latitude , longitude: longitude))
+        }
+    }
+    
     
     //MARK: feed data to mapViewController
     func setupMap(){
@@ -82,8 +126,7 @@ class RecordPageViewController: UIViewController {
         {
             coords.append(location.coordinate)
         }
-        
-   //     mapViewController?.regionBoundingRect = mapViewController?.overlayBoundingMapRect(coords: coords)
+
         mapViewController?.addMapPolyline(coordinates: &coords,count:coords.count)
         mapViewController?.showMapPolyline()
     }
@@ -97,69 +140,11 @@ class RecordPageViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         mapViewController = segue.destinationViewController as? MapViewController
     }
+    
+
 
 }
 
-//MARK: FetchedResultsControllerDelegate
-extension RecordPageViewController :  NSFetchedResultsControllerDelegate{
   
-    func setRecordObjectID(objectID: NSManagedObjectID){
-        self.objectID = objectID
-    }
-    func fetchFromCoreDate(objectID: NSManagedObjectID){
-        let fetchRequest = NSFetchRequest(entityName: "RideEntity")
-        let sortDesriptor = NSSortDescriptor(key: "date", ascending: true)
-        fetchRequest.sortDescriptors = [sortDesriptor]
-        
-        if let managedObjectContext = managedObjectContext{
-            let fetchResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-            fetchResultController.delegate = self
-            
-            do{
-                try fetchResultController.performFetch()
-                if let rideEntities = fetchResultController.fetchedObjects as? [RideEntity]
-                {
-                    guard let index = rideEntities.indexOf({$0.objectID == objectID})else{
-                        print(classDebugInfo+"(fetchFromCoreDate) can't find objectID to set index")
-                        return
-                    }
-                    let rideEntity = rideEntities[index]
+   
 
-                    guard let spentTime = rideEntity.spentTime as? Double else{
-                        print(classDebugInfo+"rideEntity spentTime can't be cast to double")
-                        return
-                    }
-                    guard let distance = rideEntity.distance as? Double else{
-                        print(classDebugInfo+"rideEntity distance can't be cast to double")
-                        return
-                    }
-                    guard let date = rideEntity.date else{
-                        print(classDebugInfo+"getting rideEntity date has some problem")
-                        return
-                    }
-                    guard let routeEntities = rideEntity.routes?.array as? [RouteEntity] else{
-                        print(classDebugInfo+"rideEntity routes can't be cast to [RouteEntity]")
-                        return
-                    }
-                    rideModel.setSpentTime(spentTime)
-                    rideModel.setDistance(distance)
-                    rideModel.setDate(date)
-                    for routeEntity in routeEntities{
-                        guard let latitude = routeEntity.latitude as? Double else{ return }
-                        guard let longitude = routeEntity.longitude as? Double else{ return }
-                        
-                        rideModel.addLocation(CLLocation(latitude: latitude , longitude: longitude))
-                        
-                    }
-               
-                }
-            }
-            catch{
-                print(error)
-            }
-            setupUIDisplay()
-            setupMap()
-        }
-    }
-
-}

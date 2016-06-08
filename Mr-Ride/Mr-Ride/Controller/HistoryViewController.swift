@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-
+import Charts
 
 
 class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -17,15 +17,17 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     class func controller() ->HistoryViewController{
         return UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("HistoryViewController") as! HistoryViewController
     }
+    
+    
+    @IBOutlet weak var lineChartView: LineChartView!
     @IBOutlet weak var tableView: UITableView!
     let histroyCellIdentifier = "HistoryCell"
     
     
-    //MARK: coreData properties
-    let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext
-    var rideEntities : [RideEntity] = []
-    var sortedKeys : [NSDateComponents]{  return Array(tableDictionary.keys).sort{$0.month > $1.month} ?? [] }
-    var tableDictionary : [NSDateComponents: [RideEntity]] = [:]
+    //MARK: DataManager
+    var dataManager = DataManager.instance()  //values are from dataManager
+    var sortedKeys :[NSDateComponents]{ return dataManager.sortedKeys }           
+    var tableDictionary : [NSDateComponents: [RideEntity]] { return dataManager.dateRideDictionary }//= [:]
     
     //MARK: month chart
     let monthDictionary = [
@@ -50,16 +52,19 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         setupBackground()
         setupTableView()
-        
-        
+     
+
     }
+    
+    
+    
     // change navigation properties between switches
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar()
-        fetchFromCoreDate({
-            self.tableDictionary = self.categorizeByMonth(self.rideEntities)
-            self.tableView.reloadData()})
+        dataManager.fetchFromCoreData({
+            self.tableView.reloadData()
+        })
     }
 
     func setupTableView(){
@@ -81,26 +86,6 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         gradientLayer.locations = [0.5, 1]
         gradientLayer.frame = view.frame
         self.view.layer.insertSublayer(gradientLayer, atIndex: 1 )
-    }
-    
-    //MARK: Catergorize by month
-    func categorizeByMonth(rideEntities: [RideEntity]) ->[NSDateComponents: [RideEntity]] {
-        let calendar = NSCalendar.currentCalendar()
-        
-        var myDictionary = [NSDateComponents: [RideEntity]]()
-        
-        for rideEntity in rideEntities{
-            if let date = rideEntity.date{
-                let components = calendar.components([.Month,.Year], fromDate: date)
-                if myDictionary[components] != nil{
-                    myDictionary[components]!.append(rideEntity)
-                }
-                else{
-                    myDictionary[components] = [rideEntity]
-                }
-            }
-        }
-        return myDictionary
     }
     
     
@@ -136,6 +121,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
             let components = calendar.components([.Day], fromDate: date)
             cell.setDate("\(String(components.day))th")
         }
+        //distance
         if let distance_m = entity.distance{
             let distance_km :Double = Double(distance_m)/1000
             cell.setInfo(String(format:"%0.2f km \(timeDisplayStr)", distance_km))
@@ -170,37 +156,105 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 45
     }
-    
-    
-
-}
-
-//MARK: FetchedResultsControllerDelegate
-extension HistoryViewController :  NSFetchedResultsControllerDelegate{
-    
-    func fetchFromCoreDate(completion:()->()){
-        let fetchRequest = NSFetchRequest(entityName: "RideEntity")
-        let sortDesriptor = NSSortDescriptor(key: "date", ascending: false)
-        fetchRequest.sortDescriptors = [sortDesriptor]
-        
-        if let managedObjectContext = managedObjectContext{
-            let fetchResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-            fetchResultController.delegate = self
-            
-            do{
-                try fetchResultController.performFetch()
-                if let rideEntities = fetchResultController.fetchedObjects as? [RideEntity]
-                {
-                    self.rideEntities = rideEntities
-                }
-            }
-            catch{
-                print(error)
-            }
-            completion()
-
-        }
+    // change chart view when scroll to different months
+    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        setupChartData(section)
     }
+    
+
+    //MARK: chartView
+    func setupChartData(section: Int) {
+        let calendar = NSCalendar.currentCalendar()
+        var xArray :[String] = [] // xArray is the date
+        var yArray :[Double] = [] // yArray is the distance
+
+        guard let entities = tableDictionary[sortedKeys[section]] else { print(classDebugInfo+"setupchart entities is nil"); return }
+        let count = entities.count
+        for i in 0...count-1{
+            if let date = entities[i].date
+            {
+                let components = calendar.components([.Month,.Day], fromDate: date)
+                xArray.append("\(components.month)/\(components.day)")
+            }
+            if let distance = entities[i].distance as? Double{
+                yArray.append(distance)
+            }
+            
+        }
+        xArray = xArray.reverse() //reverse the array to be diplayed on chart
+        yArray = yArray.reverse()
+        setChart(xArray, values: yArray)
+        
+    }
+    
+    func setChart(dataPoints: [String], values: [Double]) {
+        lineChartView.noDataText = "You need to provide data for the chart."
+        
+        var dataEntries: [ChartDataEntry] = []
+        
+        for i in 0..<dataPoints.count {
+            let dataEntry = ChartDataEntry(value: values[i], xIndex: i)
+            dataEntries.append(dataEntry)
+        }
+        
+        let chartDataSet = LineChartDataSet(yVals: dataEntries, label: "distance")
+        let chartData = LineChartData(xVals: dataPoints, dataSet: chartDataSet)
+        
+        lineChartView.data = chartData
+        
+        //fill gradient for the curve
+        let gradientColors = [UIColor.mrBrightSkyBlue().CGColor, UIColor.mrTurquoiseBlue().CGColor] // Colors of the gradient
+        let colorLocations:[CGFloat] = [0.0, 0.3] // Positioning of the gradient
+        let gradient = CGGradientCreateWithColors(CGColorSpaceCreateDeviceRGB(), gradientColors, colorLocations) // Gradient Object
+        chartDataSet.fill = ChartFill.fillWithLinearGradient(gradient!, angle: 90.0)
+        chartDataSet.drawFilledEnabled = true
+        chartDataSet.lineWidth = 0.0
+        
+    
+        chartDataSet.drawCirclesEnabled = false //remove the point circle
+        chartDataSet.mode = .CubicBezier  //make the line to be curve
+        chartData.setDrawValues(false)        //remove value label on each point
+
+        //make chartview not scalable and remove the interaction line
+        lineChartView.setScaleEnabled(false)
+        lineChartView.userInteractionEnabled = false
+        
+        //set display attribute
+        lineChartView.xAxis.drawAxisLineEnabled = false
+        lineChartView.xAxis.drawGridLinesEnabled = false
+        
+        lineChartView.xAxis.labelPosition = .Bottom
+        lineChartView.xAxis.labelTextColor = UIColor.whiteColor()
+
+        lineChartView.leftAxis.drawAxisLineEnabled = false
+        lineChartView.rightAxis.drawAxisLineEnabled = false
+        lineChartView.leftAxis.drawLabelsEnabled = false
+        lineChartView.rightAxis.drawLabelsEnabled = false
+
+        //ony display leftAxis gridline
+        lineChartView.rightAxis.drawGridLinesEnabled = false
+        lineChartView.leftAxis.gridColor = UIColor.whiteColor()
+
+        
+        lineChartView.legend.enabled = false  // remove legend icon
+        lineChartView.descriptionText = ""   // clear description
+        
+        
+        switch dataPoints.count {
+        case 0...15:
+            lineChartView.xAxis.setLabelsToSkip(0)
+        case 16...30:
+            lineChartView.xAxis.setLabelsToSkip(1)
+        case 31...50:
+            lineChartView.xAxis.setLabelsToSkip(2)
+        default:
+            lineChartView.xAxis.setLabelsToSkip(100)
+        }
+        
+        
+    }
+
+
 }
 
 

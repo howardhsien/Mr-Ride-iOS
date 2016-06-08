@@ -6,6 +6,7 @@ use_frameworks!
 target 'Mr-Ride' do
 pod 'PureLayout'
 pod 'SideMenu'
+pod 'Charts'
 
 
 end

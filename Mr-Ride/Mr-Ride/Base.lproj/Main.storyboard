@@ -103,6 +103,13 @@
                                     <action selector="startTrackingPageAction:" destination="Jna-v2-caY" eventType="touchUpInside" id="tRF-E5-gs2"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dYv-2Q-afW" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="169" width="600" height="120"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="pXg-7P-bPm"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.38823530077934265" green="0.84313726425170898" blue="0.96470588445663452" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
@@ -117,14 +124,21 @@
                             <constraint firstItem="Ghg-Be-qpL" firstAttribute="top" secondItem="VgY-jJ-OqN" secondAttribute="bottom" id="LcD-aT-TeG"/>
                             <constraint firstItem="nef-Xq-oLh" firstAttribute="leading" secondItem="lBR-xC-dbA" secondAttribute="leading" id="Rfu-3Y-Lmh"/>
                             <constraint firstItem="lBR-xC-dbA" firstAttribute="top" secondItem="gXZ-vs-IeI" secondAttribute="bottom" constant="50" id="VFH-Ma-OnH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dYv-2Q-afW" secondAttribute="trailing" constant="-30" id="YYA-HV-ILX"/>
                             <constraint firstItem="lBR-xC-dbA" firstAttribute="top" secondItem="nef-Xq-oLh" secondAttribute="bottom" constant="1" id="gl7-Jh-0W0"/>
+                            <constraint firstItem="dYv-2Q-afW" firstAttribute="leading" secondItem="5Ok-jf-9Iy" secondAttribute="leadingMargin" constant="-30" id="hmw-IA-eBD"/>
+                            <constraint firstItem="dYv-2Q-afW" firstAttribute="top" secondItem="lBR-xC-dbA" secondAttribute="bottom" id="iw3-lv-YEq"/>
                             <constraint firstItem="EUX-kQ-NN7" firstAttribute="top" secondItem="dcw-RG-fNh" secondAttribute="bottom" id="pQB-Sc-dRL"/>
                             <constraint firstItem="dcw-RG-fNh" firstAttribute="leading" secondItem="Ghg-Be-qpL" secondAttribute="leading" id="tbm-fM-AE7"/>
                             <constraint firstItem="lBR-xC-dbA" firstAttribute="centerX" secondItem="5Ok-jf-9Iy" secondAttribute="centerX" id="tkn-0b-cE2"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="countLabel" destination="Ghg-Be-qpL" id="ac8-GF-7Fy"/>
+                        <outlet property="distanceLabel" destination="lBR-xC-dbA" id="ctT-p9-NoF"/>
+                        <outlet property="lineChartView" destination="dYv-2Q-afW" id="Uui-eV-Ig2"/>
                         <outlet property="rideButton" destination="8cd-J2-tYv" id="4vz-F0-iwZ"/>
+                        <outlet property="speedLabel" destination="EUX-kQ-NN7" id="0ZC-62-AHu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2sY-tZ-3Iy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -484,17 +498,17 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image-history-background" translatesAutoresizingMaskIntoConstraints="NO" id="bt9-7f-e4w">
                                 <rect key="frame" x="0.0" y="257" width="600" height="343"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ibK-uk-dGt">
-                                <rect key="frame" x="22" y="40" width="556" height="130"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="q7e-WR-yb1"/>
-                                </constraints>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="e96-rd-Ej4">
                                 <rect key="frame" x="22" y="190" width="556" height="390"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ibK-uk-dGt" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="22" y="40" width="556" height="130"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="q7e-WR-yb1"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.38823530080000002" green="0.84313726430000002" blue="0.96470588450000005" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
@@ -512,6 +526,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="lineChartView" destination="ibK-uk-dGt" id="CMN-k1-89L"/>
                         <outlet property="tableView" destination="e96-rd-Ej4" id="3F7-eD-PYU"/>
                     </connections>
                 </viewController>
