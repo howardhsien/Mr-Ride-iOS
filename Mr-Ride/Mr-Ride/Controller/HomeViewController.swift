@@ -28,8 +28,6 @@ class HomeViewController: UIViewController {
     
     
     
-    
-    
     class func controller() ->HomeViewController{
         return UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
     }

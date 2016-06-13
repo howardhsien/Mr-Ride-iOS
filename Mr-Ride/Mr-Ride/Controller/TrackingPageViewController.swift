@@ -147,15 +147,14 @@ class TrackingPageViewController: UIViewController {
         
         var savedRoutes = [RouteEntity]()
 //        for location in rideModel.locations{
-        for i in 0...rideModel.locations.count-1 {
+        for rideLocation in rideModel.rideLocations {
             let savedRoute = NSEntityDescription.insertNewObjectForEntityForName("RouteEntity", inManagedObjectContext: managedObjectContext!) as! RouteEntity
-            let location = rideModel.locations[i]
-            savedRoute.timeStamp = location.timestamp
-            savedRoute.latitude = location.coordinate.latitude
-            savedRoute.longitude = location.coordinate.longitude
+            savedRoute.timeStamp = rideLocation.location.timestamp
+            savedRoute.latitude = rideLocation.location.coordinate.latitude
+            savedRoute.longitude = rideLocation.location.coordinate.longitude
 
 //testing path
-            savedRoute.path = rideModel.path[i]
+            savedRoute.path = rideLocation.pathCount
             savedRoutes.append(savedRoute)
         }
         savedRide.routes = NSOrderedSet(array: savedRoutes)

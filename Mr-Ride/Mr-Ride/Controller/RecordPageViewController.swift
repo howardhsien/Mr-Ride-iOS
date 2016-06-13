@@ -121,25 +121,23 @@ class RecordPageViewController: UIViewController {
     }
     
     func addPolylineInMap(){
-        var coords = [CLLocationCoordinate2D]()
-        var coordsForRect = [CLLocationCoordinate2D]()
+        var coords = [CLLocationCoordinate2D]()         //this is for current polyline
+        var coordsForRect = [CLLocationCoordinate2D]()  //this records the whole route polyline but not added to map overlay
         
-//        for location in rideModel.locations
-        let count = rideModel.locations.count-1<0 ? 0 : rideModel.locations.count-1
-        if count == 0{
-            return
-        }
-        for i in 0...count{
-            let location = rideModel.locations[i]
-            let path = rideModel.path[i]
-            coords.append(location.coordinate)
-            coordsForRect.append(location.coordinate)
-            if path != rideModel.path[ i-1<0 ? 0 : i-1]{
+
+        var pathCount = -1
+        for rideLocation in rideModel.rideLocations{
+            if pathCount != rideLocation.pathCount {
                 mapViewController?.addMapPolyline(coordinates: &coords,count:coords.count)
                 coords.removeAll()
+                pathCount += 1
             }
+
+            coords.append(rideLocation.location.coordinate)
+            coordsForRect.append(rideLocation.location.coordinate)
+            
         }
-        print("\(coords.count) \(coordsForRect.count)")
+
         mapViewController?.setMapRect(coordinates: &coordsForRect,count:coordsForRect.count)
         mapViewController?.addMapPolyline(coordinates: &coords,count:coords.count)
         mapViewController?.showMapPolyline()
