@@ -7,7 +7,9 @@ target 'Mr-Ride' do
 pod 'PureLayout'
 pod 'SideMenu'
 pod 'Charts'
-
+pod 'FBSDKCoreKit'
+pod 'FBSDKShareKit'
+pod 'FBSDKLoginKit'
 
 end
 

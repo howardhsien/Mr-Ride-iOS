@@ -51,8 +51,6 @@ class HomeViewController: UIViewController {
     }
 
     
-
-    
     
     @IBAction func startTrackingPageAction(sender: UIButton) {
         let trackingPageNavController = storyboard?.instantiateViewControllerWithIdentifier("TrackingPageNavigationController")

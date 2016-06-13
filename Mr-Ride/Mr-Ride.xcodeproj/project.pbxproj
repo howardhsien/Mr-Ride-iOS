@@ -37,6 +37,7 @@
 		6409680B1CFD607700D630E1 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6409680A1CFD607700D630E1 /* MapViewController.swift */; };
 		6409680D1CFD7C4500D630E1 /* TrackingControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6409680C1CFD7C4500D630E1 /* TrackingControlButton.swift */; };
 		643B90851D07FCF50073C9C2 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643B90841D07FCF50073C9C2 /* DataManager.swift */; };
+		6457CAE01D0E5EE4002169D4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6457CADF1D0E5EE4002169D4 /* LoginViewController.swift */; };
 		6484210D1CFE7130002F993F /* rideData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6484210B1CFE7130002F993F /* rideData.xcdatamodeld */; };
 		6484210F1CFE774A002F993F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6484210E1CFE774A002F993F /* CoreData.framework */; };
 		6484213D1CFE7DF9002F993F /* RouteEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648421391CFE7DF8002F993F /* RouteEntity+CoreDataProperties.swift */; };
@@ -86,6 +87,7 @@
 		6409680C1CFD7C4500D630E1 /* TrackingControlButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingControlButton.swift; sourceTree = "<group>"; };
 		643B90841D07FCF50073C9C2 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		6457CA9C1D095A65002169D4 /* rideData 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "rideData 2.xcdatamodel"; sourceTree = "<group>"; };
+		6457CADF1D0E5EE4002169D4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6484210C1CFE7130002F993F /* rideData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = rideData.xcdatamodel; sourceTree = "<group>"; };
 		6484210E1CFE774A002F993F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		648421391CFE7DF8002F993F /* RouteEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RouteEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				640967A01CF575C100D630E1 /* TrackingPageViewController.swift */,
 				640967A61CF59B5400D630E1 /* RecordPageViewController.swift */,
 				6409680A1CFD607700D630E1 /* MapViewController.swift */,
+				6457CADF1D0E5EE4002169D4 /* LoginViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 				640967811CF54EA100D630E1 /* AppDelegate.swift in Sources */,
 				640967A71CF59B5400D630E1 /* RecordPageViewController.swift in Sources */,
 				640967A41CF578FA00D630E1 /* SideMenuViewCell.swift in Sources */,
+				6457CAE01D0E5EE4002169D4 /* LoginViewController.swift in Sources */,
 				643B90851D07FCF50073C9C2 /* DataManager.swift in Sources */,
 				6484213E1CFE7DF9002F993F /* RouteEntity.swift in Sources */,
 				6409679F1CF575AF00D630E1 /* HistoryViewController.swift in Sources */,
