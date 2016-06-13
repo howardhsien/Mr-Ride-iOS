@@ -39,6 +39,7 @@ class TrackingPageViewController: UIViewController {
     lazy var timer = NSTimer()
     var startTime = 0.0
     let timeInterval = 1.0
+    var pathCounter = 0
     
     //MARK: UI properties
     @IBOutlet weak var mapContainerView: UIView!
@@ -56,6 +57,7 @@ class TrackingPageViewController: UIViewController {
 
         trackControlButton.addTarget(self, action: #selector(trackControlButtonPressed(_:)), forControlEvents: .TouchUpInside)
     }
+
     //MARK: UI Setting
     func setupBackground(){
         let gradientLayer = CAGradientLayer()
@@ -92,6 +94,7 @@ class TrackingPageViewController: UIViewController {
         else{
             timer.invalidate()
             self.trackControlButton.makeMiddleIconRound()
+            pathCounter += 1
         }
     }
     //MARK: Timer logic
@@ -103,7 +106,7 @@ class TrackingPageViewController: UIViewController {
                 rideModel.addDistance(distance)
             }
             distanceLabel.text = String(format:"%0.0f m",rideModel.distance)
-            rideModel.addLocation(location)
+            rideModel.addLocation(location,pathCounter: pathCounter)
             //add polyline
             var coords = [CLLocationCoordinate2D]()
             coords.append(location.coordinate)
@@ -143,11 +146,16 @@ class TrackingPageViewController: UIViewController {
 //        savedRide.date = NSDate()
         
         var savedRoutes = [RouteEntity]()
-        for location in rideModel.locations{
+//        for location in rideModel.locations{
+        for i in 0...rideModel.locations.count-1 {
             let savedRoute = NSEntityDescription.insertNewObjectForEntityForName("RouteEntity", inManagedObjectContext: managedObjectContext!) as! RouteEntity
+            let location = rideModel.locations[i]
             savedRoute.timeStamp = location.timestamp
             savedRoute.latitude = location.coordinate.latitude
             savedRoute.longitude = location.coordinate.longitude
+
+//testing path
+            savedRoute.path = rideModel.path[i]
             savedRoutes.append(savedRoute)
         }
         savedRide.routes = NSOrderedSet(array: savedRoutes)

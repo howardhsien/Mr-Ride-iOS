@@ -108,8 +108,8 @@ class RecordPageViewController: UIViewController {
         for routeEntity in routeEntities{
             guard let latitude = routeEntity.latitude as? Double else{ return }
             guard let longitude = routeEntity.longitude as? Double else{ return }
-            
-            rideModel.addLocation(CLLocation(latitude: latitude , longitude: longitude))
+            let pathCounter = routeEntity.path == nil ? 0 : routeEntity.path as! Int
+            rideModel.addLocation(CLLocation(latitude: latitude , longitude: longitude), pathCounter: pathCounter)
         }
     }
     
@@ -122,11 +122,25 @@ class RecordPageViewController: UIViewController {
     
     func addPolylineInMap(){
         var coords = [CLLocationCoordinate2D]()
-        for location in rideModel.locations
-        {
-            coords.append(location.coordinate)
+        var coordsForRect = [CLLocationCoordinate2D]()
+        
+//        for location in rideModel.locations
+        let count = rideModel.locations.count-1<0 ? 0 : rideModel.locations.count-1
+        if count == 0{
+            return
         }
-
+        for i in 0...count{
+            let location = rideModel.locations[i]
+            let path = rideModel.path[i]
+            coords.append(location.coordinate)
+            coordsForRect.append(location.coordinate)
+            if path != rideModel.path[ i-1<0 ? 0 : i-1]{
+                mapViewController?.addMapPolyline(coordinates: &coords,count:coords.count)
+                coords.removeAll()
+            }
+        }
+        print("\(coords.count) \(coordsForRect.count)")
+        mapViewController?.setMapRect(coordinates: &coordsForRect,count:coordsForRect.count)
         mapViewController?.addMapPolyline(coordinates: &coords,count:coords.count)
         mapViewController?.showMapPolyline()
     }

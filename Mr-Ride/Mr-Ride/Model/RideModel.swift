@@ -14,8 +14,11 @@ struct Ride {
     var distance_m:Double = 0.0
     var weight:Double = 70.0
     var routes:[CLLocation] = []
+    var routesPathCounts:[Int] = [] // to record separate route
     var date:NSDate = NSDate()
 }
+
+
 
 
 class RideModel {
@@ -55,6 +58,9 @@ class RideModel {
     var locations : [CLLocation]{
         return _ride.routes
     }
+    var path : [Int]{
+        return _ride.routesPathCounts
+    }
     
     // time to display on timer
     var spentTimeSecDisplay :Int{ return Int(spentTime % 60) }
@@ -63,9 +69,10 @@ class RideModel {
     
 
     
-    func addLocation(location:CLLocation){
+    func addLocation(location:CLLocation, pathCounter: Int){
         if (location.coordinate.latitude != _ride.routes.last?.coordinate.latitude && location.coordinate.longitude != _ride.routes.last?.coordinate.longitude){
             _ride.routes.append(location)
+            _ride.routesPathCounts.append(pathCounter)
         }
     }
     

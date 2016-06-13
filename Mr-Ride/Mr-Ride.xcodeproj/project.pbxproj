@@ -85,6 +85,7 @@
 		6409680A1CFD607700D630E1 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		6409680C1CFD7C4500D630E1 /* TrackingControlButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingControlButton.swift; sourceTree = "<group>"; };
 		643B90841D07FCF50073C9C2 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		6457CA9C1D095A65002169D4 /* rideData 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "rideData 2.xcdatamodel"; sourceTree = "<group>"; };
 		6484210C1CFE7130002F993F /* rideData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = rideData.xcdatamodel; sourceTree = "<group>"; };
 		6484210E1CFE774A002F993F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		648421391CFE7DF8002F993F /* RouteEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RouteEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -568,9 +569,10 @@
 		6484210B1CFE7130002F993F /* rideData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				6457CA9C1D095A65002169D4 /* rideData 2.xcdatamodel */,
 				6484210C1CFE7130002F993F /* rideData.xcdatamodel */,
 			);
-			currentVersion = 6484210C1CFE7130002F993F /* rideData.xcdatamodel */;
+			currentVersion = 6457CA9C1D095A65002169D4 /* rideData 2.xcdatamodel */;
 			path = rideData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

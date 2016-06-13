@@ -17,6 +17,7 @@ extension RouteEntity {
     @NSManaged var longitude: NSNumber?
     @NSManaged var latitude: NSNumber?
     @NSManaged var timeStamp: NSDate?
+    @NSManaged var path: NSNumber?
     @NSManaged var ride: RideEntity?
 
 }
