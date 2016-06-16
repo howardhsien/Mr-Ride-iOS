@@ -11,8 +11,6 @@ import CoreLocation
 import CoreData
 
 class TrackingPageViewController: UIViewController {
-    let classDebugInfo = "TrackingPageViewController"
-
     var rideModel = RideModel()
     //MARK: Controller
     var mapViewController: MapViewController?
@@ -51,6 +49,8 @@ class TrackingPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(classDebugInfo + #function)
         setupNavigationBar()
         setupBackground()
         startLocationUpdates()

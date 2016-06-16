@@ -84,12 +84,20 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-Mr-Ride/Bolts.framework"
   install_framework "Pods-Mr-Ride/Charts.framework"
+  install_framework "Pods-Mr-Ride/FBSDKCoreKit.framework"
+  install_framework "Pods-Mr-Ride/FBSDKLoginKit.framework"
+  install_framework "Pods-Mr-Ride/FBSDKShareKit.framework"
   install_framework "Pods-Mr-Ride/PureLayout.framework"
   install_framework "Pods-Mr-Ride/SideMenu.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-Mr-Ride/Bolts.framework"
   install_framework "Pods-Mr-Ride/Charts.framework"
+  install_framework "Pods-Mr-Ride/FBSDKCoreKit.framework"
+  install_framework "Pods-Mr-Ride/FBSDKLoginKit.framework"
+  install_framework "Pods-Mr-Ride/FBSDKShareKit.framework"
   install_framework "Pods-Mr-Ride/PureLayout.framework"
   install_framework "Pods-Mr-Ride/SideMenu.framework"
 fi

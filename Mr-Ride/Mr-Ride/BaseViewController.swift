@@ -14,10 +14,12 @@ enum Page: Int {
     case Home
     case History
 }
+extension UIViewController {
+    var classDebugInfo :String { return "[\(self.dynamicType)]" }
+}
 
 class BaseViewController: UIViewController,SideMenuDelegate {
-    let classDebugInfo = "[BaseViewController]"
-    
+
     //MARK: controllers which embedded in the baseViewController
     private var sideMenuNavigationController: UISideMenuNavigationController?
     private lazy var homeViewController: HomeViewController = { [unowned self] in
@@ -34,6 +36,17 @@ class BaseViewController: UIViewController,SideMenuDelegate {
     private lazy var historyViewController: HistoryViewController = { [unowned self] in
         
         let controller = HistoryViewController.controller()
+        //delegate not needed yet
+        //when I need the delegate, implement the protocol and uncomment the following line
+        //        controller.delegate = self
+        self.addChildViewController(controller)
+        self.didMoveToParentViewController(controller)
+        return controller
+        }()
+    
+    private lazy var infoMapViewController: InfoMapViewController = { [unowned self] in
+        
+        let controller = InfoMapViewController.controller()
         //delegate not needed yet
         //when I need the delegate, implement the protocol and uncomment the following line
         //        controller.delegate = self

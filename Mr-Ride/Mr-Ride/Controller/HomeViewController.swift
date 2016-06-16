@@ -11,8 +11,7 @@ import Charts
 import CoreData
 
 class HomeViewController: UIViewController {
-    let classDebugInfo = "[HomeViewController]"
-    
+
 
     var dataManager = DataManager.instance()
     var sortedKeys :[NSDateComponents]{ return dataManager.sortedKeys }
@@ -34,6 +33,7 @@ class HomeViewController: UIViewController {
     
     //MARK: View
     override func viewDidLoad() {
+
         super.viewDidLoad()
         setupButtonStyle()
         
@@ -49,8 +49,6 @@ class HomeViewController: UIViewController {
             self.setupLabel()
         }
     }
-
-    
 
     
     

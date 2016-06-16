@@ -12,8 +12,7 @@ import Charts
 
 
 class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    let classDebugInfo = "[HistoryViewController]"
-    
+  
     class func controller() ->HistoryViewController{
         return UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("HistoryViewController") as! HistoryViewController
     }
@@ -27,7 +26,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     //MARK: DataManager
     var dataManager = DataManager.instance()  //values are from dataManager
     var sortedKeys :[NSDateComponents]{ return dataManager.sortedKeys }           
-    var tableDictionary : [NSDateComponents: [RideEntity]] { return dataManager.dateRideDictionary }//= [:]
+    var tableDictionary : [NSDateComponents: [RideEntity]] { return dataManager.dateRideDictionary }
     
     //MARK: month chart
     let monthDictionary = [
@@ -55,7 +54,9 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
      
 
     }
-    
+    deinit{
+        print(classDebugInfo+"deinit")
+    }
     
     
     // change navigation properties between switches
