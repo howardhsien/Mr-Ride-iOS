@@ -8,18 +8,39 @@
 
 import UIKit
 import CoreData
+import FBSDKLoginKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
+    //MARK: Facebook login
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+
         return true
     }
+    
+    func checkFBLogin() {
+        let mainStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
+        var initialViewController: UIViewController
+        if(FBSDKAccessToken.currentAccessToken() != nil){
+            initialViewController = mainStoryboard.instantiateViewControllerWithIdentifier("baseNavigationController") as! UINavigationController
+        }else{
+            initialViewController = mainStoryboard.instantiateViewControllerWithIdentifier("loginViewController") as! LoginViewController
+        }
+        
+        self.window?.rootViewController = initialViewController
+        self.window?.makeKeyAndVisible()
+    }
 
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool
+    {
+        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+    }
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

@@ -7,9 +7,9 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
 class LoginViewController: UIViewController,UITextFieldDelegate {
-    let classDebugInfo = "[LoginViewController]"
 
     @IBOutlet weak var heightContainerView: UIView!
     @IBOutlet weak var weightContainerView: UIView!
@@ -24,10 +24,12 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     //MARK: UISetting
     override func viewDidLoad() {
         super.viewDidLoad()
+        FBSDKLoginManager().logOut()
         setupFieldRoundedCorner()
         setupButtonRoundedCorner()
         setupBackground()
         experienceButton.addTarget(self, action: #selector(experienceAction), forControlEvents: .TouchUpInside)
+        fbLoginButton.addTarget(self, action: #selector(fbLoginAction), forControlEvents: .TouchUpInside)
         setFieldDelegate()
     }
     
@@ -76,13 +78,13 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     func experienceAction(){
         checkInputOfFields(){
             [unowned self] in
-            let baseNavViewController = self.storyboard?.instantiateViewControllerWithIdentifier("baseNavigationViewController") as? UINavigationController
+            let baseNavViewController = self.storyboard?.instantiateViewControllerWithIdentifier("baseNavigationController") as? UINavigationController
             guard let window = UIApplication.sharedApplication().keyWindow else{ return }
             UIView.transitionWithView(window, duration: 0.5, options: .TransitionCurlUp, animations: {window.rootViewController = baseNavViewController}, completion: nil)
-//            UIApplication.sharedApplication().keyWindow?.rootViewController = baseNavViewController
         }
     }
     
+    //alert if either the height or the weight is not correct
     func checkInputOfFields(completion: ()->()){
         guard let heightText = heightField.text else { return }
         guard let height = Double(heightText) else{
@@ -101,6 +103,31 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
             return
         }
         completion()
+        
+    }
+    
+    func fbLoginAction(){
+        checkInputOfFields(){
+
+            let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
+            
+            fbLoginManager.logInWithReadPermissions(["user_friends"], fromViewController: self) { [unowned self](result, error) -> Void  in
+                if (error == nil){
+                    let fbloginresult : FBSDKLoginManagerLoginResult = result
+                    if(fbloginresult.isCancelled){
+                        print("fbLogin is cancelled")
+                    }
+                    else if(fbloginresult.grantedPermissions.contains("user_friends"))
+                    {
+   //                     self.getAndSaveFBUserData()
+                        let baseNavViewController = self.storyboard?.instantiateViewControllerWithIdentifier("baseNavigationController") as? UINavigationController
+                        guard let window = UIApplication.sharedApplication().keyWindow else{ return }
+                        UIView.transitionWithView(window, duration: 0.5, options: .TransitionCurlUp, animations: {window.rootViewController = baseNavViewController}, completion: nil)
+                    }
+                }
+
+            }
+        }
         
     }
     

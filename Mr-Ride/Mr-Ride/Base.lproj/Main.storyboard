@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wOb-6Y-Wvy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="y91-z1-YQx">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -41,7 +41,7 @@
         <!--Login View Controller-->
         <scene sceneID="m3d-1i-2XC">
             <objects>
-                <viewController id="wOb-6Y-Wvy" customClass="LoginViewController" customModule="Mr_Ride" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginViewController" id="wOb-6Y-Wvy" customClass="LoginViewController" customModule="Mr_Ride" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Mir-yc-eS9"/>
                         <viewControllerLayoutGuide type="bottom" id="ZgP-Z8-UM0"/>
@@ -350,11 +350,11 @@
                         <viewControllerLayoutGuide type="bottom" id="0ax-pw-GTM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Rvs-0Q-Fgg">
-                        <rect key="frame" x="0.0" y="0.0" width="568" height="172"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kB6-VB-Hja">
-                                <rect key="frame" x="0.0" y="0.0" width="568" height="172"/>
+                                <rect key="frame" x="0.0" y="0.0" width="568" height="200"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -640,6 +640,18 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dyr-9n-1L8">
+                                <rect key="frame" x="241" y="534" width="119" height="47"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="1ep-Oa-JBG"/>
+                                    <constraint firstAttribute="width" constant="120" id="ac1-6w-b52"/>
+                                </constraints>
+                                <state key="normal" image="fb-share-button"/>
+                                <connections>
+                                    <action selector="fbShareAction:" destination="aUZ-3l-vYY" eventType="touchUpInside" id="Dwn-26-OOJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.38823530080000002" green="0.84313726430000002" blue="0.96470588450000005" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
@@ -653,6 +665,7 @@
                             <constraint firstItem="clu-BL-dxz" firstAttribute="leading" secondItem="3gi-vp-Pue" secondAttribute="leading" id="RSL-03-6EZ"/>
                             <constraint firstItem="3gi-vp-Pue" firstAttribute="leading" secondItem="W6M-CZ-Pga" secondAttribute="leading" id="Tzp-0X-ia6"/>
                             <constraint firstItem="1Ji-l6-Uv2" firstAttribute="leading" secondItem="moI-Pm-aW1" secondAttribute="leading" constant="16" id="VQC-12-nbx"/>
+                            <constraint firstItem="Dyr-9n-1L8" firstAttribute="top" secondItem="1Ji-l6-Uv2" secondAttribute="bottom" constant="32" id="YFD-Sr-ldp"/>
                             <constraint firstItem="a9s-x3-haG" firstAttribute="top" secondItem="TKE-gg-5ZO" secondAttribute="bottom" id="aNC-4Q-vZn"/>
                             <constraint firstItem="cZM-ZR-n3Y" firstAttribute="leading" secondItem="S46-5M-86m" secondAttribute="leading" id="bfV-8t-O0Q"/>
                             <constraint firstItem="Ixz-sm-cyn" firstAttribute="leading" secondItem="whT-iJ-wha" secondAttribute="leading" id="fPV-UI-I4F"/>
@@ -660,6 +673,7 @@
                             <constraint firstItem="W6M-CZ-Pga" firstAttribute="top" secondItem="cZM-ZR-n3Y" secondAttribute="bottom" constant="1" id="jid-zf-fcO"/>
                             <constraint firstItem="clu-BL-dxz" firstAttribute="top" secondItem="3gi-vp-Pue" secondAttribute="bottom" constant="1" id="jqH-UV-lKt"/>
                             <constraint firstItem="cZM-ZR-n3Y" firstAttribute="top" secondItem="S46-5M-86m" secondAttribute="bottom" constant="12" id="l7K-9N-PLQ"/>
+                            <constraint firstItem="Dyr-9n-1L8" firstAttribute="centerX" secondItem="moI-Pm-aW1" secondAttribute="centerX" id="lTN-w5-KBP"/>
                             <constraint firstItem="GMk-Tw-rMv" firstAttribute="leading" secondItem="moI-Pm-aW1" secondAttribute="leadingMargin" constant="17" id="nCP-pz-8Hb"/>
                             <constraint firstItem="whT-iJ-wha" firstAttribute="leading" secondItem="clu-BL-dxz" secondAttribute="leading" id="nkG-Xm-ovN"/>
                             <constraint firstItem="Ixz-sm-cyn" firstAttribute="top" secondItem="whT-iJ-wha" secondAttribute="bottom" constant="1" id="pLN-df-5Tk"/>
@@ -670,6 +684,7 @@
                     </view>
                     <connections>
                         <outlet property="calorieLabel" destination="clu-BL-dxz" id="5Lb-dX-LTo"/>
+                        <outlet property="containerView" destination="1Ji-l6-Uv2" id="Zef-pd-MT4"/>
                         <outlet property="distancLabel" destination="S46-5M-86m" id="ert-vc-Gtc"/>
                         <outlet property="speedLabel" destination="W6M-CZ-Pga" id="MwB-iC-nb9"/>
                         <outlet property="totalTimeLabel" destination="Ixz-sm-cyn" id="Dj8-cE-2Gj"/>
@@ -677,7 +692,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vsy-cM-asb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2893" y="1327"/>
+            <point key="canvasLocation" x="2913" y="1327"/>
         </scene>
         <!--History View Controller-->
         <scene sceneID="g19-av-cme">
@@ -730,6 +745,33 @@
             </objects>
             <point key="canvasLocation" x="666" y="2063"/>
         </scene>
+        <!--Info Map View Controller-->
+        <scene sceneID="rhv-QD-s7C">
+            <objects>
+                <viewController storyboardIdentifier="InfoMapViewController" id="7EU-EI-DGz" customClass="InfoMapViewController" customModule="Mr_Ride" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="G9R-1g-OvC"/>
+                        <viewControllerLayoutGuide type="bottom" id="aUn-Rd-w7j"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="g3D-fK-zPZ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y0V-4B-NGm">
+                                <rect key="frame" x="20" y="513" width="560" height="67"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vGJ-oQ-IhE">
+                                <rect key="frame" x="20" y="28" width="560" height="465"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.38823530080000002" green="0.84313726430000002" blue="0.96470588450000005" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kSs-M6-1sW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="666" y="2806"/>
+        </scene>
         <!--Side Menu Table View Controller-->
         <scene sceneID="v5b-Bs-1ND">
             <objects>
@@ -753,7 +795,13 @@
                             <outlet property="delegate" destination="DiJ-zo-yee" id="2Gj-ie-TWv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Z0h-i5-7Af"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="Z0h-i5-7Af">
+                        <barButtonItem key="rightBarButtonItem" title="logout" id="7V1-N3-0Mt">
+                            <connections>
+                                <action selector="fbLogoutAction:" destination="DiJ-zo-yee" id="h2e-bM-LKi"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="viA-sL-emk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -781,7 +829,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Whq-ac-ec0">
             <objects>
-                <navigationController storyboardIdentifier="baseNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="y91-z1-YQx" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="baseNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="y91-z1-YQx" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="BrU-np-9vd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -818,12 +866,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="fb-share-button" width="207" height="61"/>
         <image name="icon-menu" width="30" height="30"/>
         <image name="image-history-background" width="1536" height="1021"/>
         <image name="image-medal" width="55" height="85"/>
         <image name="logo-facebook" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dc1-bf-Lvo"/>
+        <segue reference="cNg-DN-FFE"/>
     </inferredMetricsTieBreakers>
 </document>

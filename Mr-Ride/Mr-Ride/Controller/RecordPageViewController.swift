@@ -9,10 +9,10 @@
 import UIKit
 import CoreData
 import CoreLocation
+import Social
 
 class RecordPageViewController: UIViewController {
-    let classDebugInfo = "[RecordPageViewController]"
-  
+
     var objectID :NSManagedObjectID?
     let rideModel = RideModel()
     var mapViewController :MapViewController?
@@ -24,7 +24,8 @@ class RecordPageViewController: UIViewController {
     @IBOutlet weak var speedLabel: UILabel!
     @IBOutlet weak var calorieLabel: UILabel!
     @IBOutlet weak var totalTimeLabel: UILabel!
-    
+    @IBOutlet weak var containerView: UIView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBackground()
@@ -38,6 +39,7 @@ class RecordPageViewController: UIViewController {
         }
     }
     
+
     
     //MARK: customize from different pages
     func setFromTrackingPage(){
@@ -153,6 +155,20 @@ class RecordPageViewController: UIViewController {
         mapViewController = segue.destinationViewController as? MapViewController
     }
     
+    //MARK: Facebook Sharing
+    @IBAction func fbShareAction(sender: AnyObject) {
+        //truncate the fbShareBtn
+        let screenshotSize = CGSize(width: view.bounds.width , height: containerView.frame.origin.y + containerView.frame.height + 5)
+        UIGraphicsBeginImageContext(screenshotSize);
+        self.view.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        let screenShot = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        let facebookSharingController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+        facebookSharingController.addImage(screenShot)
+        self.presentViewController(facebookSharingController, animated: true, completion: nil)
+        //        print(containerView.frame)
+    }
 
 
 }

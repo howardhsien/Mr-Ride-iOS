@@ -8,14 +8,45 @@
 
 import UIKit
 import SideMenu
+import FBSDKLoginKit
 
 protocol SideMenuDelegate :class{
     func switchPages(page:Page)
 }
 
 class SideMenuTableViewController: UITableViewController {
-    let classDebugInfo = "[SideMenuTableViewController]"
-    var selectedPage:NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
+   var selectedPage:NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
+
+    
+    //MARK: FACEBOOK TESTING!!
+    var username = ""
+    @IBAction func fbLogoutAction(sender: AnyObject) {
+       
+        let fbManager = FBSDKLoginManager()
+        fbManager.logOut()
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        UIView.transitionWithView(appDelegate.window!, duration: 0.5, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+            () -> Void in
+            appDelegate.window?.rootViewController = self.storyboard?.instantiateViewControllerWithIdentifier("loginViewController")
+            }, completion: nil)
+    }
+    
+    func setupFacebookUserName()  {
+    
+        
+        FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "name"]).startWithCompletionHandler({ [unowned self](connection, result, error) -> Void in
+            if (error == nil){
+                self.username = result["name"] as! String
+            }
+            else{
+                self.username =  "nil"
+            }
+        })
+    
+    }
+    
+    
+    
     
     // MARK: properties
     let pages: [Page:String] = [
@@ -29,12 +60,14 @@ class SideMenuTableViewController: UITableViewController {
         let nib = UINib(nibName: "SideMenuViewCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: sideMenuCellIdentifier)
         setupSideBarStyle()
+        setupFacebookUserName()
         
 
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        self.navigationItem.title = username
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -44,6 +77,7 @@ class SideMenuTableViewController: UITableViewController {
     
     func setupSideBarStyle(){
         self.view.backgroundColor = UIColor.mrDarkSlateBlueColor()
+        
         self.navigationController?.navigationBarHidden = true
         SideMenuManager.menuFadeStatusBar = false
         SideMenuManager.menuShadowColor = UIColor.clearColor()

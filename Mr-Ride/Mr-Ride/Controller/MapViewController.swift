@@ -10,8 +10,6 @@ import UIKit
 import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate {
-    let classDebugInfo = "[MapViewController]"
-    
     @IBOutlet weak var mapView: MKMapView!
     var regionBoundingRect :MKMapRect?
     
