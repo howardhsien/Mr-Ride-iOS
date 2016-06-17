@@ -13,6 +13,7 @@ import PureLayout
 enum Page: Int {
     case Home
     case History
+    case Map
 }
 extension UIViewController {
     var classDebugInfo :String { return "[\(self.dynamicType)]" }
@@ -46,7 +47,8 @@ class BaseViewController: UIViewController,SideMenuDelegate {
     
     private lazy var infoMapViewController: InfoMapViewController = { [unowned self] in
         
-        let controller = InfoMapViewController.controller()
+        let controller = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("InfoMapViewController") as! InfoMapViewController
+
         //delegate not needed yet
         //when I need the delegate, implement the protocol and uncomment the following line
         //        controller.delegate = self
@@ -86,6 +88,7 @@ class BaseViewController: UIViewController,SideMenuDelegate {
         
         homeViewController.view.removeFromSuperview()
         historyViewController.view.removeFromSuperview()
+        infoMapViewController.view.removeFromSuperview()
         sideMenuNavigationController?.dismissViewControllerAnimated(true, completion: nil)
         switch page {
         case .Home:
@@ -95,6 +98,10 @@ class BaseViewController: UIViewController,SideMenuDelegate {
         case .History:
             view.addSubview(historyViewController.view)
             historyViewController.view.autoPinEdgesToSuperviewEdges()
+            
+        case .Map:
+            view.addSubview(infoMapViewController.view)
+            infoMapViewController.view.autoPinEdgesToSuperviewEdges()
  
         }
     }

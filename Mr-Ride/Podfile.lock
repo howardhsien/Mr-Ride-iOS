@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (3.4.1)
   - Bolts (1.7.0):
     - Bolts/AppLinks (= 1.7.0)
     - Bolts/Tasks (= 1.7.0)
@@ -18,6 +19,7 @@ PODS:
   - SideMenu (1.1.7)
 
 DEPENDENCIES:
+  - Alamofire
   - Charts
   - FBSDKCoreKit
   - FBSDKLoginKit
@@ -26,6 +28,7 @@ DEPENDENCIES:
   - SideMenu
 
 SPEC CHECKSUMS:
+  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
   Charts: b48fcc8d7190de910ff9e9748f5360c8ea7856e5
   FBSDKCoreKit: 6e56d5a2a64a755ad4efb5dbeee8f82fb1b99775

@@ -40,6 +40,7 @@
 		6457CAE01D0E5EE4002169D4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6457CADF1D0E5EE4002169D4 /* LoginViewController.swift */; };
 		6457CAE21D112DA3002169D4 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6457CAE11D112DA3002169D4 /* Social.framework */; };
 		6457CAE41D125067002169D4 /* InfoMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6457CAE31D125067002169D4 /* InfoMapViewController.swift */; };
+		6457CAE61D127D26002169D4 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6457CAE51D127D26002169D4 /* JSONParser.swift */; };
 		6484210D1CFE7130002F993F /* rideData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6484210B1CFE7130002F993F /* rideData.xcdatamodeld */; };
 		6484210F1CFE774A002F993F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6484210E1CFE774A002F993F /* CoreData.framework */; };
 		6484213D1CFE7DF9002F993F /* RouteEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648421391CFE7DF8002F993F /* RouteEntity+CoreDataProperties.swift */; };
@@ -92,6 +93,7 @@
 		6457CADF1D0E5EE4002169D4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6457CAE11D112DA3002169D4 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		6457CAE31D125067002169D4 /* InfoMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoMapViewController.swift; sourceTree = "<group>"; };
+		6457CAE51D127D26002169D4 /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
 		6484210C1CFE7130002F993F /* rideData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = rideData.xcdatamodel; sourceTree = "<group>"; };
 		6484210E1CFE774A002F993F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		648421391CFE7DF8002F993F /* RouteEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RouteEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				643B90841D07FCF50073C9C2 /* DataManager.swift */,
+				6457CAE51D127D26002169D4 /* JSONParser.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 			files = (
 				640967831CF54EA100D630E1 /* BaseViewController.swift in Sources */,
 				6409679B1CF570ED00D630E1 /* SideMenuTableViewController.swift in Sources */,
+				6457CAE61D127D26002169D4 /* JSONParser.swift in Sources */,
 				640967A11CF575C100D630E1 /* TrackingPageViewController.swift in Sources */,
 				6484213F1CFE7DF9002F993F /* RideEntity+CoreDataProperties.swift in Sources */,
 				6409680D1CFD7C4500D630E1 /* TrackingControlButton.swift in Sources */,

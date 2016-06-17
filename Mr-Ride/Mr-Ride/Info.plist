@@ -2,29 +2,32 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <!--Facebook -->
-    <key>CFBundleURLTypes</key>
-    <array>
-        <dict>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <string>fb489045521291847</string>
-            </array>
-        </dict>
-    </array>
-    <key>FacebookAppID</key>
-    <string>489045521291847</string>
-    <key>FacebookDisplayName</key>
-    <string>Mr. Ride</string>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>fbapi</string>
-        <string>fb-messenger-api</string>
-        <string>fbauth2</string>
-        <string>fbshareextension</string>
-    </array>
-    <!-- end Facebook -->
-	<key>NSLocationWhenInUseUsageDescription</key>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb489045521291847</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>489045521291847</string>
+	<key>FacebookDisplayName</key>
+	<string>Mr. Ride</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
+    <key>NSLocationWhenInUseUsageDescription</key>
 	<string>Mr-Ride wants to track the ride</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Mr-Ride wants to track the ride</string>

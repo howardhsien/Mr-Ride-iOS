@@ -51,7 +51,8 @@ class SideMenuTableViewController: UITableViewController {
     // MARK: properties
     let pages: [Page:String] = [
         .Home: "Home",
-        .History: "History"]
+        .History: "History",
+        .Map: "Map" ]
     let sideMenuCellIdentifier = "SideMenuCell"
     weak var delegate: SideMenuDelegate?
     
@@ -101,6 +102,7 @@ class SideMenuTableViewController: UITableViewController {
         switch Page(rawValue:indexPath.row)!{
         case .Home: cell.setPageLabelText(pages[.Home]!)
         case .History: cell.setPageLabelText(pages[.History]!)
+        case .Map: cell.setPageLabelText(pages[.Map]!)
         }
         
         cell.backgroundColor = UIColor.clearColor()
@@ -115,6 +117,8 @@ class SideMenuTableViewController: UITableViewController {
             delegate?.switchPages(.Home)
         case .History:
             delegate?.switchPages(.History)
+        case .Map:
+            delegate?.switchPages(.Map)
         }
     }
     

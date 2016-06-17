@@ -51,8 +51,6 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         setupBackground()
         setupTableView()
-     
-
     }
     deinit{
         print(classDebugInfo+"deinit")

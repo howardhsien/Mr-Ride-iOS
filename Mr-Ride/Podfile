@@ -10,6 +10,7 @@ pod 'Charts'
 pod 'FBSDKCoreKit'
 pod 'FBSDKShareKit'
 pod 'FBSDKLoginKit'
+pod 'Alamofire'
 
 end
 

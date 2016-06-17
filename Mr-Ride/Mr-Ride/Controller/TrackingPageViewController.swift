@@ -49,8 +49,6 @@ class TrackingPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(classDebugInfo + #function)
         setupNavigationBar()
         setupBackground()
         startLocationUpdates()

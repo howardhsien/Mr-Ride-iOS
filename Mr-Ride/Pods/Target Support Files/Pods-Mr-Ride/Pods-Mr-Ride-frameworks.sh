@@ -84,6 +84,7 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-Mr-Ride/Alamofire.framework"
   install_framework "Pods-Mr-Ride/Bolts.framework"
   install_framework "Pods-Mr-Ride/Charts.framework"
   install_framework "Pods-Mr-Ride/FBSDKCoreKit.framework"
@@ -93,6 +94,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Mr-Ride/SideMenu.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-Mr-Ride/Alamofire.framework"
   install_framework "Pods-Mr-Ride/Bolts.framework"
   install_framework "Pods-Mr-Ride/Charts.framework"
   install_framework "Pods-Mr-Ride/FBSDKCoreKit.framework"

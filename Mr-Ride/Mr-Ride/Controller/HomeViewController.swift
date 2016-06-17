@@ -33,7 +33,6 @@ class HomeViewController: UIViewController {
     
     //MARK: View
     override func viewDidLoad() {
-
         super.viewDidLoad()
         setupButtonStyle()
         
@@ -49,8 +48,6 @@ class HomeViewController: UIViewController {
             self.setupLabel()
         }
     }
-
-    
     
     @IBAction func startTrackingPageAction(sender: UIButton) {
         let trackingPageNavController = storyboard?.instantiateViewControllerWithIdentifier("TrackingPageNavigationController")
@@ -92,7 +89,7 @@ class HomeViewController: UIViewController {
         }
         let entities = rideEntities
        
-        for i in 0...count-1{
+        for i in 0..<count{
             if let date = entities[i].date
             {
                 let components = calendar.components([.Month,.Day], fromDate: date)
@@ -148,7 +145,7 @@ class HomeViewController: UIViewController {
         //display no labels
         lineChartView.xAxis.drawLabelsEnabled = false
 
-        
+        //axis display properties
         lineChartView.leftAxis.drawAxisLineEnabled = false
         lineChartView.rightAxis.drawAxisLineEnabled = false
         lineChartView.leftAxis.drawLabelsEnabled = false
