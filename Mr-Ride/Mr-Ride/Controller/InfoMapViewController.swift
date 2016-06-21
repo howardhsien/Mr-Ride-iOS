@@ -9,7 +9,9 @@
 import UIKit
 import MapKit
 
-class InfoMapViewController: UIViewController, UIPickerViewDelegate,UIPickerViewDataSource {
+
+//TODO: youbike station pickview
+class InfoMapViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     //MARK: outlets
     @IBOutlet weak var selectionView: UIView!
@@ -19,16 +21,26 @@ class InfoMapViewController: UIViewController, UIPickerViewDelegate,UIPickerView
     var blurLayer = CALayer()
     @IBOutlet weak var selectBtn: UIButton!
 
+    //MARKL detail panel
+    @IBOutlet weak var detailPanelView: UIView!
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
+    
+    
     //MARK: properties
     var jsonParser = JSONParser()
     var locationManager = CLLocationManager()
-    var pickerArray :[String] {
-        var array: [String] = []
+    var pickerArray :[DataType] {
+        var array: [DataType] = []
         for data in JSONParser.dataUrl{
-            array.append(data.0.rawValue)
+            array.append(data.0)
         }
         return array
     }
+    var toiletIcon = UIImage(named: "icon-toilet")
+    var youbikeIcon = UIImage(named: "icon-station")
     
     class func controller() ->InfoMapViewController{
         return UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("InfoMapViewController") as! InfoMapViewController
@@ -41,13 +53,19 @@ class InfoMapViewController: UIViewController, UIPickerViewDelegate,UIPickerView
         setupPickerView()
         setupBlurLayer()
         setupMapAndLocationManager()
-        jsonParser.getDataWithCompletionHandler(DataType.Toilet, completion: {[unowned self] in self.addAnnotationOnMapview()})
+        showInfoType(dataType: .Toilet)
+        
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar()
         setupMapRegion()
+        setupDetailPanel()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        mapView = nil
     }
     
     
@@ -56,6 +74,7 @@ class InfoMapViewController: UIViewController, UIPickerViewDelegate,UIPickerView
         selectionView.layer.cornerRadius = 3
         selectionView.layer.masksToBounds = true
         mapView.layer.cornerRadius = 5
+        detailPanelView.layer.cornerRadius = 5
         
     }
     
@@ -102,7 +121,12 @@ class InfoMapViewController: UIViewController, UIPickerViewDelegate,UIPickerView
         blurLayer.frame = view.frame
         blurLayer.hidden = true
         view.layer.insertSublayer(blurLayer, below: pickerContainerView.layer)
-        
+    }
+    
+    func setupDetailPanel(){
+        detailPanelView.hidden = true
+        categoryLabel.layer.borderWidth = 0.5
+        categoryLabel.layer.borderColor = UIColor.whiteColor().CGColor
     }
     
     
@@ -117,14 +141,19 @@ class InfoMapViewController: UIViewController, UIPickerViewDelegate,UIPickerView
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerArray[row]
+        return pickerArray[row].rawValue
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
-        selectBtn.setTitle(pickerArray[row], forState: .Normal)
-        selectBtn.setTitle(pickerArray[row], forState: .Selected)
+        selectBtn.setTitle(pickerArray[row].rawValue, forState: .Normal)
+        selectBtn.setTitle(pickerArray[row].rawValue, forState: .Selected)
+        showInfoType(dataType: pickerArray[row])
         dismissPickerView()
+    }
+    
+    func showInfoType(dataType type: DataType){
+        jsonParser.getDataWithCompletionHandler(type, completion: {[unowned self] in self.addAnnotationOnMapview(dataType: type)})
     }
 
     func showPickerView() {
@@ -153,19 +182,29 @@ extension InfoMapViewController: MKMapViewDelegate, CLLocationManagerDelegate {
         
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        setupMapRegion()
-    }
     
-    func addAnnotationOnMapview(){
-        for toilet in jsonParser.toilets{
-            let annotation = MKPointAnnotation()
-            let coordinate = CLLocationCoordinate2D(latitude: toilet.latitude, longitude: toilet.longitude)
-            annotation.coordinate = coordinate
-            annotation.title = toilet.name
-            annotation.subtitle = toilet.address
-            mapView.addAnnotation(annotation)
+    func addAnnotationOnMapview(dataType type: DataType){
+        mapView.removeAnnotations(mapView.annotations)
+        
+        switch type {
+        case .Toilet:
+            for toilet in jsonParser.toilets{
+                let annotation = CustomMKPointAnnotation()
+                annotation.type = type
+                annotation.toilet = toilet
+                annotation.updateInfo()
+                mapView.addAnnotation(annotation)
+            }
+        case .Youbike:
+            for youbike in jsonParser.youbikes{
+                let annotation = CustomMKPointAnnotation()
+                annotation.type = type
+                annotation.youbike = youbike
+                annotation.updateInfo()
+                mapView.addAnnotation(annotation)
+            }
         }
+        
     }
     
     func setupMapRegion(){
@@ -174,6 +213,49 @@ extension InfoMapViewController: MKMapViewDelegate, CLLocationManagerDelegate {
         mapView.setRegion(region, animated: true)
         
     }
+    
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation { return nil}
+        guard let annotation = annotation as? CustomMKPointAnnotation else { return nil}
+        let annotationView = CustomAnnotationView(frame:CGRectMake(0, 0, 40, 40) )
+        annotationView.annotation = annotation
+        annotationView.canShowCallout = true
+        switch annotation.type! {
+        case .Toilet:
+            if let icon = toiletIcon{
+                annotationView.setCustomImage(icon)
+            }
+        case .Youbike:
+            if let icon = youbikeIcon{
+                annotationView.setCustomImage(icon)
+            }
+        }
+        
+        return annotationView
+    }
+    
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        if let annotation = view.annotation as? CustomMKPointAnnotation {
+            view.backgroundColor = UIColor.mrLightBlueColor()
+            detailPanelView.hidden = false
+            let annotationLocation = CLLocation( latitude:annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
+            if let userLocation = locationManager.location{
+                let distance = annotationLocation.distanceFromLocation(userLocation)
+                let distanceInTime  = distance / (20 / 3.6 * 60)
+                let roundDistanceInTime = ceil(distanceInTime)
+                distanceLabel.text = String(format: "%0.0f min", roundDistanceInTime)
+            }
+            categoryLabel.text = annotation.category
+            titleLabel.text = annotation.title
+            addressLabel.text = annotation.address
+        }
+    }
+    
+    func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
+        detailPanelView.hidden = true
+        view.backgroundColor = UIColor.whiteColor()
+    }
+
 
     
 }
