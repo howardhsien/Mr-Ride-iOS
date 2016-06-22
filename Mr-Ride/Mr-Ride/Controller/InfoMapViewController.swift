@@ -34,7 +34,7 @@ class InfoMapViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     var locationManager = CLLocationManager()
     var pickerArray :[DataType] {
         var array: [DataType] = []
-        for data in JSONParser.dataUrl{
+        for data in JSONParser.dataUrlDictionary{
             array.append(data.0)
         }
         return array
@@ -137,7 +137,7 @@ class InfoMapViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     // returns the # of rows in each component..
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
-        return JSONParser.dataUrl.count
+        return JSONParser.dataUrlDictionary.count
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -241,7 +241,7 @@ extension InfoMapViewController: MKMapViewDelegate, CLLocationManagerDelegate {
             let annotationLocation = CLLocation( latitude:annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
             if let userLocation = locationManager.location{
                 let distance = annotationLocation.distanceFromLocation(userLocation)
-                let distanceInTime  = distance / (20 / 3.6 * 60)
+                let distanceInTime  = distance / (20 / 3.6 * 60)  //distance in time is not accurate now 
                 let roundDistanceInTime = ceil(distanceInTime)
                 distanceLabel.text = String(format: "%0.0f min", roundDistanceInTime)
             }

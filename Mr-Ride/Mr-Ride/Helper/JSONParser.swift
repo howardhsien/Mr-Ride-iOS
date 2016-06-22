@@ -36,19 +36,19 @@ class JSONParser {
     var toilets :[Toilet] = []
     var youbikes :[Youbike] = []
     //TODO: need to make plist do better job (not allow everything)
-    static let dataUrl :[DataType : String] = [
-        .Toilet : "http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=008ed7cf-2340-4bc4-89b0-e258a5573be2",
-        .Youbike : "http://data.taipei/youbike"
+    
+    //MARK: return the dataUrl array
+    static let dataUrlDictionary :[DataType : [String]] = [
+        .Toilet : ["http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=008ed7cf-2340-4bc4-89b0-e258a5573be2",
+                "http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=fe49c753-9358-49dd-8235-1fcadf5bfd3f"],
+        .Youbike : ["http://data.taipei/youbike"]
     ]
     
     func getDataWithCompletionHandler(dataType: DataType, completion:()->Void) {
-        
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0) ){
-            guard let url = JSONParser.dataUrl[dataType] else{ return }
-            Alamofire.request(
-                .GET,
-                url
-                ).responseJSON{
+        guard let urlArray = JSONParser.dataUrlDictionary[dataType] else{ return }
+        for index in 0 ..< urlArray.count{
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0) ){
+                Alamofire.request(.GET, urlArray[index]).responseJSON{
                     [unowned self] response in
                     guard response.result.isSuccess else{
                         print("\(self.classDebugInfo)result is not success")
@@ -56,23 +56,25 @@ class JSONParser {
                     }
                     if let data = response.result.value {
                         switch dataType{
-                            
                         case .Toilet:
-                            self.parseToilet(data)   //only parsing json now
+                            self.clearToilets()
+                            if index == 0 { self.parseToiletTaipeiCity(data) }   //only parsing json now
+                            else if index == 1 { self.parseToiletTaipeiRiverSide(data) }
                         case .Youbike:
+                            self.clearYoubikes()
                             self.parseYoubike(data)
                         }
                     }
                     dispatch_async(dispatch_get_main_queue()){
                         completion()
-                        
                     }
+                }
             }
         }
     }
     
     //MARK: Parsing Method
-    func parseToilet(data: AnyObject){
+    func parseToiletTaipeiCity(data: AnyObject){
         
         guard let result = data["result"] as?[String:AnyObject] else { print(classDebugInfo+#function+":result failed") ; return }
         guard let results = result["results"] as? [[String:AnyObject]] else { print(classDebugInfo+#function+":results failed") ; return }
@@ -95,8 +97,31 @@ class JSONParser {
         }
     }
     
-    func parseYoubike(data: AnyObject) {
+    func parseToiletTaipeiRiverSide(data: AnyObject){
+        
+        guard let result = data["result"] as?[String:AnyObject] else { print(classDebugInfo+#function+":result failed") ; return }
+        guard let results = result["results"] as? [[String:AnyObject]] else { print(classDebugInfo+#function+":results failed") ; return }
+        for toiletResult in results {
+            guard let category = toiletResult["Type"] else{ print(classDebugInfo+#function + ":get toiletResult category failed") ; return }
+            guard let name = toiletResult["Location"]  else{ print(classDebugInfo+#function + ":get toiletResult name failed") ; return }
+            guard let longitude_str = toiletResult["Longitude"]  else{ print(classDebugInfo+#function + ":get toiletResult longitude failed") ; return }
+            guard let latitude_str = toiletResult["Latitude"]  else{ print(classDebugInfo+#function + ":get toiletResult latitude failed") ; return }
+            
+            guard let longitude = Double(String(longitude_str)) else { print(classDebugInfo+#function + ":make longitude double failed") ; return  }
+            guard let latitude = Double(String(latitude_str)) else { print(classDebugInfo+#function + ":make latitude double failed") ; return  }
+            
+            toilets.append(Toilet(category:String(category),
+                name: String(name),
+                address: "",
+                latitude: latitude,
+                longitude:longitude))
+            
+        }
+    }
 
+    
+    
+    func parseYoubike(data: AnyObject) {
         guard let results = data["retVal"] as?[String:[String:AnyObject]] else { print(classDebugInfo+#function+":retVal failed") ; return }
         for youbikeResult in results {
             guard let category = youbikeResult.1["sarea"] else{ print(classDebugInfo+#function + ":get youbikeResult category failed") ; return }
@@ -119,7 +144,15 @@ class JSONParser {
             
         }
     }
-
+    
+    //MARK: clear Array
+    func clearToilets(){
+        toilets.removeAll()
+    }
+    
+    func clearYoubikes(){
+        youbikes.removeAll()
+    }
     
     
 }
