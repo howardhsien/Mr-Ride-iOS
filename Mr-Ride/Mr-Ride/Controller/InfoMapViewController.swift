@@ -31,6 +31,7 @@ class InfoMapViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     //MARK: properties
     var jsonParser = JSONParser()
+    var dataManager = DataManager.instance()
     var locationManager = CLLocationManager()
     var pickerArray :[DataType] {
         var array: [DataType] = []
@@ -105,10 +106,9 @@ class InfoMapViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         pickerContainerView.addSubview(headerLabel)
         
         let cancelButton = UIButton()
-        let defaultBlueColor = UIColor(red: 0, green: 122/255, blue: 255/255, alpha: 1)
         cancelButton.frame = CGRectMake(4, 4, 100, 36)
         cancelButton.setTitle("Cancel", forState: .Normal)
-        cancelButton.setTitleColor(defaultBlueColor, forState: .Normal)
+        cancelButton.setTitleColor(UIColor.defaultBlueColor(), forState: .Normal)
         cancelButton.addTarget(self, action: #selector(dismissPickerView), forControlEvents: .TouchUpInside)
         headerLabel.addSubview(cancelButton)
         
@@ -154,6 +154,8 @@ class InfoMapViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     func showInfoType(dataType type: DataType){
         jsonParser.getDataWithCompletionHandler(type, completion: {[unowned self] in self.addAnnotationOnMapview(dataType: type)})
+//        dataManager.saveToiletsInfo(toiletsToSave: jsonParser.toilets)
+//        dataManager.fetchToiletsFromCoreData({})
     }
 
     func showPickerView() {
@@ -209,27 +211,41 @@ extension InfoMapViewController: MKMapViewDelegate, CLLocationManagerDelegate {
     
     func setupMapRegion(){
         let span = MKCoordinateSpanMake(0.01, 0.01)
-        let region = MKCoordinateRegion(center: (locationManager.location?.coordinate)! , span: span)
-        mapView.setRegion(region, animated: true)
+        if let location = locationManager.location {
+            let region = MKCoordinateRegion(center: location.coordinate , span: span)
+            
+            mapView.setRegion(region, animated: true)
+        }
         
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation is MKUserLocation { return nil}
         guard let annotation = annotation as? CustomMKPointAnnotation else { return nil}
-        let annotationView = CustomAnnotationView(frame:CGRectMake(0, 0, 40, 40) )
-        annotationView.annotation = annotation
-        annotationView.canShowCallout = true
+        var annotationView: CustomAnnotationView?
+
         switch annotation.type! {
         case .Toilet:
-            if let icon = toiletIcon{
-                annotationView.setCustomImage(icon)
+            let reuseIdentifier = " toiletAnnotationView"  //handle reuse identifier to better manage the memory
+            if let view = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseIdentifier){ annotationView = view as? CustomAnnotationView }
+            else {
+                annotationView = CustomAnnotationView(frame:CGRectMake(0, 0, 40, 40),annotation: annotation, reuseIdentifier: reuseIdentifier)
+                if let icon = toiletIcon{
+                    annotationView?.setCustomImage(icon)
+                }
             }
+            
         case .Youbike:
-            if let icon = youbikeIcon{
-                annotationView.setCustomImage(icon)
+            let reuseIdentifier = " youbikeAnnotationView"
+            if let view = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseIdentifier){ annotationView = view as? CustomAnnotationView }
+            else {
+                annotationView = CustomAnnotationView(frame:CGRectMake(0, 0, 40, 40),annotation: annotation, reuseIdentifier: reuseIdentifier)
+                if let icon = youbikeIcon{
+                    annotationView?.setCustomImage(icon)
+                }
             }
+            
         }
+         annotationView?.canShowCallout = true
         
         return annotationView
     }

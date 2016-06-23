@@ -8,6 +8,9 @@
 import UIKit
 
 extension UIColor {
+    class func defaultBlueColor() ->UIColor{
+        return UIColor(red: 0, green: 122/255, blue: 255/255, alpha: 1)
+    }
     class func mrDarkSlateBlue() -> UIColor {
         return UIColor(red: 14 / 255 , green: 53 / 255, blue: 64 / 255 , alpha: 1.0)
     }

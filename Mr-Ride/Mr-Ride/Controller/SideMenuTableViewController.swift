@@ -16,7 +16,9 @@ protocol SideMenuDelegate :class{
 
 class SideMenuTableViewController: UITableViewController {
    var selectedPage:NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
-
+    deinit {
+        print(classDebugInfo+#function)
+    }
     
     //MARK: FACEBOOK TESTING!!
     var username = ""
@@ -62,6 +64,7 @@ class SideMenuTableViewController: UITableViewController {
         tableView.registerNib(nib, forCellReuseIdentifier: sideMenuCellIdentifier)
         setupSideBarStyle()
         setupFacebookUserName()
+        print(classDebugInfo+#function)
         
 
     }

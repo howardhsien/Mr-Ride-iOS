@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import CoreData
 
 enum DataType: String {
     case Toilet
@@ -152,6 +153,11 @@ class JSONParser {
     
     func clearYoubikes(){
         youbikes.removeAll()
+    }
+    
+    //MARK: save in core data
+    func saveToilets(){
+        
     }
     
     

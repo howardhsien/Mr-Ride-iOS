@@ -20,7 +20,11 @@ extension UIViewController {
 }
 
 class BaseViewController: UIViewController,SideMenuDelegate {
-
+    //testing deinit
+    deinit{
+        print(classDebugInfo + "deinit")
+    }
+    
     //MARK: controllers which embedded in the baseViewController
     private var sideMenuNavigationController: UISideMenuNavigationController?
     private lazy var homeViewController: HomeViewController = { [unowned self] in
@@ -63,6 +67,7 @@ class BaseViewController: UIViewController,SideMenuDelegate {
         switchPages(.Home)
         setupSideMenuController()
         
+        print(classDebugInfo+#function)
         //navigationBorderHidden
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
@@ -75,7 +80,7 @@ class BaseViewController: UIViewController,SideMenuDelegate {
         sideMenuNavigationController?.leftSide = true
         SideMenuManager.menuLeftNavigationController = sideMenuNavigationController
         //make the delegate from SideMenuTableViewController point to self
-        (sideMenuNavigationController?.viewControllers[0] as? SideMenuTableViewController)?.delegate = self
+        (sideMenuNavigationController?.visibleViewController as? SideMenuTableViewController)?.delegate = self
         
     }
     

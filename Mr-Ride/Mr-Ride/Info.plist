@@ -2,47 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>fb489045521291847</string>
-			</array>
-		</dict>
-	</array>
-	<key>FacebookAppID</key>
-	<string>489045521291847</string>
-	<key>FacebookDisplayName</key>
-	<string>Mr. Ride</string>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>fbapi</string>
-		<string>fb-messenger-api</string>
-		<string>fbauth2</string>
-		<string>fbshareextension</string>
-	</array>
-    <key>NSAppTransportSecurity</key>
-    <dict>
-        <key>NSAllowsArbitraryLoads</key>
-        <true/>
-    </dict>
-    <key>NSLocationWhenInUseUsageDescription</key>
-	<string>Mr-Ride wants to track the ride</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Mr-Ride wants to track the ride</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>RobotoMono-ThinItalic.ttf</string>
-		<string>RobotoMono-Thin.ttf</string>
-		<string>RobotoMono-Regular.ttf</string>
-		<string>RobotoMono-MediumItalic.ttf</string>
-		<string>RobotoMono-Medium.ttf</string>
-		<string>RobotoMono-LightItalic.ttf</string>
-		<string>RobotoMono-BoldItalic.ttf</string>
-		<string>RobotoMono-Light.ttf</string>
-		<string>RobotoMono-Bold.ttf</string>
-	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -59,10 +18,51 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb489045521291847</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>FacebookAppID</key>
+	<string>489045521291847</string>
+	<key>FacebookDisplayName</key>
+	<string>Mr. Ride</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Mr-Ride wants to track the ride</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Mr-Ride wants to track the ride</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>RobotoMono-ThinItalic.ttf</string>
+		<string>RobotoMono-Thin.ttf</string>
+		<string>RobotoMono-Regular.ttf</string>
+		<string>RobotoMono-MediumItalic.ttf</string>
+		<string>RobotoMono-Medium.ttf</string>
+		<string>RobotoMono-LightItalic.ttf</string>
+		<string>RobotoMono-BoldItalic.ttf</string>
+		<string>RobotoMono-Light.ttf</string>
+		<string>RobotoMono-Bold.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -74,8 +74,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 </dict>
 </plist>

@@ -85,7 +85,60 @@ class DataManager :NSObject, NSFetchedResultsControllerDelegate{
         }
         return myDictionary
     }
+    //MARK: save in core data
+    func saveToiletsInfo(toiletsToSave toilets: [Toilet]){
+        for toilet in toilets{
+            let savedToilet = NSEntityDescription.insertNewObjectForEntityForName("ToiletInfoEntity",inManagedObjectContext: managedObjectContext!) as! ToiletInfoEntity
+            savedToilet.category = toilet.category
+            savedToilet.name = toilet.name
+            savedToilet.address = toilet.address
+            savedToilet.longitude = toilet.longitude
+            savedToilet.latitude = toilet.latitude
+            do{
+                try managedObjectContext!.save()
+            }
+            catch{
+                print(String(self.dynamicType)+" Could not save the toilet")
+            }
 
+        }
+       
+    }
+    
+    
+    var toiletEntities: [ToiletInfoEntity]? = []
+    
+    func fetchToiletsFromCoreData(completion:VoidFunc){
+        let fetchRequest = NSFetchRequest(entityName: "ToiletInfoEntity")
+        let sortDesriptor = NSSortDescriptor(key: "name", ascending: false)
+        
+        fetchRequest.sortDescriptors = [sortDesriptor]
+//        
+        if let managedObjectContext = managedObjectContext{
+            let fetchResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+            fetchResultController.delegate = self
+            
+            do{
+                try fetchResultController.performFetch()
+                if let toiletEntities = fetchResultController.fetchedObjects as? [ToiletInfoEntity]
+                {
+                    self.toiletEntities = toiletEntities
+                }
+            }
+            catch{
+                print(error)
+            }
+            //TODO: fetch toilets data using sort descriptor
+            
+            
+        }
+    }
+
+    
+    
+    
+    
+    
     
     
     

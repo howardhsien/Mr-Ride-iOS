@@ -16,9 +16,13 @@ class CustomAnnotationView: MKAnnotationView {
     func setCustomImage(image: UIImage){
         customImageView.image = image
     }
+//    override init(annotation: MKAnnotation?, reuseIdentifier: String?){
+//        super.init(annotation: MKAnnotation?, reuseIdentifier: String?)
+//    }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+   init(frame: CGRect, annotation: MKAnnotation?, reuseIdentifier: String?) {
+        super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
+        self.frame = frame
         customImageView.frame = CGRectMake(0, 0, frame.width/2, frame.height/2)
         customImageView.center = self.center
         self.backgroundColor = UIColor.whiteColor()
@@ -32,6 +36,10 @@ class CustomAnnotationView: MKAnnotationView {
         self.layer.shadowOpacity = 0.5
         self.layer.shadowOffset = CGSize(width: 0, height: 2)
         self.addSubview(customImageView)
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame:frame)
     }
     
     required init?(coder aDecoder: NSCoder) {
