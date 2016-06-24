@@ -46,28 +46,34 @@ class JSONParser {
     ]
     
     func getDataWithCompletionHandler(dataType: DataType, completion:()->Void) {
-        guard let urlArray = JSONParser.dataUrlDictionary[dataType] else{ return }
-        for index in 0 ..< urlArray.count{
-            dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0) ){
-                Alamofire.request(.GET, urlArray[index]).responseJSON{
-                    [unowned self] response in
-                    guard response.result.isSuccess else{
-                        print("\(self.classDebugInfo)result is not success")
-                        return
-                    }
-                    if let data = response.result.value {
-                        switch dataType{
-                        case .Toilet:
-                            self.clearToilets()
-                            if index == 0 { self.parseToiletTaipeiCity(data) }   //only parsing json now
-                            else if index == 1 { self.parseToiletTaipeiRiverSide(data) }
-                        case .Youbike:
-                            self.clearYoubikes()
-                            self.parseYoubike(data)
+        // make infoMapView only load once of the taipei toilets
+        if !self.toilets.isEmpty && dataType == .Toilet{
+            completion()
+        }
+        else{
+            guard let urlArray = JSONParser.dataUrlDictionary[dataType] else{ return }
+            for index in 0 ..< urlArray.count{
+                dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0) ){
+                    Alamofire.request(.GET, urlArray[index]).responseJSON{
+                        [unowned self] response in
+                        guard response.result.isSuccess else{
+                            print("\(self.classDebugInfo)result is not success")
+                            return
                         }
-                    }
-                    dispatch_async(dispatch_get_main_queue()){
-                        completion()
+                        if let data = response.result.value {
+                            switch dataType{
+                            case .Toilet:
+                                if index == 0 { self.parseToiletTaipeiCity(data) }   //only parsing json now
+                                else if index == 1 { self.parseToiletTaipeiRiverSide(data) }
+                                
+                            case .Youbike:
+                                self.clearYoubikes()
+                                self.parseYoubike(data)
+                            }
+                        }
+                        dispatch_async(dispatch_get_main_queue()){
+                            completion()
+                        }
                     }
                 }
             }

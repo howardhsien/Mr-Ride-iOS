@@ -134,14 +134,14 @@ class TrackingPageViewController: UIViewController {
         
         
 //MARK: testing different date
-        let dateString = "2016-07-02" // change to your date format
-        
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        savedRide.date = dateFormatter.dateFromString(dateString)
-        print("\(classDebugInfo) testing date now is \(savedRide.date)")
-//        savedRide.date = NSDate()
+//        let dateString = "2016-07-02" // change to your date format
+//        
+//        let dateFormatter = NSDateFormatter()
+//        dateFormatter.dateFormat = "yyyy-MM-dd"
+//        
+//        savedRide.date = dateFormatter.dateFromString(dateString)
+//        print("\(classDebugInfo) testing date now is \(savedRide.date)")
+        savedRide.date = NSDate()
         
         var savedRoutes = [RouteEntity]()
 //        for location in rideModel.locations{

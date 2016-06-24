@@ -158,8 +158,10 @@ class RecordPageViewController: UIViewController {
     //MARK: Facebook Sharing
     @IBAction func fbShareAction(sender: AnyObject) {
         //truncate the fbShareBtn
+        guard let navHeight = self.navigationController?.navigationBar.frame.height else{ return }
         let screenshotSize = CGSize(width: view.bounds.width , height: containerView.frame.origin.y + containerView.frame.height + 5)
         UIGraphicsBeginImageContext(screenshotSize);
+        self.view.drawViewHierarchyInRect(CGRectMake(0,-navHeight,view.frame.size.width,view.frame.size.height), afterScreenUpdates: true)
         self.view.layer.renderInContext(UIGraphicsGetCurrentContext()!)
         let screenShot = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();

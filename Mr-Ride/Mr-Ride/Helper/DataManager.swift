@@ -113,7 +113,6 @@ class DataManager :NSObject, NSFetchedResultsControllerDelegate{
         let sortDesriptor = NSSortDescriptor(key: "name", ascending: false)
         
         fetchRequest.sortDescriptors = [sortDesriptor]
-//        
         if let managedObjectContext = managedObjectContext{
             let fetchResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
             fetchResultController.delegate = self
