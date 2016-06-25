@@ -11,6 +11,9 @@ pod 'FBSDKCoreKit'
 pod 'FBSDKShareKit'
 pod 'FBSDKLoginKit'
 pod 'Alamofire'
+pod 'Fabric'
+pod 'Crashlytics'
+pod 'Amplitude-iOS'
 
 end
 

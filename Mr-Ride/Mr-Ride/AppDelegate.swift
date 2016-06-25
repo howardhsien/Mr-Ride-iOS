@@ -9,6 +9,10 @@
 import UIKit
 import CoreData
 import FBSDKLoginKit
+import Fabric
+import Crashlytics
+import Amplitude_iOS
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,7 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-
+        Fabric.with([Crashlytics.self])
+        Amplitude.instance().initializeApiKey("bd5e21507185f867707bde6312ba24e3")
         return true
     }
     

@@ -291,6 +291,7 @@
 				6409677B1CF54EA100D630E1 /* Resources */,
 				44A5564E9064436CCF9BBEBA /* Embed Pods Frameworks */,
 				955597057A6C66597270CFEC /* Copy Pods Resources */,
+				648D88701D1D14F800A4ED86 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -377,6 +378,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Mr-Ride/Pods-Mr-Ride-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		648D88701D1D14F800A4ED86 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" b96441b49a050949537f1395aa19d85ce7cd4549 f50d33ea06e0ca7619d1d05e91cc9d66eddbd0639ee6abaac25c5a836b964b41";
 		};
 		955597057A6C66597270CFEC /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;

@@ -1,8 +1,10 @@
 EMBEDDED_CONTENT_CONTAINS_SWIFT = YES
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Crashlytics/iOS" "${PODS_ROOT}/Fabric/iOS"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Crashlytics" "${PODS_ROOT}/Headers/Public/Fabric"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_CFLAGS = $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/Alamofire.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/Bolts.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/Charts.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/FBSDKCoreKit.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/FBSDKLoginKit.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/FBSDKShareKit.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/PureLayout.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/SideMenu.framework/Headers"
-OTHER_LDFLAGS = $(inherited) -framework "Alamofire" -framework "Bolts" -framework "Charts" -framework "FBSDKCoreKit" -framework "FBSDKLoginKit" -framework "FBSDKShareKit" -framework "PureLayout" -framework "SideMenu"
+OTHER_CFLAGS = $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/Alamofire.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/Amplitude_iOS.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/Bolts.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/Charts.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/FBSDKCoreKit.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/FBSDKLoginKit.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/FBSDKShareKit.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/PureLayout.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/SideMenu.framework/Headers" -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/Crashlytics" -isystem "${PODS_ROOT}/Headers/Public/Fabric"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"c++" -l"z" -framework "Alamofire" -framework "Amplitude_iOS" -framework "Bolts" -framework "Charts" -framework "Crashlytics" -framework "FBSDKCoreKit" -framework "FBSDKLoginKit" -framework "FBSDKShareKit" -framework "Fabric" -framework "PureLayout" -framework "Security" -framework "SideMenu" -framework "SystemConfiguration" -framework "UIKit"
 OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
 PODS_FRAMEWORK_BUILD_PATH = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods-Mr-Ride
 PODS_ROOT = ${SRCROOT}/Pods

@@ -9,6 +9,7 @@
 import UIKit
 import SideMenu
 import PureLayout
+import Amplitude_iOS
 
 enum Page: Int {
     case Home
@@ -68,6 +69,8 @@ class BaseViewController: UIViewController,SideMenuDelegate {
         setupSideMenuController()
         
         print(classDebugInfo+#function)
+        Amplitude.instance().logEvent(classDebugInfo+#function)
+
         //navigationBorderHidden
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
