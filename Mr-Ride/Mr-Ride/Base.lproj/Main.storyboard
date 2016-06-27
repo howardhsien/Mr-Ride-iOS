@@ -283,8 +283,15 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dYv-2Q-afW" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="169" width="600" height="120"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="pXg-7P-bPm"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8cd-J2-tYv">
-                                <rect key="frame" x="188" y="427" width="224" height="60"/>
+                                <rect key="frame" x="188" y="493" width="224" height="60"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Bvh-Zg-xW2"/>
@@ -299,17 +306,10 @@
                                     <action selector="startTrackingPageAction:" destination="Jna-v2-caY" eventType="touchUpInside" id="tRF-E5-gs2"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dYv-2Q-afW" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="169" width="600" height="120"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="pXg-7P-bPm"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.38823530077934265" green="0.84313726425170898" blue="0.96470588445663452" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="8cd-J2-tYv" firstAttribute="top" secondItem="EUX-kQ-NN7" secondAttribute="bottom" constant="34" id="0fl-D0-s4w"/>
+                            <constraint firstItem="8cd-J2-tYv" firstAttribute="top" secondItem="EUX-kQ-NN7" secondAttribute="bottom" constant="100" id="0fl-D0-s4w"/>
                             <constraint firstItem="EUX-kQ-NN7" firstAttribute="leading" secondItem="dcw-RG-fNh" secondAttribute="leading" id="0y5-iD-g0V"/>
                             <constraint firstItem="Ghg-Be-qpL" firstAttribute="leading" secondItem="lBR-xC-dbA" secondAttribute="leading" id="Bni-eC-Gqd"/>
                             <constraint firstItem="2ie-VM-1uf" firstAttribute="top" relation="greaterThanOrEqual" secondItem="8cd-J2-tYv" secondAttribute="bottom" constant="20" id="CzS-jV-pwW"/>
@@ -641,13 +641,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dyr-9n-1L8">
-                                <rect key="frame" x="241" y="534" width="119" height="47"/>
+                                <rect key="frame" x="226" y="534" width="150" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="1ep-Oa-JBG"/>
-                                    <constraint firstAttribute="width" constant="120" id="ac1-6w-b52"/>
+                                    <constraint firstAttribute="height" constant="50" id="1ep-Oa-JBG"/>
+                                    <constraint firstAttribute="width" constant="150" id="ac1-6w-b52"/>
                                 </constraints>
-                                <state key="normal" image="fb-share-button"/>
                                 <connections>
                                     <action selector="fbShareAction:" destination="aUZ-3l-vYY" eventType="touchUpInside" id="Dwn-26-OOJ"/>
                                 </connections>
@@ -686,6 +685,7 @@
                         <outlet property="calorieLabel" destination="clu-BL-dxz" id="5Lb-dX-LTo"/>
                         <outlet property="containerView" destination="1Ji-l6-Uv2" id="Zef-pd-MT4"/>
                         <outlet property="distancLabel" destination="S46-5M-86m" id="ert-vc-Gtc"/>
+                        <outlet property="fbShareButton" destination="Dyr-9n-1L8" id="cd9-eP-WnN"/>
                         <outlet property="speedLabel" destination="W6M-CZ-Pga" id="MwB-iC-nb9"/>
                         <outlet property="totalTimeLabel" destination="Ixz-sm-cyn" id="Dj8-cE-2Gj"/>
                     </connections>
@@ -848,8 +848,8 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKt-g7-Qbx">
-                                        <rect key="frame" x="20" y="40" width="40" height="29"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKt-g7-Qbx">
+                                        <rect key="frame" x="20" y="42" width="518" height="29"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -865,6 +865,7 @@
                                     <constraint firstItem="kJ7-cj-tr5" firstAttribute="top" secondItem="t1I-UL-DtD" secondAttribute="top" constant="20" id="DW9-1Y-Eqb"/>
                                     <constraint firstItem="zKt-g7-Qbx" firstAttribute="leading" secondItem="kJ7-cj-tr5" secondAttribute="leading" id="G3w-Om-4Ib"/>
                                     <constraint firstItem="kJ7-cj-tr5" firstAttribute="leading" secondItem="t1I-UL-DtD" secondAttribute="leading" constant="20" id="ZY3-5x-UYM"/>
+                                    <constraint firstItem="zKt-g7-Qbx" firstAttribute="trailing" secondItem="dav-fV-35r" secondAttribute="trailing" id="b2f-Ah-mpB"/>
                                     <constraint firstItem="uNa-cl-DjA" firstAttribute="trailing" secondItem="dav-fV-35r" secondAttribute="trailing" id="ewu-KJ-CVB"/>
                                     <constraint firstItem="uNa-cl-DjA" firstAttribute="top" secondItem="zKt-g7-Qbx" secondAttribute="bottom" constant="2" id="lOX-CF-60d"/>
                                 </constraints>
@@ -993,7 +994,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="fb-share-button" width="207" height="61"/>
         <image name="icon-menu" width="30" height="30"/>
         <image name="image-history-background" width="1536" height="1021"/>
         <image name="image-medal" width="55" height="85"/>

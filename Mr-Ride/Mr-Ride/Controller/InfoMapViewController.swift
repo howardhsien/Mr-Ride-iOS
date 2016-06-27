@@ -179,6 +179,7 @@ extension InfoMapViewController: MKMapViewDelegate, CLLocationManagerDelegate {
     
     func setupMapAndLocationManager(){
         locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
         mapView.delegate = self
         mapView.showsUserLocation = true
         
@@ -212,6 +213,12 @@ extension InfoMapViewController: MKMapViewDelegate, CLLocationManagerDelegate {
     func setupMapRegion(){
         let span = MKCoordinateSpanMake(0.01, 0.01)
         if let location = locationManager.location {
+            let region = MKCoordinateRegion(center: location.coordinate , span: span)
+            
+            mapView.setRegion(region, animated: true)
+        }
+        else{
+            let location = mapView.userLocation
             let region = MKCoordinateRegion(center: location.coordinate , span: span)
             
             mapView.setRegion(region, animated: true)

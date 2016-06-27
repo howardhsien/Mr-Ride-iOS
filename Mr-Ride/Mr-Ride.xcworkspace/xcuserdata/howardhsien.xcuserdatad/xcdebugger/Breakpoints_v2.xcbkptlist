@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mr-Ride/Controller/RecordPageViewController.swift"
-            timestampString = "487667007.726642"
+            timestampString = "488702647.427773"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "setupMap()"
             landmarkType = "5">
          </BreakpointContent>

@@ -153,8 +153,20 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 45
+        return 35
     }
+    
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView()
+        footerView.backgroundColor = UIColor.clearColor()
+        footerView.frame = CGRectMake(0, 0, view.frame.width, 10)
+        return footerView
+    }
+    
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 10
+    }
+    
     // change chart view when scroll to different months
     func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         setupChartData(section)

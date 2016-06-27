@@ -25,6 +25,7 @@ class RecordPageViewController: UIViewController {
     @IBOutlet weak var calorieLabel: UILabel!
     @IBOutlet weak var totalTimeLabel: UILabel!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var fbShareButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,12 @@ class RecordPageViewController: UIViewController {
                 self.setupMap()
             }
         }
+        
+        if let fbButton = FBShareButtonView.button(){
+            fbShareButton.addSubview(fbButton)
+            fbButton.autoPinEdgesToSuperviewEdges()
+        }
+        
     }
     
 
@@ -159,7 +166,7 @@ class RecordPageViewController: UIViewController {
     @IBAction func fbShareAction(sender: AnyObject) {
         //truncate the fbShareBtn
         guard let navHeight = self.navigationController?.navigationBar.frame.height else{ return }
-        let screenshotSize = CGSize(width: view.bounds.width , height: containerView.frame.origin.y + containerView.frame.height + 5)
+        let screenshotSize = CGSize(width: view.bounds.width , height: containerView.frame.origin.y + containerView.frame.height + 10)
         UIGraphicsBeginImageContext(screenshotSize);
         self.view.drawViewHierarchyInRect(CGRectMake(0,-navHeight,view.frame.size.width,view.frame.size.height), afterScreenUpdates: true)
         self.view.layer.renderInContext(UIGraphicsGetCurrentContext()!)

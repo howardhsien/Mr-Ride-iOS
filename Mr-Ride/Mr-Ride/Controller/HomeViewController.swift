@@ -35,7 +35,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupButtonStyle()
-        
+
     }
     
     // change navigation properties between switches
