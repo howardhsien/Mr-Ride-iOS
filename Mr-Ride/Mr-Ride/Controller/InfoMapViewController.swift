@@ -275,6 +275,10 @@ extension InfoMapViewController: MKMapViewDelegate, CLLocationManagerDelegate {
     }
     
     func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
+        if view.annotation is MKUserLocation{
+            return
+        }
+        
         detailPanelView.hidden = true
         view.backgroundColor = UIColor.whiteColor()
     }

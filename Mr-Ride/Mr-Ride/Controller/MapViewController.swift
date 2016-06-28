@@ -37,6 +37,17 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func showMapAnnotations(){
         mapView.showAnnotations(mapView.annotations, animated: false)
     }
+    
+    func showUserLocation(coordinate: CLLocationCoordinate2D){
+        let span = MKCoordinateSpanMake(0.005, 0.005)
+        
+        let region = MKCoordinateRegion(center: coordinate , span: span)
+        
+        mapView.setRegion(region, animated: true)
+        
+
+    }
+    
     //TODO: show map poly line sometimes not correct
     func addMapPolyline(coordinates coords: UnsafeMutablePointer<CLLocationCoordinate2D>, count: Int){
         let polyline = MKPolyline(coordinates: coords, count: count)

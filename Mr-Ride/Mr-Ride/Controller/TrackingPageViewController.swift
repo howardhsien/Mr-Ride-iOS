@@ -55,6 +55,14 @@ class TrackingPageViewController: UIViewController {
 
         trackControlButton.addTarget(self, action: #selector(trackControlButtonPressed(_:)), forControlEvents: .TouchUpInside)
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if let coordinate = locationManager.location?.coordinate{
+            mapViewController?.showUserLocation(coordinate)
+            print(coordinate)
+        }
+    }
 
     //MARK: UI Setting
     func setupBackground(){
@@ -199,10 +207,11 @@ extension TrackingPageViewController: CLLocationManagerDelegate {
         // Here, the location manager will be lazily instantiated
         locationManager.startUpdatingLocation()
         locationManager.requestAlwaysAuthorization()
+        locationManager.pausesLocationUpdatesAutomatically = false
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        print("didupdate locations")
+        print("didupdate locations")
         mapViewController?.showMapAnnotations()
       
     }
