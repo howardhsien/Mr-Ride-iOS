@@ -33,6 +33,7 @@ struct Youbike {
 }
 
 class JSONParser {
+    var request :Alamofire.Request?
     var classDebugInfo : String { return "[\(self.dynamicType)]" }
     var toilets :[Toilet] = []
     var youbikes :[Youbike] = []
@@ -54,7 +55,7 @@ class JSONParser {
             guard let urlArray = JSONParser.dataUrlDictionary[dataType] else{ return }
             for index in 0 ..< urlArray.count{
                 dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0) ){
-                    Alamofire.request(.GET, urlArray[index]).responseJSON{
+                    self.request = Alamofire.request(.GET, urlArray[index]).responseJSON{
                         [unowned self] response in
                         guard response.result.isSuccess else{
                             print("\(self.classDebugInfo)result is not success")

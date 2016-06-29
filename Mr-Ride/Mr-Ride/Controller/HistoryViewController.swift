@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Charts
+import Amplitude_iOS
 
 
 class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -61,6 +62,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar()
+        Amplitude.instance().logEvent(classDebugInfo+#function)
         dataManager.fetchFromCoreData({
             self.tableView.reloadData()
         })

@@ -68,7 +68,6 @@ class BaseViewController: UIViewController,SideMenuDelegate {
         switchPages(.Home)
         setupSideMenuController()
         
-        print(classDebugInfo+#function)
         Amplitude.instance().logEvent(classDebugInfo+#function)
 
         //navigationBorderHidden

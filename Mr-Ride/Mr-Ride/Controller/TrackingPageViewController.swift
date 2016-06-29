@@ -9,6 +9,8 @@
 import UIKit
 import CoreLocation
 import CoreData
+import Amplitude_iOS
+
 
 class TrackingPageViewController: UIViewController {
     var rideModel = RideModel()
@@ -58,6 +60,7 @@ class TrackingPageViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        Amplitude.instance().logEvent(classDebugInfo+#function)
         if let coordinate = locationManager.location?.coordinate{
             mapViewController?.showUserLocation(coordinate)
             print(coordinate)
@@ -140,7 +143,14 @@ class TrackingPageViewController: UIViewController {
         savedRide.spentTime = rideModel.spentTime
         savedRide.weight = rideModel.weight
         
+        //--------------transmit data using Amplitude to track user behavior-----------------------
         
+        Amplitude.instance().logEvent("tracking event", withEventProperties:
+            ["time":rideModel.spentTime,
+             "distance": rideModel.distance])
+       
+        
+        //-----------------------------------------------------------------------------------------
 //MARK: testing different date
 //        let dateString = "2016-07-02" // change to your date format
 //        
@@ -211,7 +221,7 @@ extension TrackingPageViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("didupdate locations")
+//        print("didupdate locations")
         mapViewController?.showMapAnnotations()
       
     }

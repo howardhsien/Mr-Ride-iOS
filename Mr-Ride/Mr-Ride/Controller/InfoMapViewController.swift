@@ -8,9 +8,10 @@
 
 import UIKit
 import MapKit
+import Amplitude_iOS
 
 
-//TODO: youbike station pickview
+
 class InfoMapViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     //MARK: outlets
@@ -40,8 +41,9 @@ class InfoMapViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         }
         return array
     }
-    var toiletIcon = UIImage(named: "icon-toilet")
+    var toiletIcon = UIImage(named: "icon-toilet")   //reuse images to save memory
     var youbikeIcon = UIImage(named: "icon-station")
+
     
     class func controller() ->InfoMapViewController{
         return UIStoryboard.init(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("InfoMapViewController") as! InfoMapViewController
@@ -60,6 +62,7 @@ class InfoMapViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        Amplitude.instance().logEvent(classDebugInfo+#function)
         setupNavigationBar()
         setupMapRegion()
         setupDetailPanel()
@@ -153,7 +156,9 @@ class InfoMapViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
     
     func showInfoType(dataType type: DataType){
+        jsonParser.request?.cancel()
         jsonParser.getDataWithCompletionHandler(type, completion: {[unowned self] in self.addAnnotationOnMapview(dataType: type)})
+//      following comments are the version that fetch from coredata
 //        dataManager.saveToiletsInfo(toiletsToSave: jsonParser.toilets)
 //        dataManager.fetchToiletsFromCoreData({})
     }
@@ -180,6 +185,7 @@ extension InfoMapViewController: MKMapViewDelegate, CLLocationManagerDelegate {
     func setupMapAndLocationManager(){
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
+        locationManager.pausesLocationUpdatesAutomatically = true
         mapView.delegate = self
         mapView.showsUserLocation = true
         
@@ -264,7 +270,7 @@ extension InfoMapViewController: MKMapViewDelegate, CLLocationManagerDelegate {
             let annotationLocation = CLLocation( latitude:annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
             if let userLocation = locationManager.location{
                 let distance = annotationLocation.distanceFromLocation(userLocation)
-                let distanceInTime  = distance / (20 / 3.6 * 60)  //distance in time is not accurate now 
+                let distanceInTime  = distance / (12 / 3.6 * 60)  //distance in time is not accurate now
                 let roundDistanceInTime = ceil(distanceInTime)
                 distanceLabel.text = String(format: "%0.0f min", roundDistanceInTime)
             }
@@ -278,7 +284,6 @@ extension InfoMapViewController: MKMapViewDelegate, CLLocationManagerDelegate {
         if view.annotation is MKUserLocation{
             return
         }
-        
         detailPanelView.hidden = true
         view.backgroundColor = UIColor.whiteColor()
     }

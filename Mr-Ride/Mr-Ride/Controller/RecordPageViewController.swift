@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import CoreLocation
 import Social
+import Amplitude_iOS
 
 class RecordPageViewController: UIViewController {
 
@@ -44,6 +45,11 @@ class RecordPageViewController: UIViewController {
             fbButton.autoPinEdgesToSuperviewEdges()
         }
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        Amplitude.instance().logEvent(classDebugInfo+#function)
     }
     
 

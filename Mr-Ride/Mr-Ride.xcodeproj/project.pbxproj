@@ -65,7 +65,7 @@
 		626494F0A04D7D3344F1D4CD /* Pods-Mr-Ride.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mr-Ride.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mr-Ride/Pods-Mr-Ride.debug.xcconfig"; sourceTree = "<group>"; };
 		6409677D1CF54EA100D630E1 /* Mr-Ride.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mr-Ride.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		640967801CF54EA100D630E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		640967821CF54EA100D630E1 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = ../BaseViewController.swift; sourceTree = "<group>"; };
+		640967821CF54EA100D630E1 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		640967851CF54EA100D630E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		640967871CF54EA100D630E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6409678A1CF54EA100D630E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -230,10 +230,10 @@
 				648421451D012FBE002F993F /* HistoryHeaderView.swift */,
 				648421471D013341002F993F /* HistoryHeaderView.xib */,
 				6409680C1CFD7C4500D630E1 /* TrackingControlButton.swift */,
-				6458A5211D17DA8400B81AA9 /* CustomAnnotationView.swift */,
-				6458A5231D18E61700B81AA9 /* CustomMKPointAnnotation.swift */,
 				648D88711D20C83100A4ED86 /* FBShareButton.xib */,
 				648D88731D20CADC00A4ED86 /* FBShareButtonView.swift */,
+				6458A5211D17DA8400B81AA9 /* CustomAnnotationView.swift */,
+				6458A5231D18E61700B81AA9 /* CustomMKPointAnnotation.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

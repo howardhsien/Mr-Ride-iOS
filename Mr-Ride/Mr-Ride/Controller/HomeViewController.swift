@@ -9,6 +9,8 @@
 import UIKit
 import Charts
 import CoreData
+import Amplitude_iOS
+
 
 class HomeViewController: UIViewController {
 
@@ -41,6 +43,7 @@ class HomeViewController: UIViewController {
     // change navigation properties between switches
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        Amplitude.instance().logEvent(classDebugInfo+#function)
         setupNavigationStyle()
         dataManager.fetchFromCoreData(){
             [unowned self] in
