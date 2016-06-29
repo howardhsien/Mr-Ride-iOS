@@ -13,13 +13,15 @@ This App is for peolpe who like to ride bicycle and who are willing to track the
 CocoaPod is used to install the libraries.
 
 * SideMenu
+* Charts
 * PureLayout
 * Alamofire
 * Amplitude
 * Crashlytics
+* FBSDK => (included but not used)
 
-###Programming Structure
-BaseViewController is the the base of switching. When switching pages via side menu, the baseViewController switches the viewControllers which are Home, History, Map view controller on it. 
+###Side Menu Structure
+Side menu will be presented modally when button on navigation bar on baseViewController is clicked. BaseViewController is the the base of switching. When switching pages via side menu, the baseViewController switches the viewControllers on it which are Home, History, Map view controller. 
 
 
 
