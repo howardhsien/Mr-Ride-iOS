@@ -68,13 +68,18 @@ class InfoMapViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         setupDetailPanel()
     }
     
-    override func didReceiveMemoryWarning() {
-        mapView = nil
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        deSetupNavigationBar()
     }
     
+//    override func didReceiveMemoryWarning() {
+//        mapView = nil
+//    }
+//    
     
     // MARK: UISetting
-    func setupRoundedCorner(){
+    private func setupRoundedCorner(){
         selectionView.layer.cornerRadius = 3
         selectionView.layer.masksToBounds = true
         mapView.layer.cornerRadius = 5
@@ -82,12 +87,28 @@ class InfoMapViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         
     }
     
-    func setupNavigationBar(){
+    private func setupNavigationBar(){
         self.parentViewController?.navigationItem.titleView = nil
         self.parentViewController?.navigationItem.title = "Map"
+        addRightBarButton()
     }
     
-    func setupPickerView(){
+    private func addRightBarButton(){
+        let rightBarButtonItem = UIBarButtonItem()
+        rightBarButtonItem.image = UIImage(named: "navigationIcon")
+        rightBarButtonItem.image =  rightBarButtonItem.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        rightBarButtonItem.tintColor = UIColor.whiteColor()
+        rightBarButtonItem.imageInsets = UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 5)
+        rightBarButtonItem.target = self
+        rightBarButtonItem.action = #selector(setupMapRegion)
+        self.parentViewController?.navigationItem.setRightBarButtonItem(rightBarButtonItem, animated: false)
+    }
+    
+    private func deSetupNavigationBar(){
+        self.parentViewController?.navigationItem.rightBarButtonItem = nil
+    }
+    
+    private func setupPickerView(){
         pickerContainerView.frame = CGRectMake(0, view.frame.height - 250, view.frame.width, 250)
         pickerContainerView.backgroundColor = .whiteColor()
         pickerContainerView.hidden = true
@@ -119,14 +140,14 @@ class InfoMapViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
  
     }
 
-    func setupBlurLayer(){
+    private func setupBlurLayer(){
         blurLayer.backgroundColor = UIColor.mrBlack25Color().CGColor
         blurLayer.frame = view.frame
         blurLayer.hidden = true
         view.layer.insertSublayer(blurLayer, below: pickerContainerView.layer)
     }
     
-    func setupDetailPanel(){
+    private func setupDetailPanel(){
         detailPanelView.hidden = true
         categoryLabel.layer.borderWidth = 0.5
         categoryLabel.layer.borderColor = UIColor.whiteColor().CGColor
@@ -217,7 +238,7 @@ extension InfoMapViewController: MKMapViewDelegate, CLLocationManagerDelegate {
     }
     
     func setupMapRegion(){
-        let span = MKCoordinateSpanMake(0.01, 0.01)
+        let span = MKCoordinateSpanMake(0.006, 0.006)
         if let location = locationManager.location {
             let region = MKCoordinateRegion(center: location.coordinate , span: span)
             

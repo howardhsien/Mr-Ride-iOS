@@ -63,7 +63,6 @@ class TrackingPageViewController: UIViewController {
         Amplitude.instance().logEvent(classDebugInfo+#function)
         if let coordinate = locationManager.location?.coordinate{
             mapViewController?.showUserLocation(coordinate)
-            print(coordinate)
         }
     }
 
