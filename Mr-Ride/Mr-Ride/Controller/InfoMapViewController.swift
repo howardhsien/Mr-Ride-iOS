@@ -207,6 +207,8 @@ extension InfoMapViewController: MKMapViewDelegate, CLLocationManagerDelegate {
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
         locationManager.pausesLocationUpdatesAutomatically = true
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+
         mapView.delegate = self
         mapView.showsUserLocation = true
         

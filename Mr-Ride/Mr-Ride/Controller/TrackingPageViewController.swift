@@ -25,7 +25,7 @@ class TrackingPageViewController: UIViewController {
     lazy var locationManager: CLLocationManager = {
         var _locationManager = CLLocationManager()
         _locationManager.delegate = self
-        _locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         _locationManager.activityType = .Fitness
         
         // Movement threshold for new events
