@@ -143,7 +143,6 @@ class TrackingPageViewController: UIViewController {
         savedRide.weight = rideModel.weight
         
         //--------------transmit data using Amplitude to track user behavior-----------------------
-        
         Amplitude.instance().logEvent("tracking event", withEventProperties:
             ["time":rideModel.spentTime,
              "distance": rideModel.distance])
@@ -217,6 +216,11 @@ extension TrackingPageViewController: CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
         locationManager.requestAlwaysAuthorization()
         locationManager.pausesLocationUpdatesAutomatically = false
+        if #available(iOS 9.0, *) {
+            locationManager.allowsBackgroundLocationUpdates = true
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
