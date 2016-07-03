@@ -206,7 +206,7 @@ extension InfoMapViewController: MKMapViewDelegate, CLLocationManagerDelegate {
     func setupMapAndLocationManager(){
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
-        locationManager.pausesLocationUpdatesAutomatically = true
+//        locationManager.pausesLocationUpdatesAutomatically = true
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
 
         mapView.delegate = self

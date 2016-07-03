@@ -321,6 +321,11 @@
 					6409677C1CF54EA100D630E1 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = NNV239MSYK;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};

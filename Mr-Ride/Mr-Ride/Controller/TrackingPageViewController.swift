@@ -25,7 +25,7 @@ class TrackingPageViewController: UIViewController {
     lazy var locationManager: CLLocationManager = {
         var _locationManager = CLLocationManager()
         _locationManager.delegate = self
-        _locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBest
         _locationManager.activityType = .Fitness
         
         // Movement threshold for new events
@@ -113,14 +113,20 @@ class TrackingPageViewController: UIViewController {
             if let distance = locationManager.location?.distanceFromLocation(location){
                 rideModel.addDistance(distance)
             }
+            
+            
             distanceLabel.text = String(format:"%0.0f m",rideModel.distance)
-            rideModel.addLocation(location,pathCounter: pathCounter)
-            //add polyline
-            var coords = [CLLocationCoordinate2D]()
-            coords.append(location.coordinate)
-            coords.append(locationManager.location!.coordinate)
-
-            mapViewController?.addMapPolyline(coordinates: &coords,count:2)
+            
+            
+            if currentLocation != locationManager.location{
+                rideModel.addLocation(location,pathCounter: pathCounter)
+                //add polyline
+                var coords = [CLLocationCoordinate2D]()
+                coords.append(location.coordinate)
+                coords.append(locationManager.location!.coordinate)
+                
+                mapViewController?.addMapPolyline(coordinates: &coords,count:2)
+            }
             currentLocation = locationManager.location
         }
         
@@ -211,11 +217,15 @@ class TrackingPageViewController: UIViewController {
 
 // MARK: - CLLocationManagerDelegate
 extension TrackingPageViewController: CLLocationManagerDelegate {
+    
+  
+    
     func startLocationUpdates() {
         // Here, the location manager will be lazily instantiated
+        locationManager.pausesLocationUpdatesAutomatically = false
         locationManager.startUpdatingLocation()
         locationManager.requestAlwaysAuthorization()
-        locationManager.pausesLocationUpdatesAutomatically = false
+        
         if #available(iOS 9.0, *) {
             locationManager.allowsBackgroundLocationUpdates = true
         } else {
@@ -224,7 +234,7 @@ extension TrackingPageViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        print("didupdate locations")
+        print("didupdate locations")
         mapViewController?.showMapAnnotations()
       
     }
